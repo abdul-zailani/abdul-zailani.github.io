@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CV - Abdul Aziz Zailani</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; font-size: 10pt; line-height: 1.5; max-width: 210mm; margin: 0 auto; }
+  .page { padding: 32px 40px; }
+  h1 { font-size: 20pt; font-weight: 700; color: #0d1117; letter-spacing: -0.5px; }
+  h2 { font-size: 10pt; font-weight: 700; color: #1a7f64; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #1a7f64; padding-bottom: 3px; margin: 14px 0 8px; }
+  h3 { font-size: 9.5pt; font-weight: 700; color: #0d1117; }
+  .subtitle { font-size: 10pt; color: #4a5568; margin: 2px 0 5px; }
+  .contact { font-size: 8.5pt; color: #4a5568; }
+  .contact a { color: #1a7f64; text-decoration: none; }
+  .entry { margin-bottom: 8px; }
+  .entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+  .entry-header .date { font-size: 8.5pt; color: #718096; white-space: nowrap; }
+  .entry-sub { font-size: 8.5pt; color: #4a5568; margin-bottom: 2px; }
+  ul { padding-left: 16px; margin-top: 2px; }
+  li { margin-bottom: 1px; font-size: 9pt; }
+  .skills-grid { font-size: 9pt; }
+  .skill-cat { font-weight: 600; color: #1a7f64; }
+  .summary { font-size: 9pt; color: #2d3748; margin-top: 4px; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Abdul Aziz Zailani</h1>
+<div class="subtitle">Site Reliability Engineer</div>
+<div class="contact">Jakarta, Indonesia · <a href="mailto:aazizzailani.dev@gmail.com">aazizzailani.dev@gmail.com</a> · <a href="https://linkedin.com/in/aazizzailani">linkedin.com/in/aazizzailani</a> · <a href="https://azizzailani.github.io">azizzailani.github.io</a></div>
+
+<div class="summary">
+SRE with 7+ years in infrastructure engineering — from Linux system administration to managing multi-cloud Kubernetes clusters at scale. Currently ensuring reliability for one of Indonesia's largest logistics platforms. Focused on automation, observability, and cost-efficient infrastructure.
+</div>
+
+<h2>Experience</h2>
+
+<div class="entry">
+  <div class="entry-header">
+    <h3>Site Reliability Engineer — Lion Parcel</h3>
+    <span class="date">Feb 2025 – Present</span>
+  </div>
+  <div class="entry-sub">Indonesia's leading logistics platform</div>
+  <ul>
+    <li>Led migration of Lion Parcel services from GCP to AWS with minimal downtime</li>
+    <li>Manage 5 EKS clusters across development, staging, and production environments (Genesis, Lilo, Pegasus)</li>
+    <li>Operate multi-account AWS infrastructure (8 accounts) with SSO-based access control</li>
+    <li>Designed data pipeline infrastructure using AWS DMS, MSK (Kafka), and Aurora for real-time data replication</li>
+    <li>Implemented Jenkins Configuration as Code (JCasC) for standardized, version-controlled CI/CD pipelines</li>
+    <li>Built custom Ansible collections to streamline infrastructure provisioning and operational tasks</li>
+    <li>Drive cost optimization across EKS pod rightsizing, idle resource cleanup, and database tuning</li>
+    <li>Maintain observability stack with Prometheus, Grafana, and Tempo for distributed tracing</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-header">
+    <h3>DevOps Team Lead — KipasKipas</h3>
+    <span class="date">Nov 2022 – Feb 2025</span>
+  </div>
+  <ul>
+    <li>Led DevOps team responsible for CI/CD pipelines, infrastructure automation on Alibaba Cloud</li>
+    <li>Designed deployment pipelines for microservices architecture on Kubernetes</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-header">
+    <h3>DevOps Engineer (Freelance) — Blueray Cargo International</h3>
+    <span class="date">Nov 2022 – Feb 2025</span>
+  </div>
+  <ul>
+    <li>Implemented monitoring/alerting with Prometheus and Grafana; secured applications with WAF</li>
+    <li>Optimized application performance with NGINX reverse proxy and load balancing</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-header">
+    <h3>DevOps Engineer / Linux SysAdmin — Harmonix Teknologi Peentar</h3>
+    <span class="date">Oct 2018 – Nov 2022</span>
+  </div>
+  <ul>
+    <li>Built CI/CD pipelines; managed containerized workloads with Docker, Kubernetes (Rancher) on AWS and Telkom Sigma bare-metal cloud</li>
+    <li>Administered Linux servers (RHEL, Ubuntu), VMware environments, patching, and security hardening</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-header">
+    <h3>DevOps Engineer (Freelance) — buyback.ai</h3>
+    <span class="date">Aug 2021 – Aug 2022</span>
+  </div>
+  <ul>
+    <li>Supported cloud infrastructure and deployment automation on AWS and DigitalOcean</li>
+  </ul>
+</div>
+
+<h2>Technical Skills</h2>
+<div class="skills-grid">
+  <div><span class="skill-cat">Cloud:</span> AWS (EKS, EC2, RDS, S3, ECR, IAM, SSO, DMS, MSK, Aurora), GCP (GKE), Alibaba Cloud, DigitalOcean</div>
+  <div><span class="skill-cat">Orchestration:</span> Kubernetes, Docker, Helm, Rancher</div>
+  <div><span class="skill-cat">IaC & Configuration:</span> Terraform, Ansible</div>
+  <div><span class="skill-cat">CI/CD:</span> Jenkins (JCasC), GitHub Actions</div>
+  <div><span class="skill-cat">Observability:</span> Prometheus, Grafana, Tempo, ELK</div>
+  <div><span class="skill-cat">Databases:</span> PostgreSQL, MySQL, Redis</div>
+  <div><span class="skill-cat">OS & Web:</span> Linux (Ubuntu, RHEL), NGINX</div>
+</div>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="entry-header">
+    <h3>Bachelor's Degree, Mathematics and Computer Science — UNINDRA</h3>
+    <span class="date">2010 – 2015</span>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
