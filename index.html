@@ -2,126 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CV - Abdul Aziz Zailani</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aziz@sre:~$ cv</title>
 <style>
-  @page { size: A4; margin: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; font-size: 10pt; line-height: 1.5; max-width: 210mm; margin: 0 auto; }
-  .page { padding: 32px 40px; }
-  h1 { font-size: 20pt; font-weight: 700; color: #0d1117; letter-spacing: -0.5px; }
-  h2 { font-size: 10pt; font-weight: 700; color: #1a7f64; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #1a7f64; padding-bottom: 3px; margin: 14px 0 8px; }
-  h3 { font-size: 9.5pt; font-weight: 700; color: #0d1117; }
-  .subtitle { font-size: 10pt; color: #4a5568; margin: 2px 0 5px; }
-  .contact { font-size: 8.5pt; color: #4a5568; }
-  .contact a { color: #1a7f64; text-decoration: none; }
-  .entry { margin-bottom: 8px; }
-  .entry-header { display: flex; justify-content: space-between; align-items: baseline; }
-  .entry-header .date { font-size: 8.5pt; color: #718096; white-space: nowrap; }
-  .entry-sub { font-size: 8.5pt; color: #4a5568; margin-bottom: 2px; }
-  ul { padding-left: 16px; margin-top: 2px; }
-  li { margin-bottom: 1px; font-size: 9pt; }
-  .skills-grid { font-size: 9pt; }
-  .skill-cat { font-weight: 600; color: #1a7f64; }
-  .summary { font-size: 9pt; color: #2d3748; margin-top: 4px; }
-  .dl-btn { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #1a7f64; color: #fff; text-decoration: none; border-radius: 5px; font-size: 9.5pt; font-weight: 600; }
-  .dl-btn:hover { background: #15664f; }
-  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .dl-btn { display: none; } }
+  body { font-family: 'JetBrains Mono', monospace; background: #1e1e2e; color: #cdd6f4; font-size: 13px; line-height: 1.6; }
+  .terminal { max-width: 860px; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .titlebar { background: #313244; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-r { background: #f38ba8; } .dot-y { background: #f9e2af; } .dot-g { background: #a6e3a1; }
+  .titlebar-text { color: #6c7086; font-size: 12px; margin-left: 8px; }
+  .body { padding: 20px 24px; }
+  .prompt { color: #a6e3a1; } .path { color: #89b4fa; } .cmd { color: #f9e2af; }
+  .comment { color: #6c7086; }
+  .section { margin: 16px 0; }
+  .section-title { color: #f38ba8; font-weight: 700; margin-bottom: 6px; }
+  .key { color: #89dceb; } .val { color: #cdd6f4; } .highlight { color: #a6e3a1; }
+  .sep { color: #585b70; }
+  .entry { margin-bottom: 10px; }
+  .role { color: #f9e2af; font-weight: 700; } .company { color: #89b4fa; } .date { color: #6c7086; }
+  .bullet { color: #6c7086; } .bullet-text { color: #bac2de; }
+  .tag { display: inline-block; background: #313244; color: #89dceb; padding: 2px 8px; border-radius: 4px; margin: 2px 4px 2px 0; font-size: 12px; }
+  .dl-btn { display: inline-block; margin-top: 12px; padding: 8px 20px; background: #a6e3a1; color: #1e1e2e; text-decoration: none; border-radius: 5px; font-weight: 700; font-size: 13px; }
+  .dl-btn:hover { background: #94e2d5; }
+  .cursor { animation: blink 1s step-end infinite; color: #a6e3a1; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media print { .dl-btn, .titlebar { display: none; } body { background: #fff; color: #1a1a1a; } .body { padding: 20px; } .tag { background: #eee; color: #333; } }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="terminal">
+  <div class="titlebar">
+    <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+    <span class="titlebar-text">aziz@sre:~</span>
+  </div>
+  <div class="body">
 
-<h1>Abdul Aziz Zailani</h1>
-<div class="subtitle">Site Reliability Engineer</div>
-<div class="contact">Jakarta, Indonesia · <a href="mailto:aazizzailani.dev@gmail.com">aazizzailani.dev@gmail.com</a> · <a href="https://linkedin.com/in/aazizzailani">linkedin.com/in/aazizzailani</a> · <a href="https://azizzailani.github.io">azizzailani.github.io</a></div>
+<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">cat about.yml</span>
+<div class="section">
+<span class="key">name:</span> <span class="val">Abdul Aziz Zailani</span><br>
+<span class="key">role:</span> <span class="val">Site Reliability Engineer</span><br>
+<span class="key">location:</span> <span class="val">Jakarta, Indonesia</span><br>
+<span class="key">email:</span> <span class="val">aazizzailani.dev@gmail.com</span><br>
+<span class="key">linkedin:</span> <span class="val"><a href="https://linkedin.com/in/aazizzailani" style="color:#89b4fa">linkedin.com/in/aazizzailani</a></span><br>
+<span class="key">github:</span> <span class="val"><a href="https://github.com/abdul-zailani" style="color:#89b4fa">github.com/abdul-zailani</a></span>
+</div>
+
+<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">cat summary.txt</span>
+<div class="section">
+<span class="bullet-text">SRE with 7+ years in infrastructure engineering — from Linux sysadmin to managing multi-cloud Kubernetes clusters at scale. Currently ensuring reliability for one of Indonesia's largest logistics platforms. Focused on automation, observability, and cost-efficient infrastructure.</span>
+</div>
+
+<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">kubectl get experience --sort-by=.metadata.date</span>
+<div class="section">
+
+<div class="entry">
+<span class="role">SRE</span> <span class="sep">@</span> <span class="company">Lion Parcel</span> <span class="date">// Feb 2025 – Present</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Led migration of services from GCP to AWS with minimal downtime</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Manage 5 EKS clusters across dev, staging, production (Genesis, Lilo, Pegasus)</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Designed data pipeline with AWS DMS, MSK (Kafka), and Aurora</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Implemented Jenkins Configuration as Code (JCasC)</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Built custom Ansible collections for infra provisioning</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Operate 8 AWS accounts with SSO-based access control</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Drive cost optimization: pod rightsizing, idle cleanup, DB tuning</span><br>
+<span class="bullet">└─</span> <span class="bullet-text">Maintain observability with Prometheus, Grafana, Tempo</span>
+</div>
+
+<div class="entry">
+<span class="role">DevOps Team Lead</span> <span class="sep">@</span> <span class="company">KipasKipas</span> <span class="date">// Nov 2022 – Feb 2025</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Led DevOps team; CI/CD pipelines and infra automation on Alibaba Cloud</span><br>
+<span class="bullet">└─</span> <span class="bullet-text">Designed deployment pipelines for microservices on Kubernetes</span>
+</div>
+
+<div class="entry">
+<span class="role">DevOps Engineer</span> <span class="sep">(freelance) @</span> <span class="company">Blueray Cargo International</span> <span class="date">// Nov 2022 – Feb 2025</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Monitoring/alerting with Prometheus & Grafana; WAF deployment</span><br>
+<span class="bullet">└─</span> <span class="bullet-text">Optimized performance with NGINX reverse proxy & load balancing</span>
+</div>
+
+<div class="entry">
+<span class="role">DevOps Engineer / Linux SysAdmin</span> <span class="sep">@</span> <span class="company">Harmonix Teknologi Peentar</span> <span class="date">// Oct 2018 – Nov 2022</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">CI/CD pipelines; Docker & Kubernetes (Rancher) on AWS + Telkom Sigma bare-metal</span><br>
+<span class="bullet">└─</span> <span class="bullet-text">Linux admin (RHEL, Ubuntu), VMware, patching, security hardening</span>
+</div>
+
+<div class="entry">
+<span class="role">DevOps Engineer</span> <span class="sep">(freelance) @</span> <span class="company">buyback.ai</span> <span class="date">// Aug 2021 – Aug 2022</span><br>
+<span class="bullet">└─</span> <span class="bullet-text">Cloud infra and deployment automation on AWS + DigitalOcean</span>
+</div>
+
+</div>
+
+<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">helm list --all-namespaces</span> <span class="comment"># skills</span>
+<div class="section">
+<span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Alibaba Cloud</span><span class="tag">DigitalOcean</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Tempo</span><span class="tag">ELK</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">NGINX</span><span class="tag">Linux</span><span class="tag">DMS</span><span class="tag">MSK</span><span class="tag">Aurora</span>
+</div>
+
+<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">cat education.txt</span>
+<div class="section">
+<span class="key">degree:</span> <span class="val">Bachelor's, Mathematics & Computer Science</span><br>
+<span class="key">university:</span> <span class="val">Universitas Indraprasta PGRI (UNINDRA)</span><br>
+<span class="key">year:</span> <span class="val">2010 – 2015</span>
+</div>
+
+<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cursor">█</span>
+
 <a class="dl-btn" href="cv-abdul-aziz-zailani.pdf" download>📄 Download PDF</a>
 
-<div class="summary">
-SRE with 7+ years in infrastructure engineering — from Linux system administration to managing multi-cloud Kubernetes clusters at scale. Currently ensuring reliability for one of Indonesia's largest logistics platforms. Focused on automation, observability, and cost-efficient infrastructure.
-</div>
-
-<h2>Experience</h2>
-
-<div class="entry">
-  <div class="entry-header">
-    <h3>Site Reliability Engineer — Lion Parcel</h3>
-    <span class="date">Feb 2025 – Present</span>
   </div>
-  <div class="entry-sub">Indonesia's leading logistics platform</div>
-  <ul>
-    <li>Led migration of Lion Parcel services from GCP to AWS with minimal downtime</li>
-    <li>Manage 5 EKS clusters across development, staging, and production environments (Genesis, Lilo, Pegasus)</li>
-    <li>Operate multi-account AWS infrastructure (8 accounts) with SSO-based access control</li>
-    <li>Designed data pipeline infrastructure using AWS DMS, MSK (Kafka), and Aurora for real-time data replication</li>
-    <li>Implemented Jenkins Configuration as Code (JCasC) for standardized, version-controlled CI/CD pipelines</li>
-    <li>Built custom Ansible collections to streamline infrastructure provisioning and operational tasks</li>
-    <li>Drive cost optimization across EKS pod rightsizing, idle resource cleanup, and database tuning</li>
-    <li>Maintain observability stack with Prometheus, Grafana, and Tempo for distributed tracing</li>
-  </ul>
-</div>
-
-<div class="entry">
-  <div class="entry-header">
-    <h3>DevOps Team Lead — KipasKipas</h3>
-    <span class="date">Nov 2022 – Feb 2025</span>
-  </div>
-  <ul>
-    <li>Led DevOps team responsible for CI/CD pipelines, infrastructure automation on Alibaba Cloud</li>
-    <li>Designed deployment pipelines for microservices architecture on Kubernetes</li>
-  </ul>
-</div>
-
-<div class="entry">
-  <div class="entry-header">
-    <h3>DevOps Engineer (Freelance) — Blueray Cargo International</h3>
-    <span class="date">Nov 2022 – Feb 2025</span>
-  </div>
-  <ul>
-    <li>Implemented monitoring/alerting with Prometheus and Grafana; secured applications with WAF</li>
-    <li>Optimized application performance with NGINX reverse proxy and load balancing</li>
-  </ul>
-</div>
-
-<div class="entry">
-  <div class="entry-header">
-    <h3>DevOps Engineer / Linux SysAdmin — Harmonix Teknologi Peentar</h3>
-    <span class="date">Oct 2018 – Nov 2022</span>
-  </div>
-  <ul>
-    <li>Built CI/CD pipelines; managed containerized workloads with Docker, Kubernetes (Rancher) on AWS and Telkom Sigma bare-metal cloud</li>
-    <li>Administered Linux servers (RHEL, Ubuntu), VMware environments, patching, and security hardening</li>
-  </ul>
-</div>
-
-<div class="entry">
-  <div class="entry-header">
-    <h3>DevOps Engineer (Freelance) — buyback.ai</h3>
-    <span class="date">Aug 2021 – Aug 2022</span>
-  </div>
-  <ul>
-    <li>Supported cloud infrastructure and deployment automation on AWS and DigitalOcean</li>
-  </ul>
-</div>
-
-<h2>Technical Skills</h2>
-<div class="skills-grid">
-  <div><span class="skill-cat">Cloud:</span> AWS (EKS, EC2, RDS, S3, ECR, IAM, SSO, DMS, MSK, Aurora), GCP (GKE), Alibaba Cloud, DigitalOcean</div>
-  <div><span class="skill-cat">Orchestration:</span> Kubernetes, Docker, Helm, Rancher</div>
-  <div><span class="skill-cat">IaC & Configuration:</span> Terraform, Ansible</div>
-  <div><span class="skill-cat">CI/CD:</span> Jenkins (JCasC), GitHub Actions</div>
-  <div><span class="skill-cat">Observability:</span> Prometheus, Grafana, Tempo, ELK</div>
-  <div><span class="skill-cat">Databases:</span> PostgreSQL, MySQL, Redis</div>
-  <div><span class="skill-cat">OS & Web:</span> Linux (Ubuntu, RHEL), NGINX</div>
-</div>
-
-<h2>Education</h2>
-<div class="entry">
-  <div class="entry-header">
-    <h3>Bachelor's Degree, Mathematics and Computer Science — UNINDRA</h3>
-    <span class="date">2010 – 2015</span>
-  </div>
-</div>
-
 </div>
 </body>
 </html>
