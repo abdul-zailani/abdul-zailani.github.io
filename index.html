@@ -23,7 +23,9 @@
   .skills-grid { font-size: 9pt; }
   .skill-cat { font-weight: 600; color: #1a7f64; }
   .summary { font-size: 9pt; color: #2d3748; margin-top: 4px; }
-  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  .dl-btn { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #1a7f64; color: #fff; text-decoration: none; border-radius: 5px; font-size: 9.5pt; font-weight: 600; }
+  .dl-btn:hover { background: #15664f; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .dl-btn { display: none; } }
 </style>
 </head>
 <body>
@@ -32,6 +34,7 @@
 <h1>Abdul Aziz Zailani</h1>
 <div class="subtitle">Site Reliability Engineer</div>
 <div class="contact">Jakarta, Indonesia · <a href="mailto:aazizzailani.dev@gmail.com">aazizzailani.dev@gmail.com</a> · <a href="https://linkedin.com/in/aazizzailani">linkedin.com/in/aazizzailani</a> · <a href="https://azizzailani.github.io">azizzailani.github.io</a></div>
+<a class="dl-btn" href="cv-abdul-aziz-zailani.pdf" download>📄 Download PDF</a>
 
 <div class="summary">
 SRE with 7+ years in infrastructure engineering — from Linux system administration to managing multi-cloud Kubernetes clusters at scale. Currently ensuring reliability for one of Indonesia's largest logistics platforms. Focused on automation, observability, and cost-efficient infrastructure.
