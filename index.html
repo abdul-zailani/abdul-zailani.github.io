@@ -4,31 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>aziz@sre:~$ cv</title>
+<meta name="description" content="Interactive terminal-style resume of Abdul Aziz Zailani — Site Reliability Engineer">
+<meta property="og:title" content="aziz@sre:~$ cv">
+<meta property="og:description" content="Interactive terminal resume — type 'help' to explore. SRE / DevOps Engineer with 7+ years in infrastructure engineering.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abdul-zailani.github.io">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="aziz@sre:~$ cv">
+<meta name="twitter:description" content="Interactive terminal resume — type 'help' to explore.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'JetBrains Mono', monospace; background: #1e1e2e; color: #cdd6f4; font-size: 13px; line-height: 1.6; }
-  .terminal { max-width: 860px; margin: 20px auto; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-  .titlebar { background: #313244; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; }
-  .dot-r { background: #f38ba8; } .dot-y { background: #f9e2af; } .dot-g { background: #a6e3a1; }
-  .titlebar-text { color: #6c7086; font-size: 12px; margin-left: 8px; }
-  .body { padding: 20px 24px; }
-  .prompt { color: #a6e3a1; } .path { color: #89b4fa; } .cmd { color: #f9e2af; }
-  .comment { color: #6c7086; }
-  .section { margin: 16px 0; }
-  .section-title { color: #f38ba8; font-weight: 700; margin-bottom: 6px; }
-  .key { color: #89dceb; } .val { color: #cdd6f4; } .highlight { color: #a6e3a1; }
-  .sep { color: #585b70; }
-  .entry { margin-bottom: 10px; }
-  .role { color: #f9e2af; font-weight: 700; } .company { color: #89b4fa; } .date { color: #6c7086; }
-  .bullet { color: #6c7086; } .bullet-text { color: #bac2de; }
-  .tag { display: inline-block; background: #313244; color: #89dceb; padding: 2px 8px; border-radius: 4px; margin: 2px 4px 2px 0; font-size: 12px; }
-  .dl-btn { display: inline-block; margin-top: 12px; padding: 8px 20px; background: #a6e3a1; color: #1e1e2e; text-decoration: none; border-radius: 5px; font-weight: 700; font-size: 13px; }
-  .dl-btn:hover { background: #94e2d5; }
-  .cursor { animation: blink 1s step-end infinite; color: #a6e3a1; }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media print { .dl-btn, .titlebar { display: none; } body { background: #fff; color: #1a1a1a; } .body { padding: 20px; } .tag { background: #eee; color: #333; } }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'JetBrains Mono',monospace;background:#1e1e2e;color:#cdd6f4;font-size:13px;line-height:1.6}
+  .terminal{max-width:860px;margin:20px auto;border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+  .titlebar{background:#313244;padding:10px 16px;display:flex;align-items:center;gap:8px}
+  .dot{width:12px;height:12px;border-radius:50%}.dot-r{background:#f38ba8}.dot-y{background:#f9e2af}.dot-g{background:#a6e3a1}
+  .titlebar-text{color:#6c7086;font-size:12px;margin-left:8px}
+  .body{padding:20px 24px;min-height:80vh;cursor:text}
+  #output .prompt{color:#a6e3a1}.path{color:#89b4fa}.cmd{color:#f9e2af}.comment{color:#6c7086}
+  .section{margin:4px 0 16px 0}
+  .section-title{color:#f38ba8;font-weight:700;margin-bottom:4px}
+  .key{color:#89dceb}.val{color:#cdd6f4}
+  .sep{color:#585b70}
+  .entry{margin-bottom:10px}
+  .role{color:#f9e2af;font-weight:700}.company{color:#89b4fa}.date{color:#6c7086}
+  .bullet{color:#6c7086}.bullet-text{color:#bac2de}
+  .tag{display:inline-block;background:#313244;color:#89dceb;padding:2px 8px;border-radius:4px;margin:2px 4px 2px 0;font-size:12px}
+  a{color:#89b4fa;text-decoration:none}a:hover{text-decoration:underline}
+  .input-line{display:flex;align-items:center}
+  #input{background:none;border:none;color:#f9e2af;font:inherit;outline:none;flex:1;caret-color:#a6e3a1;min-width:60px}
+  .err{color:#f38ba8}
+  .ascii{color:#a6e3a1;line-height:1.2}
+  .mobile-hint{display:none;color:#6c7086;font-size:11px;margin-top:8px}
+  @media print{.titlebar,.mobile-hint{display:none}body{background:#fff;color:#1a1a1a}.body{padding:20px}.tag{background:#eee;color:#333}}
+  @media(max-width:600px){.body{font-size:12px;padding:12px 14px}.mobile-hint{display:block}}
 </style>
 </head>
 <body>
@@ -37,80 +46,148 @@
     <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
     <span class="titlebar-text">aziz@sre:~</span>
   </div>
-  <div class="body">
+  <div class="body" id="term">
+    <div id="output"></div>
+    <div class="input-line">
+      <span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span>
+      <input id="input" type="text" autofocus autocomplete="off" spellcheck="false" aria-label="terminal input">
+    </div>
+    <div class="mobile-hint">tap here to start typing</div>
+  </div>
+</div>
+<script>
+const cmds = {
+help: `<span class="section-title">Available commands:</span><br>
+<span class="key">about</span>       <span class="comment">— who am i</span><br>
+<span class="key">experience</span>  <span class="comment">— work history</span><br>
+<span class="key">skills</span>      <span class="comment">— tech stack</span><br>
+<span class="key">education</span>   <span class="comment">— academic background</span><br>
+<span class="key">contact</span>     <span class="comment">— reach me</span><br>
+<span class="key">download</span>    <span class="comment">— get PDF resume</span><br>
+<span class="key">clear</span>       <span class="comment">— clear terminal</span>`,
 
-<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">cat about.yml</span>
-<div class="section">
-<span class="key">name:</span> <span class="val">Abdul Aziz Zailani</span><br>
-<span class="key">role:</span> <span class="val">Site Reliability Engineer</span><br>
+about: `<span class="key">name:</span> <span class="val">Abdul Aziz Zailani</span><br>
+<span class="key">role:</span> <span class="val">Site Reliability Engineer / DevOps Engineer</span><br>
 <span class="key">location:</span> <span class="val">Jakarta, Indonesia</span><br>
-<span class="key">email:</span> <span class="val">aazizzailani.dev@gmail.com</span><br>
-<span class="key">linkedin:</span> <span class="val"><a href="https://linkedin.com/in/aazizzailani" style="color:#89b4fa">linkedin.com/in/aazizzailani</a></span><br>
-<span class="key">github:</span> <span class="val"><a href="https://github.com/abdul-zailani" style="color:#89b4fa">github.com/abdul-zailani</a></span>
-</div>
+<br>
+<span class="bullet-text">SRE with 7+ years in infrastructure engineering — from Linux sysadmin to managing multi-cloud Kubernetes clusters at scale. Currently ensuring reliability for one of Indonesia's largest logistics platforms. Focused on automation, observability, and cost-efficient infrastructure.</span>`,
 
-<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">cat summary.txt</span>
-<div class="section">
-<span class="bullet-text">SRE with 7+ years in infrastructure engineering — from Linux sysadmin to managing multi-cloud Kubernetes clusters at scale. Currently ensuring reliability for one of Indonesia's largest logistics platforms. Focused on automation, observability, and cost-efficient infrastructure.</span>
-</div>
-
-<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">kubectl get experience --sort-by=.metadata.date</span>
-<div class="section">
-
-<div class="entry">
-<span class="role">SRE</span> <span class="sep">@</span> <span class="company">Lion Parcel</span> <span class="date">// Feb 2025 – Present</span><br>
+experience: `<span class="role">SRE</span> <span class="sep">@</span> <span class="company">Lion Parcel</span> <span class="date">// Feb 2025 – Present</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Led migration of services from GCP to AWS with minimal downtime</span><br>
-<span class="bullet">├─</span> <span class="bullet-text">Manage 5 EKS clusters across dev, staging, production (Genesis, Lilo, Pegasus)</span><br>
+<span class="bullet">├─</span> <span class="bullet-text">Manage 5 EKS clusters across dev, staging, production</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Designed data pipeline with AWS DMS, MSK (Kafka), and Aurora</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Implemented Jenkins Configuration as Code (JCasC)</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Built custom Ansible collections for infra provisioning</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Operate 8 AWS accounts with SSO-based access control</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Drive cost optimization: pod rightsizing, idle cleanup, DB tuning</span><br>
-<span class="bullet">└─</span> <span class="bullet-text">Maintain observability with Prometheus, Grafana, Tempo</span>
-</div>
-
-<div class="entry">
+<span class="bullet">└─</span> <span class="bullet-text">Maintain observability with Prometheus, Grafana, Tempo</span><br>
+<br>
 <span class="role">DevOps Team Lead</span> <span class="sep">@</span> <span class="company">KipasKipas</span> <span class="date">// Nov 2022 – Feb 2025</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Led DevOps team; CI/CD pipelines and infra automation on Alibaba Cloud</span><br>
-<span class="bullet">└─</span> <span class="bullet-text">Designed deployment pipelines for microservices on Kubernetes</span>
-</div>
-
-<div class="entry">
+<span class="bullet">└─</span> <span class="bullet-text">Designed deployment pipelines for microservices on Kubernetes</span><br>
+<br>
 <span class="role">DevOps Engineer</span> <span class="sep">(freelance) @</span> <span class="company">Blueray Cargo International</span> <span class="date">// Nov 2022 – Feb 2025</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">Monitoring/alerting with Prometheus & Grafana; WAF deployment</span><br>
-<span class="bullet">└─</span> <span class="bullet-text">Optimized performance with NGINX reverse proxy & load balancing</span>
-</div>
-
-<div class="entry">
+<span class="bullet">└─</span> <span class="bullet-text">Optimized performance with NGINX reverse proxy & load balancing</span><br>
+<br>
 <span class="role">DevOps Engineer / Linux SysAdmin</span> <span class="sep">@</span> <span class="company">Harmonix Teknologi Peentar</span> <span class="date">// Oct 2018 – Nov 2022</span><br>
 <span class="bullet">├─</span> <span class="bullet-text">CI/CD pipelines; Docker & Kubernetes (Rancher) on AWS + Telkom Sigma bare-metal</span><br>
-<span class="bullet">└─</span> <span class="bullet-text">Linux admin (RHEL, Ubuntu), VMware, patching, security hardening</span>
-</div>
-
-<div class="entry">
+<span class="bullet">└─</span> <span class="bullet-text">Linux admin (RHEL, Ubuntu), VMware, patching, security hardening</span><br>
+<br>
 <span class="role">DevOps Engineer</span> <span class="sep">(freelance) @</span> <span class="company">buyback.ai</span> <span class="date">// Aug 2021 – Aug 2022</span><br>
-<span class="bullet">└─</span> <span class="bullet-text">Cloud infra and deployment automation on AWS + DigitalOcean</span>
-</div>
+<span class="bullet">└─</span> <span class="bullet-text">Cloud infra and deployment automation on AWS + DigitalOcean</span>`,
 
-</div>
+skills: `<span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Alibaba Cloud</span><span class="tag">DigitalOcean</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Tempo</span><span class="tag">ELK</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">NGINX</span><span class="tag">Linux</span><span class="tag">DMS</span><span class="tag">MSK</span><span class="tag">Aurora</span>`,
 
-<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">helm list --all-namespaces</span> <span class="comment"># skills</span>
-<div class="section">
-<span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Alibaba Cloud</span><span class="tag">DigitalOcean</span><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Tempo</span><span class="tag">ELK</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">NGINX</span><span class="tag">Linux</span><span class="tag">DMS</span><span class="tag">MSK</span><span class="tag">Aurora</span>
-</div>
-
-<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cmd">cat education.txt</span>
-<div class="section">
-<span class="key">degree:</span> <span class="val">Bachelor's, Mathematics & Computer Science</span><br>
+education: `<span class="key">degree:</span> <span class="val">Bachelor's, Mathematics & Computer Science</span><br>
 <span class="key">university:</span> <span class="val">Universitas Indraprasta PGRI (UNINDRA)</span><br>
-<span class="key">year:</span> <span class="val">2010 – 2015</span>
-</div>
+<span class="key">year:</span> <span class="val">2010 – 2015</span>`,
 
-<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span><span class="cursor">█</span>
+contact: `<span class="key">email:</span> <span class="val"><a href="mailto:aazizzailani.dev@gmail.com">aazizzailani.dev@gmail.com</a></span><br>
+<span class="key">linkedin:</span> <span class="val"><a href="https://linkedin.com/in/aazizzailani" target="_blank">linkedin.com/in/aazizzailani</a></span><br>
+<span class="key">github:</span> <span class="val"><a href="https://github.com/abdul-zailani" target="_blank">github.com/abdul-zailani</a></span>`,
 
-<a class="dl-btn" href="cv-abdul-aziz-zailani.pdf" download>📄 Download PDF</a>
+whoami: `<span class="val">aziz — SRE who mass-produces YAML for a living</span>`,
 
-  </div>
-</div>
+neofetch: `<pre class="ascii">        .--.         <span class="key">OS:</span> <span class="val">Production Linux</span>
+       |o_o |        <span class="key">Host:</span> <span class="val">Lion Parcel Infra</span>
+       |:_/ |        <span class="key">Kernel:</span> <span class="val">EKS 1.31</span>
+      //   \\ \\       <span class="key">Uptime:</span> <span class="val">7+ years</span>
+     (|     | )      <span class="key">Packages:</span> <span class="val">5 clusters, 8 AWS accounts</span>
+    /'\\_   _/\`\\     <span class="key">Shell:</span> <span class="val">zsh + tmux</span>
+    \\___)=(___/      <span class="key">Editor:</span> <span class="val">vim + Kiro</span></pre>`,
+
+sudo: `<span class="err">aziz is not in the sudoers file. nice try 😏</span>`,
+
+exit: `<span class="comment">logout — just kidding, you can't leave that easily</span>`,
+
+rm: `<span class="err">rm: permission denied. this is a read-only filesystem 🔒</span>`
+};
+
+const output = document.getElementById('output');
+const input = document.getElementById('input');
+const hist = [];
+let histIdx = -1;
+
+function pr() {
+  return '<span class="prompt">aziz@sre</span><span class="sep">:</span><span class="path">~</span><span class="sep">$ </span>';
+}
+
+function exec(raw) {
+  const cmd = raw.trim().toLowerCase().split(/\s+/)[0];
+  if (cmd && (hist.length === 0 || hist[hist.length-1] !== raw.trim())) hist.push(raw.trim());
+  histIdx = hist.length;
+
+  let line = pr() + '<span class="cmd">' + esc(raw) + '</span><br>';
+
+  if (cmd === 'clear') { output.innerHTML = ''; return; }
+  if (cmd === 'download') {
+    line += '<span class="bullet-text">Downloading resume...</span><br>';
+    output.innerHTML += line;
+    const a = document.createElement('a'); a.href = 'cv-abdul-aziz-zailani.pdf'; a.download = ''; a.click();
+    return;
+  }
+  if (!cmd) { output.innerHTML += line; return; }
+  if (cmds[cmd]) { line += cmds[cmd] + '<br>'; }
+  else { line += '<span class="err">command not found: ' + esc(cmd) + '. Type <span class="key">help</span> for available commands.</span><br>'; }
+  output.innerHTML += line;
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { exec(input.value); input.value = ''; scroll(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); if (histIdx > 0) input.value = hist[--histIdx]; }
+  if (e.key === 'ArrowDown') { e.preventDefault(); histIdx < hist.length-1 ? input.value = hist[++histIdx] : (histIdx = hist.length, input.value = ''); }
+  if (e.key === 'l' && e.ctrlKey) { e.preventDefault(); exec('clear'); }
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const v = input.value.toLowerCase();
+    const all = Object.keys(cmds).concat(['clear','download']);
+    const m = all.filter(c => c.startsWith(v) && v);
+    if (m.length === 1) input.value = m[0];
+    else if (m.length > 1) {
+      let line = pr() + '<span class="cmd">' + esc(input.value) + '</span>\n';
+      line += m.map(c => '<span class="key">' + c + '</span>').join('  ') + '\n';
+      output.innerHTML += line;
+      scroll();
+    }
+  }
+});
+
+document.getElementById('term').addEventListener('click', () => input.focus());
+
+// Boot
+const banner = `<pre class="ascii"><span style="color:#a6e3a1"> ╭─────────────────────────────────────╮
+ │</span>  <span style="color:#f9e2af">Abdul Aziz Zailani</span>                 <span style="color:#a6e3a1">│
+ │</span>  <span style="color:#89b4fa">SRE / DevOps Engineer</span>              <span style="color:#a6e3a1">│
+ ╰─────────────────────────────────────╯</span></pre>
+<span class="comment">Welcome! Type <span class="key">help</span> to see available commands.</span>
+<span class="comment">Tab to autocomplete. ↑↓ for history.</span>
+`;
+output.innerHTML = banner;
+
+function scroll() { window.scrollTo(0, document.body.scrollHeight); }
+</script>
 </body>
 </html>
