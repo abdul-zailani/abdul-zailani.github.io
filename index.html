@@ -15,9 +15,11 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'JetBrains Mono',monospace;background:#1e1e2e;color:#cdd6f4;font-size:13px;line-height:1.6}
-  .terminal{max-width:860px;margin:20px auto;border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-  .titlebar{background:#313244;padding:10px 16px;display:flex;align-items:center;gap:8px}
+  body{font-family:'JetBrains Mono',monospace;background:#1e1e2e;color:#cdd6f4;font-size:13px;line-height:1.6;min-height:100vh;overflow-x:hidden;display:flex;align-items:center;justify-content:center}
+  .bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;filter:blur(60px)}
+  .bg svg{width:100%;height:100%}
+  .terminal{max-width:860px;width:calc(100% - 40px);margin:20px;border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);position:relative;z-index:1;background:#1e1e2ed8;backdrop-filter:blur(10px)}
+  .titlebar{background:#313244cc;padding:10px 16px;display:flex;align-items:center;gap:8px}
   .dot{width:12px;height:12px;border-radius:50%}.dot-r{background:#f38ba8}.dot-y{background:#f9e2af}.dot-g{background:#a6e3a1}
   .titlebar-text{color:#6c7086;font-size:12px;margin-left:8px}
   .body{padding:20px 24px;min-height:80vh;cursor:text;overflow-wrap:break-word;word-break:break-word}
@@ -41,6 +43,17 @@
 </style>
 </head>
 <body>
+<div class="bg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+  <rect width="1000" height="1000" fill="#1e1e2e"/>
+  <circle cx="200" cy="250" r="250" fill="#f38ba8" opacity=".35"><animate attributeName="cx" values="200;300;200" dur="20s" repeatCount="indefinite"/><animate attributeName="cy" values="250;180;250" dur="25s" repeatCount="indefinite"/></circle>
+  <circle cx="800" cy="700" r="300" fill="#89b4fa" opacity=".3"><animate attributeName="cx" values="800;700;800" dur="22s" repeatCount="indefinite"/><animate attributeName="cy" values="700;800;700" dur="18s" repeatCount="indefinite"/></circle>
+  <circle cx="500" cy="850" r="200" fill="#a6e3a1" opacity=".25"><animate attributeName="cx" values="500;600;500" dur="24s" repeatCount="indefinite"/><animate attributeName="cy" values="850;750;850" dur="20s" repeatCount="indefinite"/></circle>
+  <circle cx="700" cy="200" r="180" fill="#cba6f7" opacity=".3"><animate attributeName="cx" values="700;620;700" dur="19s" repeatCount="indefinite"/><animate attributeName="cy" values="200;280;200" dur="23s" repeatCount="indefinite"/></circle>
+  <circle cx="100" cy="600" r="150" fill="#f9e2af" opacity=".2"><animate attributeName="cy" values="600;500;600" dur="17s" repeatCount="indefinite"/></circle>
+  <circle cx="900" cy="400" r="160" fill="#89dceb" opacity=".25"><animate attributeName="cx" values="900;820;900" dur="21s" repeatCount="indefinite"/></circle>
+</svg>
+</div>
 <div class="terminal">
   <div class="titlebar">
     <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
@@ -64,6 +77,7 @@ help: `<span class="section-title">Available commands:</span><br>
 <span class="key">education</span>   <span class="comment">— academic background</span><br>
 <span class="key">contact</span>     <span class="comment">— reach me</span><br>
 <span class="key">download</span>    <span class="comment">— get PDF resume</span><br>
+<span class="key">music</span>       <span class="comment">— toggle lofi bgm 🎵</span><br>
 <span class="key">clear</span>       <span class="comment">— clear terminal</span>`,
 
 about: `<span class="key">name:</span> <span class="val">Abdul Aziz Zailani</span><br>
@@ -124,6 +138,47 @@ exit: `<span class="comment">logout — just kidding, you can't leave that easil
 rm: `<span class="err">rm: permission denied. this is a read-only filesystem 🔒</span>`
 };
 
+// Ambient lofi synth via Web Audio API
+let audioCtx, lofiPlaying = false, lofiTimer, lofiStarted = false;
+const pentatonic = [261.6,293.7,329.6,392,440,523.3,587.3,659.3];
+function lofiStart() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  lofiPlaying = true;
+  function pad() {
+    if (!lofiPlaying) return;
+    const now = audioCtx.currentTime;
+    // Pick 3 random pentatonic notes for dreamy chords
+    for (let i = 0; i < 3; i++) {
+      const f = pentatonic[Math.floor(Math.random() * pentatonic.length)];
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      const lp = audioCtx.createBiquadFilter();
+      o.type = 'triangle';
+      o.frequency.value = f * (0.98 + Math.random() * 0.04); // slight detune
+      lp.type = 'lowpass';
+      lp.frequency.value = 800;
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(0.035, now + 1);
+      g.gain.linearRampToValueAtTime(0, now + 4);
+      o.connect(lp).connect(g).connect(audioCtx.destination);
+      o.start(now + i * 0.3);
+      o.stop(now + 4.5);
+    }
+    lofiTimer = setTimeout(pad, 3500 + Math.random() * 1500);
+  }
+  pad();
+}
+function lofiStop() { lofiPlaying = false; clearTimeout(lofiTimer); }
+// Auto-start on first interaction
+function autoMusic() {
+  if (!lofiStarted) { lofiStarted = true; lofiStart(); }
+  document.removeEventListener('click', autoMusic);
+  document.removeEventListener('keydown', autoMusic);
+}
+document.addEventListener('click', autoMusic);
+document.addEventListener('keydown', autoMusic);
+
 const output = document.getElementById('output');
 const input = document.getElementById('input');
 const hist = [];
@@ -141,6 +196,11 @@ function exec(raw) {
   let line = pr() + '<span class="cmd">' + esc(raw) + '</span><br>';
 
   if (cmd === 'clear') { output.innerHTML = ''; return; }
+  if (cmd === 'music') {
+    if (lofiPlaying) { lofiStop(); line += '<span class="comment">♪ music paused — type music to resume</span><br>'; }
+    else { lofiStart(); line += '<span class="highlight">♪ lofi mode resumed</span><br>'; }
+    output.innerHTML += line; return;
+  }
   if (cmd === 'download') {
     line += '<span class="bullet-text">Downloading resume...</span><br>';
     output.innerHTML += line;
@@ -163,7 +223,7 @@ input.addEventListener('keydown', e => {
   if (e.key === 'Tab') {
     e.preventDefault();
     const v = input.value.toLowerCase();
-    const all = Object.keys(cmds).concat(['clear','download']);
+    const all = Object.keys(cmds).concat(['clear','download','music']);
     const m = all.filter(c => c.startsWith(v) && v);
     if (m.length === 1) input.value = m[0];
     else if (m.length > 1) {
