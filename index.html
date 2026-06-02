@@ -77,6 +77,7 @@ help: `<span class="section-title">Available commands:</span><br>
 <span class="key">education</span>   <span class="comment">— academic background</span><br>
 <span class="key">contact</span>     <span class="comment">— reach me</span><br>
 <span class="key">download</span>    <span class="comment">— get PDF resume</span><br>
+<span class="key">playground</span>  <span class="comment">— open JSON resume builder</span><br>
 <span class="key">music</span>       <span class="comment">— toggle lofi bgm 🎵</span><br>
 <span class="key">clear</span>       <span class="comment">— clear terminal</span>`,
 
@@ -130,6 +131,9 @@ neofetch: `<pre class="ascii">        .--.         <span class="key">OS:</span> 
      (|     | )      <span class="key">Packages:</span> <span class="val">5 clusters, 8 AWS accounts</span>
     /'\\_   _/\`\\     <span class="key">Shell:</span> <span class="val">zsh + tmux</span>
     \\___)=(___/      <span class="key">Editor:</span> <span class="val">vim + Kiro</span></pre>`,
+
+playground: `<span class="key">resume-as-code playground:</span> <span class="val"><a href="https://abdul-zailani.github.io/resume-as-code/" target="_blank">abdul-zailani.github.io/resume-as-code/</a></span><br>
+<span class="bullet-text">Live JSON resume builder — edit, preview, print. Fork it on <a href="https://github.com/abdul-zailani/resume-as-code" target="_blank">GitHub</a>.</span>`,
 
 sudo: `<span class="err">aziz is not in the sudoers file. nice try 😏</span>`,
 
@@ -207,6 +211,12 @@ function exec(raw) {
     const a = document.createElement('a'); a.href = 'cv-abdul-aziz-zailani.pdf'; a.download = ''; a.click();
     return;
   }
+  if (cmd === 'playground') {
+    line += '<span class="bullet-text">Opening resume-as-code playground...</span><br>';
+    output.innerHTML += line;
+    window.open('https://abdul-zailani.github.io/resume-as-code/', '_blank');
+    return;
+  }
   if (!cmd) { output.innerHTML += line; return; }
   if (cmds[cmd]) { line += cmds[cmd] + '<br>'; }
   else { line += '<span class="err">command not found: ' + esc(cmd) + '. Type <span class="key">help</span> for available commands.</span><br>'; }
@@ -244,6 +254,7 @@ const banner = `<pre class="ascii"><span style="color:#a6e3a1"> ╭────�
  ╰─────────────────────────────────────╯</span></pre>
 <span class="comment">Welcome! Type <span class="key">help</span> to see available commands.</span>
 <span class="comment">Tab to autocomplete. ↑↓ for history.</span>
+<span class="comment">Try <span class="key">playground</span> to open the live JSON resume builder →</span>
 `;
 output.innerHTML = banner;
 
