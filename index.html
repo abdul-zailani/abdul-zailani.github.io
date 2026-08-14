@@ -78,6 +78,7 @@ help: `<span class="section-title">Available commands:</span><br>
 <span class="key">contact</span>     <span class="comment">— reach me</span><br>
 <span class="key">download</span>    <span class="comment">— get PDF resume</span><br>
 <span class="key">playground</span>  <span class="comment">— open JSON resume builder</span><br>
+<span class="key">blog</span>        <span class="comment">— read my articles & writings ✍️</span><br>
 <span class="key">music</span>       <span class="comment">— toggle lofi bgm 🎵</span><br>
 <span class="key">clear</span>       <span class="comment">— clear terminal</span>`,
 
@@ -121,6 +122,10 @@ education: `<span class="key">degree:</span> <span class="val">Bachelor's, Mathe
 contact: `<span class="key">email:</span> <span class="val"><a href="mailto:aazizzailani.dev@gmail.com">aazizzailani.dev@gmail.com</a></span><br>
 <span class="key">linkedin:</span> <span class="val"><a href="https://linkedin.com/in/aazizzailani" target="_blank">linkedin.com/in/aazizzailani</a></span><br>
 <span class="key">github:</span> <span class="val"><a href="https://github.com/abdul-zailani" target="_blank">github.com/abdul-zailani</a></span>`,
+
+blog: `<span class="section-title">My Writings & Articles:</span><br>
+<span class="bullet">├─</span> <span class="val">[1] <a href="./blog/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html">AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya</a></span> <span class="date">// 14 Aug 2026</span><br>
+<span class="bullet">└─</span> <span class="comment">Tip: Click the link or type 'blog 1' to open!</span>`,
 
 whoami: `<span class="val">aziz — SRE who mass-produces YAML for a living</span>`,
 
@@ -193,7 +198,10 @@ function pr() {
 }
 
 function exec(raw) {
-  const cmd = raw.trim().toLowerCase().split(/\s+/)[0];
+  const parts = raw.trim().split(/\s+/);
+  const cmd = parts[0].toLowerCase();
+  const arg = parts[1];
+  
   if (cmd && (hist.length === 0 || hist[hist.length-1] !== raw.trim())) hist.push(raw.trim());
   histIdx = hist.length;
 
@@ -215,6 +223,17 @@ function exec(raw) {
     line += '<span class="bullet-text">Opening resume-as-code playground...</span><br>';
     output.innerHTML += line;
     window.open('https://abdul-zailani.github.io/resume-as-code/', '_blank');
+    return;
+  }
+  if (cmd === 'blog') {
+    if (arg === '1') {
+      line += '<span class="bullet-text">Opening article: AI Tidak Menyelesaikan Alur Kerja yang Rusak...</span><br>';
+      output.innerHTML += line;
+      window.open('./blog/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html', '_self');
+      return;
+    }
+    line += cmds.blog + '<br>';
+    output.innerHTML += line;
     return;
   }
   if (!cmd) { output.innerHTML += line; return; }
