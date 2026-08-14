@@ -124,8 +124,9 @@ contact: `<span class="key">email:</span> <span class="val"><a href="mailto:aazi
 <span class="key">github:</span> <span class="val"><a href="https://github.com/abdul-zailani" target="_blank">github.com/abdul-zailani</a></span>`,
 
 blog: `<span class="section-title">My Writings & Articles:</span><br>
+<span class="bullet">├─</span> <span class="val">[index] <a href="./blog/">Indeks Blog Utama (Daftar Semua Artikel)</a></span><br>
 <span class="bullet">├─</span> <span class="val">[1] <a href="./blog/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html">AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya</a></span> <span class="date">// 14 Aug 2026</span><br>
-<span class="bullet">└─</span> <span class="comment">Tip: Click the link or type 'blog 1' to open!</span>`,
+<span class="bullet">└─</span> <span class="comment">Tip: Click the links or type 'blog' / 'blog 1' to open!</span>`,
 
 whoami: `<span class="val">aziz — SRE who mass-produces YAML for a living</span>`,
 
@@ -230,6 +231,12 @@ function exec(raw) {
       line += '<span class="bullet-text">Opening article: AI Tidak Menyelesaikan Alur Kerja yang Rusak...</span><br>';
       output.innerHTML += line;
       window.open('./blog/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html', '_self');
+      return;
+    }
+    if (arg === 'index') {
+      line += '<span class="bullet-text">Opening blog index...</span><br>';
+      output.innerHTML += line;
+      window.open('./blog/', '_self');
       return;
     }
     line += cmds.blog + '<br>';

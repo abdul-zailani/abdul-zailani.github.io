@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Abdul Aziz Zailani</title>
+<meta name="description" content="Kumpulan artikel, catatan teknis, dan opini mengenai Site Reliability Engineering, DevOps, dan teknologi oleh Abdul Aziz Zailani.">
+<meta property="og:title" content="Blog — Abdul Aziz Zailani">
+<meta property="og:description" content="Catatan dan opini seputar SRE, DevOps, otomasi infrastruktur, dan budaya kerja teknologi.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abdul-zailani.github.io/blog/">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    filter: blur(60px);
+    opacity: 0.8;
+  }
+  .bg svg { width: 100%; height: 100%; }
+  .container {
+    max-width: 760px;
+    width: 100%;
+    z-index: 1;
+    background: #1e1e2ed8;
+    backdrop-filter: blur(10px);
+    border: 1px solid #313244;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  }
+  .header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #313244;
+    padding-bottom: 20px;
+  }
+  .nav-back {
+    margin-bottom: 20px;
+  }
+  .nav-back a {
+    color: #a6e3a1;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    transition: color 0.2s ease;
+  }
+  .nav-back a:hover {
+    color: #89b4fa;
+  }
+  h1 {
+    color: #f38ba8;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: #6c7086;
+    font-size: 14px;
+  }
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .post-card {
+    background: #18182566;
+    border: 1px solid #313244;
+    border-radius: 8px;
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-2px);
+    border-color: #89b4fa;
+  }
+  .post-meta {
+    font-size: 12px;
+    color: #a6e3a1;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 12px;
+  }
+  .post-category {
+    color: #f9e2af;
+    font-weight: bold;
+  }
+  .post-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .post-title a {
+    color: #89b4fa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .post-title a:hover {
+    color: #f5c2e7;
+    text-decoration: underline;
+  }
+  .post-description {
+    color: #bac2de;
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    body { padding: 15px 10px; }
+    .container { padding: 20px; }
+    h1 { font-size: 24px; }
+    .post-card { padding: 16px; }
+    .post-title { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+  <rect width="1000" height="1000" fill="#1e1e2e"/>
+  <circle cx="200" cy="250" r="250" fill="#f38ba8" opacity=".25"><animate attributeName="cx" values="200;300;200" dur="20s" repeatCount="indefinite"/><animate attributeName="cy" values="250;180;250" dur="25s" repeatCount="indefinite"/></circle>
+  <circle cx="800" cy="700" r="300" fill="#89b4fa" opacity=".2"><animate attributeName="cx" values="800;700;800" dur="22s" repeatCount="indefinite"/><animate attributeName="cy" values="700;800;700" dur="18s" repeatCount="indefinite"/></circle>
+</svg>
+</div>
+<div class="container">
+  <div class="header">
+    <div class="nav-back">
+      <a href="../">← aziz@sre:~$ cv</a>
+    </div>
+    <h1>Catatan & Opini</h1>
+    <div class="subtitle">Berbagi pemikiran seputar kehandalan sistem (SRE), alur kerja otomasi, dan budaya engineering.</div>
+  </div>
+
+  <div class="post-list">
+    <!-- Post 1 -->
+    <article class="post-card">
+      <div class="post-meta">
+        <span class="post-date">14 Agustus 2026</span>
+        <span class="post-category">Opini & Teknologi</span>
+      </div>
+      <h2 class="post-title">
+        <a href="./ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html">AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya</a>
+      </h2>
+      <p class="post-description">
+        Mengapa implementasi kecerdasan buatan (AI) di organisasi sering kali mirip dengan kemeriahan resepsi pernikahan, dan pentingnya menata kejelasan tindakan serta wewenang tim sebelum melakukan skalabilitas.
+      </p>
+    </article>
+  </div>
+</div>
+</body>
+</html>
