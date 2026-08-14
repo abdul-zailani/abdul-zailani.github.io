@@ -1,0 +1,93 @@
+---
+---
+@import "minima";
+
+// Custom styles to make Minima look highly aesthetic with Catppuccin Mocha theme colors
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+}
+
+.site-header {
+  border-top: 5px solid #a6e3a1;
+  border-bottom: 1px solid #313244;
+  background-color: #1e1e2e;
+}
+
+.site-title, .site-title:visited {
+  color: #f38ba8 !important;
+  font-weight: bold;
+}
+
+.site-nav {
+  background-color: #1e1e2e;
+  border: 1px solid #313244;
+  border-radius: 4px;
+}
+
+.site-nav .page-link {
+  color: #89b4fa;
+}
+
+.site-nav .page-link:hover {
+  color: #f5c2e7;
+  text-decoration: none;
+}
+
+.post-title {
+  color: #f38ba8;
+}
+
+.post-meta {
+  color: #a6e3a1;
+}
+
+.post-link {
+  color: #89b4fa !important;
+}
+
+.post-link:hover {
+  color: #f5c2e7 !important;
+}
+
+.post-content h2 {
+  color: #89b4fa;
+  border-bottom: 1px solid #313244;
+  padding-bottom: 5px;
+}
+
+.post-content h3 {
+  color: #f9e2af;
+}
+
+.post-content img {
+  border: 1px solid #313244;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  margin: 20px 0;
+  max-width: 100%;
+  height: auto;
+}
+
+blockquote {
+  border-left: 4px solid #a6e3a1;
+  color: #a6e3a1;
+  font-style: italic;
+  background-color: #3132444d;
+  padding: 10px 20px;
+  margin: 20px 0;
+}
+
+.site-footer {
+  border-top: 1px solid #313244;
+  background-color: #11111b;
+}
+
+.footer-heading {
+  color: #f38ba8;
+}
+
+.contact-list a {
+  color: #89b4fa;
+}
