@@ -9,6 +9,8 @@ title: AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya
 
 Banyak dari kita menyambut peluncuran inisiatif teknologi baru layaknya sebuah perayaan besar. Balon-balon diterbangkan, siaran pers disebarkan, dan jajaran manajemen bersulang atas keberhasilan peluncuran sistem baru. Namun, jika kita cermati realitas di lapangan, **implementasi AI sangat mirip dengan resepsi pernikahan**. 
 
+![Humans, AI, and Agents at Work](../../assets/images/xplore_day_2026_photo_1.jpg)
+
 Banyak organisasi menghabiskan seluruh energi, anggaran, dan fokus hanya untuk hari-H (*Go-Live*). Mereka berasumsi bahwa setelah sistem berjalan, pekerjaan selesai. Padahal, perayaan tersebut hanyalah garis awal. Perjalanan sesungguhnya—yaitu menjaga komitmen, adaptasi harian, mengatasi friksi operasional, dan melakukan integrasi alur kerja—baru benar-benar dimulai setelah pestanya usai dan lampu-lampu panggung dipadamkan. Tanpa fondasi alur kerja yang kokoh, sistem AI tercanggih sekalipun hanya akan menjadi mesin mahal yang mempercepat kekacauan yang sudah ada.
 
 ---
@@ -16,6 +18,8 @@ Banyak organisasi menghabiskan seluruh energi, anggaran, dan fokus hanya untuk h
 ## 1. Mitos AI sebagai "Obat Ajaib" Organisasi
 
 Ada sebuah kesalahpahaman kolektif di dunia bisnis modern bahwa kehadiran teknologi pintar atau model bahasa besar (*Large Language Models*) secara otomatis akan membenahi proses bisnis yang semrawut, merapikan data yang kotor, dan meruntuhkan sekat birokrasi antar-divisi (*silos*). Di dunia nyata, asumsi ini tidak hanya kerap meleset, tetapi juga berbahaya:
+
+![Driving Agentic AI Success Across APAC Industries](../../assets/images/xplore_day_2026_photo_2.jpg)
 
 *   **Silo Organisasi Tetap Ada:** Sistem AI bekerja berdasarkan data. Jika budaya kerja antardepartemen masih saling menutup informasi, sistem AI tercanggih pun akan lumpuh karena tidak mendapatkan pasokan data yang komprehensif. Teknologi tidak bisa memecahkan masalah keengganan berkolaborasi yang berakar pada politik kantor.
 *   **Adopsi yang Berumur Pendek (The Hype Cycle Trap):** Euforia penggunaan teknologi baru biasanya hanya bertahan pada 1 hingga 3 bulan pertama. Begitu antusiasme awal memudar dan pengguna menemui kendala teknis kecil atau kebingungan alur baru, karyawan akan cenderung kembali ke kebiasaan lama yang mereka anggap lebih nyaman, meninggalkan sistem AI menjadi investasi yang sia-sia.
