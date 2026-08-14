@@ -1,3 +1,13 @@
 title: Abdul Aziz Zailani
 description: Catatan & Opini seputar SRE, DevOps, dan Otomasi Infrastruktur.
-theme: jekyll-theme-midnight
+theme: minima
+# Konfigurasi sosial media bawaan Minima (opsional, akan tampil di footer)
+twitter_username: aazizzailani
+github_username: abdul-zailani
+
+# Konfigurasi agar folder blog di-scan oleh jekyll sebagai posts
+defaults:
+  - scope:
+      path: "blog"
+    values:
+      layout: "post"

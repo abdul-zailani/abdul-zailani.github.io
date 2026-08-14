@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya
 ---
 

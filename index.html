@@ -128,7 +128,7 @@ contact: `<span class="key">email:</span> <span class="val"><a href="mailto:aazi
 
 blog: `<span class="section-title">My Writings & Articles:</span><br>
 <span class="bullet">├─</span> <span class="val">[index] <a href="./blog/">Indeks Blog Utama (Daftar Semua Artikel)</a></span><br>
-<span class="bullet">├─</span> <span class="val">[1] <a href="./blog/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html">AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya</a></span> <span class="date">// 14 Aug 2026</span><br>
+<span class="bullet">├─</span> <span class="val">[1] <a href="./2026/08/14/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html">AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya</a></span> <span class="date">// 14 Aug 2026</span><br>
 <span class="bullet">└─</span> <span class="comment">Tip: Click the links or type 'blog' / 'blog 1' to open!</span>`,
 
 whoami: `<span class="val">aziz — SRE who mass-produces YAML for a living</span>`,
@@ -233,7 +233,8 @@ function exec(raw) {
     if (arg === '1') {
       line += '<span class="bullet-text">Opening article: AI Tidak Menyelesaikan Alur Kerja yang Rusak...</span><br>';
       output.innerHTML += line;
-      window.open('./blog/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html', '_self');
+      // Jekyll standard post route is /year/month/day/title.html or without extension
+      window.open('./2026/08/14/ai-tidak-menyelesaikan-alur-kerja-yang-rusak.html', '_self');
       return;
     }
     if (arg === 'index') {
