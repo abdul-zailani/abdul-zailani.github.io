@@ -154,6 +154,13 @@ hr {
   border-color: #45475a;
 }
 
+/* Centered layout for posts */
+.post-centered-container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
 /* Blogspot-like Sidebar Layout CSS */
 .post-layout-container {
   display: grid;

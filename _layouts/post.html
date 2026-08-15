@@ -1,77 +1,61 @@
 ---
 layout: base
 ---
-<div class="post-layout-container">
-  <main class="post-main-content">
-    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="post-centered-container">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-      <header class="post-header">
-        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-        <div class="post-meta">
-          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-          {%- assign pdate = page.date | date_to_xmlschema -%}
-          {%- if page.modified_date %}<span class="meta-label">Published:</span>{% endif %}
-          <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
-            {{ pdate | date: date_format }}
+    <header class="post-header">
+      <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+      <div class="post-meta">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {%- assign pdate = page.date | date_to_xmlschema -%}
+        {%- if page.modified_date %}<span class="meta-label">Published:</span>{% endif %}
+        <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
+          {{ pdate | date: date_format }}
+        </time>
+        {%- if page.modified_date -%}
+          <span class="bullet-divider">•</span>
+          <span class="meta-label">Updated:</span>
+          {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+          <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
+            {{ mdate | date: date_format }}
           </time>
-          {%- if page.modified_date -%}
-            <span class="bullet-divider">•</span>
-            <span class="meta-label">Updated:</span>
-            {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-            <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-              {{ mdate | date: date_format }}
-            </time>
-          {%- endif -%}
-          {%- if page.author -%}
-            <div class="{% unless page.modified_date %}force-inline {% endunless %}post-authors">
-            {%- for author in page.author -%}
-              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-                {%- if forloop.last == false %}, {% endif -%}
-            {%- endfor -%}
-            </div>
-          {%- endif -%}
-        </div>
-      </header>
-
-      <div class="post-content e-content" itemprop="articleBody">
-        {{ content }}
+        {%- endif -%}
+        {%- if page.author -%}
+          <div class="{% unless page.modified_date %}force-inline {% endunless %}post-authors">
+          {%- for author in page.author -%}
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
+              {%- if forloop.last == false %}, {% endif -%}
+          {%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
+    </header>
 
-    </article>
-  </main>
-
-  <aside class="post-sidebar">
-    <div class="sidebar-widget profile-widget">
-      <h3 class="widget-title">Tentang Penulis</h3>
-      <div class="profile-avatar"></div>
-      <p class="profile-name">Abdul Aziz Zailani</p>
-      <p class="profile-bio">Site Reliability Engineer interested in Kubernetes, Automation, Cloud Infrastructure, and Observability.</p>
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
     </div>
 
-    <div class="sidebar-widget">
-      <h3 class="widget-title">Artikel Terbaru</h3>
-      <ul class="widget-list">
-        {% for post in site.posts limit:5 %}
-          <li>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="widget-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-          </li>
-        {% endfor %}
-      </ul>
+    <!-- Author Profile Widget Box (Clean Bottom Version) -->
+    <div class="author-profile-box" style="margin-top: 40px; background-color: #181825; border: 1px solid #313244; border-radius: 12px; padding: 24px; display: flex; gap: 20px; align-items: center;">
+      <div class="profile-avatar" style="width: 70px; height: 70px; border-radius: 50%; background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4'); background-size: cover; border: 2px solid #89b4fa; flex-shrink: 0;"></div>
+      <div>
+        <p class="profile-name" style="font-weight: bold; color: #cdd6f4; margin: 0 0 5px 0; font-family: 'JetBrains Mono', monospace; font-size: 14px;">Abdul Aziz Zailani</p>
+        <p class="profile-bio" style="font-size: 12px; color: #a6adc8; line-height: 1.5; margin: 0;">Site Reliability Engineer interested in Kubernetes, Automation, Cloud Infrastructure, and Observability.</p>
+      </div>
     </div>
 
-    <div class="sidebar-widget">
-      <h3 class="widget-title">Menu Utama</h3>
-      <ul class="widget-list">
-        <li><a href="{{ '/' | relative_url }}">🏠 Terminal CV</a></li>
-        <li><a href="{{ '/blog/' | relative_url }}">✍️ Indeks Blog</a></li>
-      </ul>
+    <div class="navigation-links" style="margin-top: 30px; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+      <a href="{{ '/' | relative_url }}">🏠 Terminal CV</a>
+      <a href="{{ '/blog/' | relative_url }}">✍️ Indeks Blog</a>
     </div>
-  </aside>
-</div>
 
-<!-- Custom Giscus Comment System (Moved Outside Grid for Full-Width Bottom Layout) -->
-<div class="comments-section" style="margin-top: 50px; border-top: 1px solid #313244; padding-top: 30px;">
-  {% include giscus.html %}
+    <!-- Custom Giscus Comment System -->
+    <div class="comments-section" style="margin-top: 50px; border-top: 1px solid #313244; padding-top: 30px;">
+      {% include giscus.html %}
+    </div>
+
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  </article>
 </div>
