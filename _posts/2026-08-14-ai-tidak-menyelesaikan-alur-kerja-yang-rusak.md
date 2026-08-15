@@ -3,8 +3,6 @@ layout: post
 title: AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya
 ---
 
-# AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya
-
 ### Pendahuluan: Pesta Go-Live dan Realitas Pagi Hari
 
 Banyak dari kita menyambut peluncuran inisiatif teknologi baru layaknya sebuah perayaan besar. Balon-balon diterbangkan, siaran pers disebarkan, dan jajaran manajemen bersulang atas keberhasilan peluncuran sistem baru. Namun, jika kita cermati realitas di lapangan, **implementasi AI sangat mirip dengan resepsi pernikahan**. 
