@@ -450,4 +450,42 @@ table td {
   color: #cdd6f4 !important;
 }
 
+/* Custom Code & Syntax Highlighting Overrides */
+code {
+  background-color: #313244 !important;
+  color: #f38ba8 !important;
+  padding: 3px 6px !important;
+  border-radius: 4px !important;
+  font-size: 85% !important;
+}
+
+pre, .highlight, .highlighter-rouge, .highlighter-rouge .highlight {
+  background-color: #181825 !important;
+  color: #cdd6f4 !important;
+  border-radius: 8px !important;
+  border: 1px solid #313244 !important;
+}
+
+.highlight pre {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 16px !important;
+}
+
+/* Rouge Highlighting Tokens for Dark Theme */
+.highlight {
+  .c, .ch, .cd, .cm, .c1, .cp, .cpf { color: #6c7086 !important; font-style: italic !important; }
+  .err { color: #f38ba8 !important; background-color: transparent !important; }
+  .k, .kd, .kn, .kp, .kr, .kt, .kv { color: #cba6f7 !important; font-weight: bold !important; }
+  .o, .ow { color: #89dceb !important; }
+  .p { color: #cdd6f4 !important; }
+  .n, .nb, .bp { color: #cdd6f4 !important; }
+  .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nx, .py { color: #89b4fa !important; }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #a6e3a1 !important; }
+  .m, .mb, .mx, .mi, .mo, .mh, .il { color: #f9e2af !important; }
+  .nt { color: #f38ba8 !important; }
+  .na { color: #89b4fa !important; }
+}
+
+
 
