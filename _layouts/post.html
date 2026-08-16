@@ -1,65 +1,100 @@
 ---
 layout: base
 ---
-<div class="post-centered-container">
-  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="chirpy-layout-container">
+  <!-- Left Sidebar (id="sidebar") -->
+  <aside id="sidebar" class="chirpy-sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-title">Abdul Aziz</span>
+      <span class="brand-subtitle">Zailani</span>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">🏠 Terminal CV</a></li>
+        <li><a href="{{ '/blog/' | relative_url }}" class="active">✍️ Blog & Catatan</a></li>
+        <li><a href="https://github.com/abdul-zailani" target="_blank">🐙 GitHub</a></li>
+        <li><a href="https://linkedin.com/in/abdul-aziz-zailani-50a63111b" target="_blank">💼 LinkedIn</a></li>
+      </ul>
+    </nav>
+    
+    <div class="sidebar-profile-mini">
+      <div class="mini-avatar"></div>
+      <span class="mini-name">SRE / DevOps</span>
+    </div>
+  </aside>
 
-    <header class="post-header">
-      <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-      <div class="post-meta">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {%- assign pdate = page.date | date_to_xmlschema -%}
-        {%- if page.modified_date %}<span class="meta-label">Published:</span>{% endif %}
-        <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
-          {{ pdate | date: date_format }}
-        </time>
-        {%- if page.reading_time -%}
-          <span class="bullet-divider">•</span>
-          <span class="reading-time">{{ page.reading_time }}</span>
-        {%- endif -%}
-        {%- if page.modified_date -%}
-          <span class="bullet-divider">•</span>
-          <span class="meta-label">Updated:</span>
-          {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-          <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-            {{ mdate | date: date_format }}
+  <!-- Main Content Wrapper (id="main-wrapper") -->
+  <main id="main-wrapper" class="chirpy-main">
+    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+      <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+        <div class="post-meta">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {%- assign pdate = page.date | date_to_xmlschema -%}
+          <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
+            📅 {{ pdate | date: date_format }}
           </time>
-        {%- endif -%}
-        {%- if page.author -%}
-          <div class="{% unless page.modified_date %}force-inline {% endunless %}post-authors">
-          {%- for author in page.author -%}
-            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-              {%- if forloop.last == false %}, {% endif -%}
-          {%- endfor -%}
-          </div>
-        {%- endif -%}
+          {%- if page.reading_time -%}
+            <span class="bullet-divider">•</span>
+            <span class="reading-time">{{ page.reading_time }}</span>
+          {%- endif -%}
+        </div>
+      </header>
+
+      <div class="post-content e-content" itemprop="articleBody">
+        {{ content }}
       </div>
-    </header>
 
-    <div class="post-content e-content" itemprop="articleBody">
-      {{ content }}
-    </div>
-
-    <!-- Author Profile Widget Box (Clean Bottom Version) -->
-    <div class="author-card author-profile-box" style="margin-top: 40px; display: flex; gap: 20px; align-items: center;">
-      <div class="profile-avatar" style="width: 70px; height: 70px; border-radius: 50%; background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4'); background-size: cover; flex-shrink: 0;"></div>
-      <div>
-        <p class="profile-name" style="font-weight: bold; margin: 0 0 5px 0; font-size: 14px;">Abdul Aziz Zailani</p>
-        <p class="profile-bio" style="font-size: 12px; line-height: 1.5; margin: 0;">Site Reliability Engineer interested in Kubernetes, Automation, Cloud Infrastructure, and Observability.</p>
+      <!-- Author Profile Card at bottom of article -->
+      <div class="author-card author-profile-box" style="margin-top: 48px; display: flex; gap: 20px; align-items: center;">
+        <div class="profile-avatar" style="width: 70px; height: 70px; border-radius: 50%; background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4'); background-size: cover; flex-shrink: 0;"></div>
+        <div>
+          <p class="profile-name" style="font-weight: bold; margin: 0 0 5px 0; font-size: 14px;">Abdul Aziz Zailani</p>
+          <p class="profile-bio" style="font-size: 12px; line-height: 1.5; margin: 0;">Site Reliability Engineer interested in Kubernetes, Automation, Cloud Infrastructure, and Observability.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="nav-links navigation-links" style="margin-top: 30px; display: flex; justify-content: space-between; font-size: 13px;">
-      <a href="{{ '/' | relative_url }}">🏠 Terminal CV</a>
-      <a href="{{ '/blog/' | relative_url }}">✍️ Indeks Blog</a>
-    </div>
+      <!-- Custom Giscus Comment System -->
+      <div class="comments-section" style="margin-top: 50px; border-top: 1px solid #313244; padding-top: 30px;">
+        {% include giscus.html %}
+      </div>
 
-    <!-- Custom Giscus Comment System -->
-    <div class="comments-section" style="margin-top: 50px; border-top: 1px solid #313244; padding-top: 30px;">
-      {% include giscus.html %}
-    </div>
+      <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+    </article>
+  </main>
 
-    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-  </article>
+  <!-- Right Sidebar (TOC Wrapper) -->
+  <aside id="toc-wrapper" class="chirpy-toc-sidebar">
+    <div class="toc-container">
+      <h3 class="toc-title">Daftar Isi</h3>
+      <!-- We can render a neat list of anchors representing H2s in the post dynamically via JS or HTML parser -->
+      <ul class="toc-list" id="dynamic-toc">
+        <!-- populated dynamically via JS for lightweight layout -->
+      </ul>
+    </div>
+  </aside>
 </div>
+
+<!-- Simple inline JS script to dynamically generate TOC list like Chirpy -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const tocList = document.getElementById("dynamic-toc");
+    const headings = document.querySelectorAll(".post-content h2, .post-content h3");
+    if (headings.length === 0) {
+      document.getElementById("toc-wrapper").style.display = "none";
+      return;
+    }
+    headings.forEach((heading, index) => {
+      const id = heading.id || "heading-" + index;
+      heading.id = id;
+      const li = document.createElement("li");
+      li.className = "toc-item toc-" + heading.tagName.toLowerCase();
+      const a = document.createElement("a");
+      a.href = "#" + id;
+      a.textContent = heading.textContent.replace(/^[#\s]+/, '');
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+  });
+</script>

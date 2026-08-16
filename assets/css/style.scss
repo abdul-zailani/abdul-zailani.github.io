@@ -171,116 +171,172 @@ hr {
   padding: 0 15px;
 }
 
-/* Blogspot-like Sidebar Layout CSS */
-.post-layout-container {
+/* 3-Column Chirpy-like Layout CSS */
+.chirpy-layout-container {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 260px 1fr 240px;
   gap: 40px;
-  margin: 30px 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
   align-items: start;
 }
 
-.post-main-content {
-  min-width: 0; /* Avoid grid blowout */
-}
-
-.post-sidebar {
-  background-color: #181825;
-  border: 1px solid #313244;
-  border-radius: 12px;
-  padding: 24px;
+/* Left Sidebar (Chirpy sidebar) */
+.chirpy-sidebar {
   position: sticky;
   top: 40px;
+  padding: 20px 0;
+  border-right: 1px solid #313244;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.sidebar-widget {
-  margin-bottom: 30px;
-}
-
-.sidebar-widget:last-child {
-  margin-bottom: 0;
-}
-
-.widget-title {
+.sidebar-brand {
+  margin-bottom: 40px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  color: #f38ba8;
-  border-bottom: 1px solid #313244;
-  padding-bottom: 8px;
-  margin-top: 0 !important;
-  margin-bottom: 15px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
-.profile-widget {
-  text-align: center;
-}
-
-.profile-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #313244;
-  background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4');
-  background-size: cover;
-  margin: 0 auto 15px auto;
-  border: 2px solid #89b4fa;
-}
-
-.profile-name {
+.brand-title {
+  display: block;
+  font-size: 20px;
   font-weight: bold;
-  color: #cdd6f4;
-  margin-bottom: 5px;
+  color: #f38ba8;
 }
 
-.profile-bio {
-  font-size: 12px;
-  color: #a6adc8;
-  line-height: 1.5;
-  margin-bottom: 0;
+.brand-subtitle {
+  font-size: 14px;
+  color: #a6e3a1;
 }
 
-.widget-list {
+.sidebar-nav ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.widget-list li {
-  margin-bottom: 12px;
-  font-size: 13px;
-  line-height: 1.4;
+.sidebar-nav li {
+  margin-bottom: 15px;
 }
 
-.widget-list li:last-child {
-  margin-bottom: 0;
-}
-
-.widget-list a {
-  color: #89b4fa;
+.sidebar-nav a {
+  color: #cdd6f4;
+  font-size: 15px;
   text-decoration: none;
   display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.widget-list a:hover {
-  color: #f5c2e7;
-  text-decoration: underline;
+.sidebar-nav a:hover, .sidebar-nav a.active {
+  background-color: #313244;
+  color: #89b4fa;
 }
 
-.widget-date {
-  font-size: 11px;
-  color: #6c7086;
+.sidebar-profile-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.mini-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4');
+  background-size: cover;
+  border: 1px solid #89b4fa;
+}
+
+.mini-name {
+  font-size: 12px;
+  color: #a6adc8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Main Content Area */
+.chirpy-main {
+  min-width: 0; /* Prevents overflow inside grid */
+  padding: 20px 0;
+}
+
+/* Right Sidebar (TOC sidebar) */
+.chirpy-toc-sidebar {
+  position: sticky;
+  top: 40px;
+  padding: 20px 0;
+  border-left: 1px solid #313244;
+  padding-left: 20px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+.toc-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #a6adc8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.toc-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc-item {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.toc-item a {
+  color: #9399b2;
+  text-decoration: none;
   display: block;
+  transition: color 0.15s ease;
 }
 
-@media (max-width: 900px) {
-  .post-layout-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
+.toc-item a:hover {
+  color: #89b4fa;
+}
+
+.toc-h3 {
+  padding-left: 15px; /* Indent sub-headers */
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .chirpy-layout-container {
+    grid-template-columns: 240px 1fr;
   }
-  .post-sidebar {
+  .chirpy-toc-sidebar {
+    display: none; /* Hide TOC on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .chirpy-layout-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chirpy-sidebar {
     position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #313244;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .sidebar-profile-mini {
+    display: none;
   }
 }
 
