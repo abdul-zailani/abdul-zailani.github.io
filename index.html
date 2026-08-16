@@ -130,7 +130,8 @@ contact: `<span class="key">email:</span> <span class="val"><a href="mailto:aazi
 blog: `<span class="section-title">My Writings & Articles:</span><br>
 <span class="bullet">├─</span> <span class="val">[index] <a href="./blog/">Indeks Blog Utama (Daftar Semua Artikel)</a></span><br>
 <span class="bullet">├─</span> <span class="val">[1] <a href="./2026/08/14/ai-tidak-menyelesaikan-alur-kerja-yang-rusak/">AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya</a></span> <span class="date">// 14 Aug 2026</span><br>
-<span class="bullet">└─</span> <span class="comment">Tip: Click the links or type 'blog' / 'blog 1' to open!</span>`,
+<span class="bullet">├─</span> <span class="val">[2] <a href="./2026/08/16/mendesain-alur-kerja-agentic-ai/">Mendesain Alur Kerja Agentic AI: Cara Mendelegasikan Otoritas Tanpa Kehilangan Kontrol</a></span> <span class="date">// 16 Aug 2026</span><br>
+<span class="bullet">└─</span> <span class="comment">Tip: Click the links or type 'blog' / 'blog &lt;num&gt;' to open!</span>`,
 
 whoami: `<span class="val">aziz — SRE who mass-produces YAML for a living</span>`,
 
@@ -236,6 +237,12 @@ function exec(raw) {
       output.innerHTML += line;
       // Jekyll standard post route is /year/month/day/title.html or without extension
       window.open('./2026/08/14/ai-tidak-menyelesaikan-alur-kerja-yang-rusak/', '_self');
+      return;
+    }
+    if (arg === '2') {
+      line += '<span class="bullet-text">Opening article: Mendesain Alur Kerja Agentic AI...</span><br>';
+      output.innerHTML += line;
+      window.open('./2026/08/16/mendesain-alur-kerja-agentic-ai/', '_self');
       return;
     }
     if (arg === 'index') {

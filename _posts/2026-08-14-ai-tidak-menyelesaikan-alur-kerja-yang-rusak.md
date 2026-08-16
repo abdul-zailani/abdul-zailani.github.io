@@ -64,7 +64,7 @@ AI sering memberikan prediksi berupa probabilitas abstrak yang membingungkan sta
 
 ### b. Otoritas Pengambilan Keputusan (*Authority*)
 
-Bayangkan sistem mendeteksi kemacetan lalu lintas dan menyarankan rute pengiriman alternatif untuk menghemat waktu dan biaya. Rekomendasi ini tidak berguna jika pengemudi atau staf logistik harus mengisi formulir manual and menunggu persetujuan manajer berhari-hari. Manajer harus memberikan wewenang penuh kepada staf di lapangan agar dapat mengeksekusi rekomendasi AI secara instan. Kecepatan teknologi akan selalu kalah dari lambatnya birokrasi.
+Bayangkan sistem mendeteksi kemacetan lalu lintas dan menyarankan rute pengiriman alternatif untuk menghemat waktu dan biaya. Rekomendasi ini tidak berguna jika pengemudi atau staf logistik harus mengisi formulir manual and menunggu persetujuan manajer berhari-hari. Manajer harus memberikan wewenang penuh kepada staf di lapangan agar dapat mengeksekusi rekomendasi AI secara instan. Kecepatan teknologi akan selalu kalah dari lambatnya birokrasi. Bagaimana mendesain delegasi wewenang ini secara aman tanpa kehilangan kendali infrastruktur? Baca ulasan lengkapnya di [Mendesain Alur Kerja Agentic AI]({{ '/2026/08/16/mendesain-alur-kerja-agentic-ai/' | relative_url }}).
 
 ### c. Penyelarasan KPI dan Insentif (*Reward Alignment*)
 
