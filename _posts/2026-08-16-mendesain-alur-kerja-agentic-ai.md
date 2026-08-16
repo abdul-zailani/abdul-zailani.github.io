@@ -9,7 +9,7 @@ reading_time: "⏱️ 6 min read"
 image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
 ---
 
-### Pendahuluan: Dilema Delegasi Teknologi
+### Dilema Delegasi Kontrol pada Agen AI
 
 Sebagai *Site Reliability Engineer* (SRE) yang mengelola infrastruktur 5 *cluster* EKS di Lion Parcel, saya sering menghadapi dilema otomatisasi. Di satu sisi, kita ingin meminimalkan intervensi manual saat insiden terjadi. Di sisi lain, membiarkan mesin mengambil tindakan sendiri tanpa kontrol yang ketat adalah mimpi buruk operasional.
 
@@ -98,7 +98,7 @@ Melalui alur di atas, tim SRE tidak perlu terganggu di tengah malam hanya untuk 
 
 ---
 
-## Kesimpulan: Delegasi Terprogram, Kepercayaan Terukur
+## Menyeimbangkan Kecepatan dan Keamanan Otomasi
 
 Mendelegasikan otoritas kepada Agentic AI bukan berarti membiarkan sistem berjalan tanpa aturan. Kunci sukses dari otomatisasi modern adalah memperlakukan kecerdasan buatan seperti karyawan baru yang sedang magang: beri mereka akses terbatas, tinjau hasil kerjanya, tingkatkan wewenangnya secara berkala seiring dengan meningkatnya akurasi sistem, dan pasang pagar pengaman yang kokoh di sekitar mereka.
 
