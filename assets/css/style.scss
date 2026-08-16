@@ -23,8 +23,8 @@ h1, h2, h3, h4, h5, h6, .site-title, .post-meta, code, pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 2em;
-  margin-bottom: 0.8em;
+  margin-top: 40px; /* Firm pause before new sections */
+  margin-bottom: 16px;
   line-height: 1.3;
 }
 
@@ -95,6 +95,8 @@ figure {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
   max-width: 100%;
+  max-height: 480px;
+  object-fit: cover;
   height: auto;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -319,4 +321,11 @@ hr {
   background: #45475a;
   color: #f5c2e7 !important;
   text-decoration: none;
+}
+
+/* Visual Frame Divider Before Comments */
+.comments-section {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #313244;
 }
