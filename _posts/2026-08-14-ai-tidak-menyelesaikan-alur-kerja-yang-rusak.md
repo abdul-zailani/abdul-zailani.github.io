@@ -9,7 +9,7 @@ reading_time: "⏱️ 5 min read"
 image: "/assets/images/xplore_day_2026_photo_1.jpg"
 ---
 
-### Pendahuluan: Pesta Rilis dan Realitas Operasional
+### Pesta Rilis vs Realitas Operasional
 
 Banyak organisasi merayakan peluncuran teknologi baru seperti pesta besar. Balon diterbangkan, siaran pers disebarkan, dan manajemen bersulang atas rilis sistem baru. Faktanya, peluncuran **alur kerja AI** yang sukses mirip dengan merawat pernikahan, bukan sekadar merayakan hari pesta.
 
@@ -83,7 +83,7 @@ Kehadiran [agen AI otonom (Agentic AI)](https://www.ibm.com/topics/ai-agents) ti
 
 ---
 
-## Kesimpulan dan Langkah Konkret
+## Menata Alur Proses Kerja Sebelum Adopsi AI
 
 Transformasi digital bukan kompetisi mengadopsi teknologi terbaru karena takut tertinggal (*Fear of Missing Out / FOMO*). Keberhasilan bergantung pada kemampuan pemimpin menyelaraskan strategi, kematangan tim (*maturity*), dan realitas operasional (*reality*).
 
