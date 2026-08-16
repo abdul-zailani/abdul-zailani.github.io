@@ -6,6 +6,7 @@ twitter_username: aazizzailani
 github_username: abdul-zailani
 
 # Konfigurasi agar folder blog di-scan oleh jekyll sebagai posts
+permalink: /:year/:month/:day/:title/
 defaults:
   - scope:
       path: "blog"
