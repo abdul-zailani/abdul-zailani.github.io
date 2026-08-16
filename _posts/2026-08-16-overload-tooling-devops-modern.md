@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mengatasi Overload Tooling dalam DevOps Modern: Kembali ke Esensi Budaya"
-date: 2026-08-16 23:30:00 +0700
+date: 2026-08-16 09:00:00 +0700
 categories: [Teknologi, Produktivitas]
 tags: [DevOps, SRE, Platform Engineering, Tooling, Culture]
 description: "Mengapa kompleksitas perkakas DevOps modern memicu cognitive overload dan bagaimana tim SRE/Platform Engineering menyederhanakannya untuk fokus pada nilai bisnis."
