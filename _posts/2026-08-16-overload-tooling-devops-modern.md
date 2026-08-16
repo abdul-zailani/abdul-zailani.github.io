@@ -17,6 +17,11 @@ Namun hari ini, lanskap tersebut telah berubah drastis menjadi labirin perkakas 
 
 Dari manajemen repositori (*Git*), kontainerisasi (*Docker*), orkestrasi (*Kubernetes*), infrastruktur sebagai kode (*Terraform*, *Ansible*), hingga pemantauan sistem (*Prometheus*, *Grafana*, *ELK*), jumlah teknologi yang harus dikuasai melonjak secara eksponensial. Keadaan ini menciptakan fenomena *cognitive overload* (kelebihan beban kognitif) yang luar biasa bagi para engineer. Kita menghabiskan lebih banyak waktu untuk menyambungkan berbagai alat daripada menulis kode yang memberikan nilai nyata bagi bisnis.
 
+<figure>
+  <img src="{{ '/assets/images/devops-then-vs-now.jpg' | relative_url }}" alt="DevOps 8 Years Ago vs Today">
+  <figcaption>Perbandingan realitas DevOps 8 tahun lalu dengan kompleksitas perkakas hari ini.</figcaption>
+</figure>
+
 ---
 
 ## Mengapa Tooling Overload Bisa Terjadi?
