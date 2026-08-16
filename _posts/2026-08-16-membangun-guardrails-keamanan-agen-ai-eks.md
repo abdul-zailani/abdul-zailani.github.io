@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Guardrails Keamanan Agen AI: Proteksi Otonom di Kubernetes EKS"
-date: 2026-08-18 09:00:00 +0700
+date: 2026-08-16 09:30:00 +0700
 categories: [Teknologi, Produktivitas]
 tags: [AI, Agentic AI, SRE, Kubernetes, EKS]
 description: "Panduan membangun guardrails keamanan Agen AI pada klaster Amazon EKS untuk membatasi hak akses sistem otonom secara terprogram."
