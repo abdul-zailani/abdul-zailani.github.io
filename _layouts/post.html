@@ -46,6 +46,72 @@ layout: default
         {{ content }}
       </div>
 
+      <!-- Share Buttons Component -->
+      <div class="post-share-box" style="margin-top: 32px; border-top: 1px dashed #313244; padding-top: 24px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #a6adc8; display: block; margin-bottom: 12px;">🔗 BAGIKAN ARTIKEL</span>
+        <div class="share-buttons-container" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+          <!-- Web Share API Button (Mobile) -->
+          <button id="native-share-btn" class="share-btn native-share" style="display: none; background: #313244; color: #cdd6f4; border: 1px solid #45475a; padding: 8px 16px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+            📱 Bagikan ke Medsos
+          </button>
+          
+          <!-- Fallback Desktop Share Buttons -->
+          <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url }}" target="_blank" class="share-btn twitter-share" style="background: #181825; color: #89b4fa; border: 1px solid #313244; padding: 8px 16px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-decoration: none; transition: all 0.2s;">
+            🐦 Twitter / X
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}" target="_blank" class="share-btn linkedin-share" style="background: #181825; color: #89b4fa; border: 1px solid #313244; padding: 8px 16px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-decoration: none; transition: all 0.2s;">
+            💼 LinkedIn
+          </a>
+          <a href="https://api.whatsapp.com/send?text={{ page.title | url_encode }}%20{{ page.url | absolute_url }}" target="_blank" class="share-btn whatsapp-share" style="background: #181825; color: #a6e3a1; border: 1px solid #313244; padding: 8px 16px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-decoration: none; transition: all 0.2s;">
+            💬 WhatsApp
+          </a>
+          <button id="copy-link-btn" class="share-btn copy-share" style="background: #181825; color: #f9e2af; border: 1px solid #313244; padding: 8px 16px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; cursor: pointer; transition: all 0.2s;">
+            🔗 Salin Link
+          </button>
+        </div>
+      </div>
+
+      <!-- Script for Sharing Functionality -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const shareTitle = "{{ page.title | escape }}";
+          const shareUrl = window.location.href;
+          
+          // Check if browser supports Native Web Share API (Mobile)
+          const nativeShareBtn = document.getElementById("native-share-btn");
+          if (navigator.share) {
+            nativeShareBtn.style.display = "inline-block";
+            nativeShareBtn.addEventListener("click", async () => {
+              try {
+                await navigator.share({
+                  title: shareTitle,
+                  text: "Baca artikel ini: " + shareTitle,
+                  url: shareUrl
+                });
+              } catch (err) {
+                console.log("Error sharing:", err);
+              }
+            });
+          }
+          
+          // Copy Link Button functionality
+          const copyBtn = document.getElementById("copy-link-btn");
+          copyBtn.addEventListener("click", function() {
+            navigator.clipboard.writeText(shareUrl).then(() => {
+              const origText = copyBtn.innerText;
+              copyBtn.innerText = "✓ Tersalin!";
+              copyBtn.style.color = "#a6e3a1";
+              setTimeout(() => {
+                copyBtn.innerText = origText;
+                copyBtn.style.color = "#f9e2af";
+              }, 2000);
+            }).catch(err => {
+              console.error("Gagal menyalin link:", err);
+            });
+          });
+        });
+      </script>
+
       <!-- Author Profile Card at bottom of article -->
       <div class="author-card author-profile-box" style="margin-top: 48px; display: flex; gap: 20px; align-items: center;">
         <div class="profile-avatar" style="width: 70px; height: 70px; border-radius: 50%; background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4'); background-size: cover; flex-shrink: 0;"></div>

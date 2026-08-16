@@ -398,3 +398,19 @@ hr {
   padding-top: 24px;
   border-top: 1px solid #313244;
 }
+
+/* Custom Share Button Hover Styling */
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.15);
+  border-color: #585b70 !important;
+}
+
