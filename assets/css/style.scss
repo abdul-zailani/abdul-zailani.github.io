@@ -172,6 +172,11 @@ hr {
 }
 
 /* 3-Column Chirpy-like Layout CSS */
+.wrapper:has(.chirpy-layout-container) {
+  max-width: 100% !important;
+  padding: 0;
+}
+
 .chirpy-layout-container {
   display: grid;
   grid-template-columns: 260px 1fr 240px;
