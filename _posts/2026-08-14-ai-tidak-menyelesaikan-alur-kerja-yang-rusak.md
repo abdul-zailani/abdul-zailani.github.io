@@ -1,6 +1,7 @@
 ---
 layout: post
 title: AI Tidak Menyelesaikan Alur Kerja yang Rusak; Ia Hanya Mempercepatnya
+reading_time: "⏱️ 5 min read"
 ---
 
 ### Pendahuluan: Pesta Go-Live dan Realitas Pagi Hari
