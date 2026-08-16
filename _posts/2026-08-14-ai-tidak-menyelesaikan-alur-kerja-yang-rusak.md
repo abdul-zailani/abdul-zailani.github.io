@@ -6,6 +6,7 @@ categories: [Teknologi, Produktivitas]
 tags: [AI, Workflow, SRE, Ops]
 description: "Mengapa kecerdasan buatan (AI) tidak bisa membenahi alur kerja yang berantakan, melainkan hanya mempercepat kekacauan operasional organisasi Anda."
 reading_time: "⏱️ 5 min read"
+image: "/assets/images/xplore_day_2026_photo_1.jpg"
 ---
 
 ### Pendahuluan: Pesta Rilis dan Realitas Operasional
