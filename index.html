@@ -150,10 +150,12 @@ playground: `<span class="key">resume-as-code playground:</span> <span class="va
 <span class="bullet-text">Live JSON resume builder — edit, preview, print. Fork it on <a href="https://github.com/abdul-zailani/resume-as-code" target="_blank">GitHub</a>.</span>`,
 
 projects: `<span class="section-title">Featured Projects & Live Demos:</span><br>
+<span class="bullet">├─</span> <span class="val">[catalog] <a href="./projects/">Daftar Lengkap Katalog Proyek (Project Showcase)</a></span><br>
 <span class="bullet">├─</span> <span class="val">[1] <a href="./projects/plafon/" target="_blank">Plafon — SRE Operations & Identity Platform</a></span> <span class="tag">Go</span><span class="tag">Next.js</span><span class="tag">AWS Cognito</span><br>
 <span class="bullet">│  </span> <span class="comment">Internal platform for automated access provisioning, RBAC, and VPN/DB audits.</span><br>
 <span class="bullet">└─</span> <span class="val">[2] <a href="https://abdul-zailani.github.io/resume-as-code/" target="_blank">Resume-as-Code Playground</a></span> <span class="tag">React</span><span class="tag">JSON Schema</span><br>
-<span class="bullet">   </span> <span class="comment">Interactive resume builder driven entirely by declarative JSON schemas.</span>`,
+<span class="bullet">   </span> <span class="comment">Interactive resume builder driven entirely by declarative JSON schemas.</span><br>
+<span class="bullet">└─</span> <span class="comment">Tip: Type 'projects catalog' or 'projects 1' to open directly!</span>`,
 
 plafon: `<span class="key">Plafon Live Demo:</span> <span class="val"><a href="./projects/plafon/" target="_blank">abdul-zailani.github.io/projects/plafon/</a></span><br>
 <span class="bullet-text">SRE operations hub featuring Custom Cognito Authentication, RBAC, and unified infrastructure tooling.</span>`,
@@ -250,6 +252,12 @@ function exec(raw) {
     return;
   }
   if (cmd === 'projects') {
+    if (arg === 'catalog' || arg === 'all' || arg === 'index') {
+      line += '<span class="bullet-text">Opening project catalog showcase...</span><br>';
+      output.innerHTML += line;
+      window.open('./projects/', '_self');
+      return;
+    }
     if (arg === '1' || arg === 'plafon') {
       line += '<span class="bullet-text">Opening Plafon dashboard demo...</span><br>';
       output.innerHTML += line;
