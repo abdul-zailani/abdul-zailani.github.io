@@ -2,6 +2,7 @@ title: Abdul Aziz Zailani
 description: Catatan & Opini seputar SRE, DevOps, dan Otomasi Infrastruktur.
 url: "https://abdul-zailani.github.io"
 theme: minima
+future: true
 # Konfigurasi sosial media bawaan Minima (opsional, akan tampil di footer)
 twitter_username: aazizzailani
 github_username: abdul-zailani

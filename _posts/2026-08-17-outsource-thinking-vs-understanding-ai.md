@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Outsource Thinking, Not Understanding: Batas Aman Belajar dengan AI"
-date: 2026-08-17 09:00:00 +0700
+date: 2026-08-17 08:00:00 +0700
 categories: [Teknologi, Produktivitas]
 tags: [AI, Edukasi, Produktivitas, Mindset]
 description: "Delegasikan pencarian sintaks atau boilerplate ke AI, namun jangan pernah menyerahkan pemahaman konsep terdalam Anda ke mesin."
