@@ -3,13 +3,13 @@
 @import "minima";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
 
-// Design Tokens inspired by Hashnode.com (Dark Theme - Slate 950 Base)
+// Design Tokens - Emerald Green Theme (Optimized for Reader Comfort & Low Eye Strain)
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0b0f19; // Slate 950
-  color: #f8fafc; // Slate 50
+  background-color: #0b0f19; // Slate 950 (Very Dark Blue-Gray)
+  color: #cbd5e1; // Slate 300 (Soft Gray-White to prevent halation/eye glare)
   overflow-wrap: break-word;
-  line-height: 1.75;
+  line-height: 1.8;
   letter-spacing: -0.01em;
 }
 
@@ -31,28 +31,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 36px;
   margin-bottom: 16px;
   line-height: 1.3;
-  color: #f8fafc;
+  color: #f8fafc; // Slate 50 (Clean White)
 }
 
 a {
-  color: #3b82f6; // Hashnode Blue
+  color: #cbd5e1; // Soft Gray (Same as body text for seamless reading flow)
+  text-decoration: underline;
+  text-decoration-color: #334155; // Dark slate underline to keep it subtle
   transition: all 0.2s ease-in-out;
-  text-decoration: none;
 }
 
 a:hover {
-  color: #60a5fa;
-  text-decoration: underline;
+  color: #34d399; // Mint Green on hover
+  text-decoration-color: #34d399;
 }
 
 .site-header {
-  border-top: 5px solid #3b82f6;
+  border-top: 3px solid #10b981; // Thin Emerald line instead of thick blue
   border-bottom: 1px solid #1e293b; // Slate 800
   background-color: #0b0f19;
 }
 
 .site-title, .site-title:visited {
-  color: #3b82f6 !important;
+  color: #f8fafc !important; // Clean white title alih-alih warna mencolok
   font-weight: 800;
   letter-spacing: -0.03em;
 }
@@ -68,7 +69,7 @@ a:hover {
 }
 
 .site-nav .page-link:hover {
-  color: #f8fafc;
+  color: #34d399; // Mint Green
   text-decoration: none;
 }
 
@@ -83,11 +84,13 @@ a:hover {
 }
 
 .post-link {
-  color: #3b82f6 !important;
+  color: #f8fafc !important; // Judul postingan di list menggunakan warna putih agar terbaca jelas
+  text-decoration: none;
 }
 
 .post-link:hover {
-  color: #60a5fa !important;
+  color: #34d399 !important; // Hijau mint saat hover
+  text-decoration: underline;
 }
 
 .post-content h2 {
@@ -132,8 +135,6 @@ figure {
   color: #cbd5e1; // Slate 300
 }
 
-}
-
 figcaption {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
@@ -143,7 +144,7 @@ figcaption {
 }
 
 blockquote {
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid #10b981; // Emerald accent line
   color: #94a3b8;
   background-color: #0f172a; // Slate 900
   border-radius: 0 12px 12px 0;
@@ -258,7 +259,7 @@ hr {
 
 .sidebar-nav a:hover, .sidebar-nav a.active {
   background-color: #0f172a;
-  color: #3b82f6;
+  color: #34d399; // Mint Green
 }
 
 .sidebar-profile-mini {
@@ -274,7 +275,7 @@ hr {
   border-radius: 50%;
   background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4');
   background-size: cover;
-  border: 2px solid #3b82f6;
+  border: 2px solid #10b981; // Emerald border
 }
 
 .mini-name {
@@ -330,7 +331,7 @@ hr {
 }
 
 .toc-item a:hover {
-  color: #3b82f6;
+  color: #34d399; // Mint Green
 }
 
 .toc-h3 {
@@ -377,7 +378,7 @@ hr {
 }
 
 .contact-list a {
-  color: #3b82f6;
+  color: #cbd5e1;
 }
 
 /* User Custom Aesthetic Recommendations */
@@ -399,7 +400,7 @@ hr {
   display: inline-block;
   padding: 10px 20px;
   background: #0f172a;
-  color: #3b82f6 !important;
+  color: #cbd5e1 !important;
   text-decoration: none;
   border: 1px solid #1e293b;
   border-radius: 8px;
@@ -423,10 +424,10 @@ hr {
 
 /* Custom Share Button Hover Styling */
 .share-trigger-btn:hover {
-  background: #3b82f6 !important;
+  background: #10b981 !important; // Emerald Green
   color: #ffffff !important;
-  border-color: #3b82f6 !important;
-  box-shadow: 0 4px 12px rgba(41, 98, 255, 0.4);
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 .share-popover a:hover, .share-popover button:hover {
@@ -475,7 +476,7 @@ table td {
 /* Custom Code & Syntax Highlighting Overrides */
 code {
   background-color: #0f172a !important;
-  color: #3b82f6 !important;
+  color: #34d399 !important; // Soft Mint Green for inline codes
   padding: 4px 8px !important;
   border-radius: 6px !important;
   font-size: 88% !important;
@@ -494,16 +495,16 @@ pre, .highlight, .highlighter-rouge, .highlighter-rouge .highlight {
   padding: 20px !important;
 }
 
-/* Rouge Highlighting Tokens for Dark Theme */
+/* Rouge Highlighting Tokens for Dark Theme (Mint & Gray accents) */
 .highlight {
   .c, .ch, .cd, .cm, .c1, .cp, .cpf { color: #64748b !important; font-style: italic !important; }
   .err { color: #ef4444 !important; background-color: transparent !important; }
-  .k, .kd, .kn, .kp, .kr, .kt, .kv { color: #3b82f6 !important; font-weight: bold !important; }
-  .o, .ow { color: #06b6d4 !important; }
+  .k, .kd, .kn, .kp, .kr, .kt, .kv { color: #10b981 !important; font-weight: bold !important; } // Mint Green keywords
+  .o, .ow { color: #34d399 !important; }
   .p { color: #cbd5e1 !important; }
   .n, .nb, .bp { color: #cbd5e1 !important; }
   .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nx, .py { color: #60a5fa !important; }
-  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #10b981 !important; }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #a7f3d0 !important; } // Light mint for strings
   .m, .mb, .mx, .mi, .mo, .mh, .il { color: #f59e0b !important; }
   .nt { color: #f43f5e !important; }
   .na { color: #60a5fa !important; }

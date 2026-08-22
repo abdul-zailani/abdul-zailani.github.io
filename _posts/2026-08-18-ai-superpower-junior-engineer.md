@@ -71,7 +71,7 @@ Insinyur masa depan bukanlah mereka yang menghafal sintaks bahasa pemrograman, m
 
 1. [**Be Global / ByteIota**](https://byteiota.com/developer-hiring-crisis-2026-40-worse-junior-drops-73/) - *Developer Hiring Crisis 2026: 40% Worse, Junior Drops 73%* (Statistik penurunan lowongan kerja dan tingkat pengangguran teknik komputer).
 2. [**World Economic Forum**](https://www.weforum.org/agenda/2026/08/as-ai-reshapes-entry-level-software-jobs-where-will-senior-developers-come-from/) - *As AI reshapes entry-level software jobs, where will senior developers come from?* (Analisis tantangan erosi jalur magang tradisional akibat otomatisasi tugas dasar).
-3. [**PwC**](https://www.pwc.com/us/en/tech-effect/ai/10-ways-genai-improves-software-development.html) - *10 ways GenAI improves software development* (Tren transisi peran pengembang menuju AI-augmented system designers).
+3. [**PwC**](https://www.pwc.com/us/en/tech-effect/ai-analytics/generative-ai-for-software-development.html) - *10 ways GenAI improves software development* (Tren transisi peran pengembang menuju AI-augmented system designers).
 
 ---
 
