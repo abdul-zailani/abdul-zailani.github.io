@@ -1,159 +1,132 @@
 ---
 layout: post
-title: "The SRE & Engineering Leader's Handbook: Modern Identity & Authentication Architecture"
+title: "SRE & Security Handbook: Modern Identity & Authentication Infrastructure"
 date: 2026-08-21 16:45:00 +0700
 categories: [engineering, architecture, sre, security]
 tags: [handbook, sre, authentication, security, aws-cognito, bff, identity-fabric, ietf, owasp]
 ---
 
-Autentikasi dan Single Sign-On (SSO) adalah salah satu komponen infrastruktur paling krusial sekaligus sering disalahpahami dalam rekayasa perangkat lunak modern. Di satu sisi, ia adalah gerbang utama menuju seluruh layanan bisnis (*single point of failure*). Di sisi lain, ia adalah sumber utama utang teknis (*technical debt*), beban operasional *on-call*, dan celah keamanan (*security liabilities*).
+Autentikasi dan Single Sign-On (SSO) merupakan komponen infrastruktur krusial yang berdampak langsung pada ketersediaan sistem (availability) dan postur keamanan organisasi. Kegagalan pada sistem autentikasi bertindak sebagai titik kegagalan tunggal (single point of failure) yang dapat melumpuhkan seluruh layanan mikro, sekaligus menjadi target utama serangan kebocoran kredensial dan eksploitasi token.
 
-Buku panduan (*handbook*) ini disusun dari kacamata **Site Reliability Engineering (SRE) dan Kepemimpinan Rekayasa (*Engineering Leadership*)**. Tujuannya adalah memberikan panduan komprehensif, mulai dari data lanskap industri, bedah akar masalah sistemik, standar arsitektur **Headless Identity (BFF + Managed IdP)**, mitigasi kegagalan produksi (*failure modes runbook*), hingga strategi migrasi bertahap dari monolit warisan (*legacy migration playbook*).
+Buku panduan (handbook) ini disusun khusus untuk **Site Reliability Engineering (SRE), DevOps, dan Security Engineers**. Fokus pembahasan meliputi perbandingan pola deployment, analisis kerentanan sistemik infrastruktur autentikasi internal, arsitektur backend-for-frontend (BFF) proxy, panduan penanganan insiden produksi (incident runbook), serta strategi migrasi basis data identitas tanpa downtime.
 
 ---
 
 ## 📑 Daftar Isi (Table of Contents)
-1. [Chapter 1: Lanskap Industri: Data Nyata & Paradoks Adopsi](#chapter-1-lanskap-industri-data-nyata--paradoks-adopsi)
-2. [Chapter 2: The In-House Trap: 6 Akar Masalah Sistemik](#chapter-2-the-in-house-trap-6-akar-masalah-sistemik)
-3. [Chapter 3: Standar Arsitektur: Pola Headless Identity (BFF Proxy)](#chapter-3-standar-arsitektur-pola-headless-identity-bff-proxy)
+1. [Chapter 1: Analisis Pola Deployment & Overhead Operasional](#chapter-1-analisis-pola-deployment--overhead-operasional)
+2. [Chapter 2: Risiko Sistemik & Ancaman Keamanan Autentikasi Internal](#chapter-2-risiko-sistemik--ancaman-keamanan-autentikasi-internal)
+3. [Chapter 3: Desain Arsitektur: Headless Identity via BFF Proxy](#chapter-3-desain-arsitektur-headless-identity-via-bff-proxy)
 4. [Chapter 4: SRE Runbook: Kegagalan Produksi & Mitigasi Kritis](#chapter-4-sre-runbook-kegagalan-produksi--mitigasi-kritis)
-5. [Chapter 5: Migration Playbook: Menembus 'Relational Monolith' Tanpa Downtime](#chapter-5-migration-playbook-menembus-relational-monolith-tanpa-downtime)
-6. [Chapter 6: Matriks Pengambilan Keputusan (Decision Matrix)](#chapter-6-matriks-pengambilan-keputusan-decision-matrix)
+5. [Chapter 5: Migration Playbook: Just-In-Time User Migration](#chapter-5-migration-playbook-just-in-time-user-migration)
+6. [Chapter 6: Matriks Infrastruktur & Kepatuhan](#chapter-6-matriks-infrastruktur--kepatuhan)
 
 ---
 
-## Chapter 1: Lanskap Industri: Data Nyata & Paradoks Adopsi
+## Chapter 1: Analisis Pola Deployment & Overhead Operasional
 
-Banyak tim pemula berasumsi: *"Perusahaan besar banyak yang bikin auth sendiri, berarti kita juga harus bikin sendiri."* Mari kita bedah data industri nyata:
+Tabel berikut membandingkan karakteristik operasional dari tiga pendekatan infrastruktur autentikasi utama:
 
-| Segmen Perusahaan | Status Arsitektur Dominan | Realitas Operasional |
-| :--- | :--- | :--- |
-| Greenfield / Startups<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(2024–2026)</span> | <code style="color: #2b6e30; background: rgba(43,110,48,0.1); padding: 2px 6px; border-radius: 4px;">&gt;85% Managed IdP</code><br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">Zero in-house password DB</span> | Memilih *"Buy"* (Clerk, Supabase, Cognito) demi time-to-market cepat dan fokus bisnis inti. |
-| Mid-Market & SaaS<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">($2M – $50M ARR)</span> | <code style="color: #2b6e30; background: rgba(43,110,48,0.1); padding: 2px 6px; border-radius: 4px;">72% – 83% Managed IdP</code><br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">Cognito, Auth0, WorkOS</span> | Migrasi cepat untuk lolos audit SOC 2 Type II, integrasi SAML B2B, dan memangkas TCO. |
-| Traditional Enterprise<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(Bank, Telco, BUMN)</span> | <code style="color: #a61c14; background: rgba(166,28,20,0.1); padding: 2px 6px; border-radius: 4px;">&gt;55% In-House / Legacy WAM</code><br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">SiteMinder, DB Monolith</span> | <strong style="color: #b25e00;">82% mengeluh dampak negatif bisnis</strong> (Descope Report), terjebak utang relasional. |
-| Big Tech Hyperscalers<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(Google, Netflix, Uber)</span> | <code style="color: var(--primary, #000000); background: rgba(0,0,0,0.05); padding: 2px 6px; border-radius: 4px;">In-House Dedicated Platform</code><br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">Gaia, Passport, SPIFFE</span> | Punya 1 divisi khusus (50+ SRE & Kriptografer); biaya R&D teramortisasi ke ribuan layanan. |
+| Pola Deployment | SLA & Ketersediaan | Overhead Operasional SRE | Performa & Latensi |
+| :--- | :--- | :--- | :--- |
+| **Managed Cloud IdP**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b);">(Cognito, Auth0)</span> | Sangat Tinggi (Dikelola penuh oleh penyedia cloud) | Rendah. Hanya fokus pada konfigurasi dan batas kuota rate limit. | Tergantung pada koneksi jaringan eksternal. Butuh caching token di layer BFF. |
+| **Self-Hosted Open Source IdP**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b);">(Keycloak, Zitadel)</span> | Menengah. SRE mengelola replikasi DB dan HPA Kubernetes. | Tinggi. Memerlukan patching berkala, tuning JVM/Go runtime, dan monitoring DB. | Sangat cepat karena berada di jaringan internal cluster yang sama. |
+| **Custom In-House Auth**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b);">(Bcrypt + DB lokal)</span> | Rendah. Rentan terhadap kegagalan beruntun (cascading failure). | Sangat Tinggi. SRE harus mengelola optimasi CPU hashing dan token revocation list secara manual. | Cepat pada kondisi beban normal. Degradasi performa drastis saat terjadi serangan CPU exhaustion. |
 
-### Paradoks Warisan (*The Legacy Paradox*)
-Mayoritas perusahaan lama yang masih menjalankan *in-house auth* bertahan **bukan karena itu adalah praktik arsitektur terbaik**, melainkan karena **mereka terperangkap dalam utang teknis masa lalu (*legacy inertia*)**. Menurut survei *Descope CIAM Report* terhadap 416 pengambil keputusan:
-* **82% perusahaan** mengalami dampak negatif bisnis akibat auth lama mereka.
-* **52% anggaran operasional** terbuang untuk tiket bantuan (*support tickets*) seputar login dan reset kata sandi.
-* Dari 51% perusahaan yang memakai sistem auth internal lama, **hanya 8% yang sudi membangunnya lagi secara in-house jika memulai dari nol hari ini.**
+Pilihan pendekatan berdampak langsung pada beban kerja on-call. SRE dan Security Engineers harus memprioritaskan pengurangan kompleksitas operasional pada komponen non-bisnis agar dapat mengalokasikan sumber daya pada keandalan infrastruktur inti.
 
 ---
 
-## Chapter 2: The In-House Trap: 6 Akar Masalah Sistemik
+## Chapter 2: Risiko Sistemik & Ancaman Keamanan Autentikasi Internal
 
-Keputusan membangun sistem auth dari nol sering kali dipicu oleh kombinasi bias kognitif dan friksi arsitektur:
+Membangun infrastruktur autentikasi internal dari nol memicu beberapa titik kegagalan infrastruktur dan celah keamanan (vulnerability):
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-  <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.2rem;">
-    <div style="color: #a61c14; font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem;">1. The 3-Day Fallacy (NIH)</div>
-    <div style="color: var(--on-surface-variant, #6b6b6b); font-size: 0.88rem; line-height: 1.5;">Ilusi awal bahwa auth cuma <code>bcrypt + JWT</code> dalam 1 sprint. Berubah jadi mimpi buruk pemeliharaan saat fitur reset password, lockout, dan MFA drift diminta.</div>
-  </div>
-  <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.2rem;">
-    <div style="color: #b25e00; font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem;">2. FinOps Paradox (MAU)</div>
-    <div style="color: var(--on-surface-variant, #6b6b6b); font-size: 0.88rem; line-height: 1.5;">Ketakutan biaya MAU Auth0/Okta memicu ilusi bikin sendiri, padahal mengabaikan TCO replika DB, KMS signing, audit pentest, dan biaya on-call SRE.</div>
-  </div>
-  <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.2rem;">
-    <div style="color: #7a1ca6; font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem;">3. The Monolith Anchor</div>
-    <div style="color: var(--on-surface-variant, #6b6b6b); font-size: 0.88rem; line-height: 1.5;">Keterikatan relasional di mana <code>users.id</code> menjadi Foreign Key ke ratusan tabel transaksi (<code>JOIN users</code>), memicu inersia migrasi yang besar.</div>
-  </div>
-  <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.2rem;">
-    <div style="color: #165ba6; font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem;">4. Protocol vs App Logic</div>
-    <div style="color: var(--on-surface-variant, #6b6b6b); font-size: 0.88rem; line-height: 1.5;">Mencampuradukkan AuthN dengan AuthZ, serta parser XML SAML darurat in-house yang rentan terhadap celah XML Signature Wrapping (XSW).</div>
-  </div>
-  <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.2rem;">
-    <div style="color: #2b6e30; font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem;">5. Security Threat Model Gap</div>
-    <div style="color: var(--on-surface-variant, #6b6b6b); font-size: 0.88rem; line-height: 1.5;">Absennya kontrol kriptografi kritis: constant-time comparison (timing attack), rotasi asimetris JWKS, dan mitigasi credential stuffing terdistribusi.</div>
-  </div>
-  <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.2rem;">
-    <div style="color: #0e627a; font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem;">6. Data Sovereignty / Air-Gap</div>
-    <div style="color: var(--on-surface-variant, #6b6b6b); font-size: 0.88rem; line-height: 1.5;">Regulasi residensi data direspons keliru dengan menulis auth dari nol, alih-alih mengadopsi self-hosted IdP open-source (Keycloak/Ory).</div>
-  </div>
-</div>
+*   **Bcrypt CPU Exhaustion (Denial of Service)**: Penggunaan algoritma hashing seperti Bcrypt dengan *cost factor* tinggi memakan resource CPU secara intensif. Serangan brute force massal dapat dengan cepat melumpuhkan resource CPU di node Kubernetes, bertindak sebagai vektor Denial of Service (DoS) yang efektif.
+*   **Token Revocation Latency**: Menyimpan token yang dicabut (revoked tokens) dalam basis data utama memicu overload pada database read query. SRE sering terpaksa mengimplementasikan lapisan Redis tambahan untuk caching token blacklist.
+*   **Database Coupling**: Penggabungan tabel user id dengan tabel transaksi bisnis membuat proses migrasi skema database menjadi sangat kaku dan berisiko tinggi secara operasional.
+*   **JWKS Key Rotation Complexity (Cryptographic Flaws)**: Banyak sistem internal gagal mengimplementasikan rotasi kunci asimetris otomatis untuk validasi JWT. Hal ini berujung pada potensi downtime saat kunci enkripsi kedaluwarsa atau risiko pemalsuan token (token forgery) jika kunci yang bocor tidak dapat dicabut secara instan.
+*   **Vektor Credential Stuffing**: Ketiadaan mekanisme mitigasi deteksi anomali login terdistribusi membuat autentikasi kustom rentan terhadap botnet pengambilalihan akun (account takeover), meningkatkan risiko pelanggaran data (data breach).
+*   **OWASP Broken Authentication**: Sistem internal rentan terhadap celah verifikasi token seperti tidak memeriksa algoritma hashing JWT (Key Confusion Attack) atau membiarkan masa berlaku token (expiry time) terlalu lama tanpa rotasi berkala.
 
 ---
 
-## Chapter 3: Standar Arsitektur: Pola Headless Identity (BFF Proxy)
+## Chapter 3: Desain Arsitektur: Headless Identity via BFF Proxy
 
-Untuk memutus dilema antara *"kebebasan desain UI"* dan *"keamanan brankas identitas"*, industri merekomendasikan pola **Headless Identity dengan Backend-for-Frontend (BFF)**.
+Untuk menjaga performa dan keamanan token, gunakan pola arsitektur **Backend-for-Frontend (BFF)**.
 
 <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; font-family: monospace;">
   <!-- Frontend Layer -->
   <div style="background: var(--surface-container-lowest, #ffffff); border: 1px solid #165ba6; border-radius: 6px; padding: 1rem; margin-bottom: 0.8rem;">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-      <span style="color: #165ba6; font-weight: bold;">🖥️ Frontend (Next.js / Web Console)</span>
-      <span style="color: #2b6e30; font-size: 0.85rem; background: rgba(43,110,48,0.1); padding: 2px 8px; border-radius: 4px;">100% Custom Native UI, Theme, OTP Slots</span>
+      <span style="color: #165ba6; font-weight: bold;">🖥️ Client-Side Browser</span>
+      <span style="color: #2b6e30; font-size: 0.85rem; background: rgba(43,110,48,0.1); padding: 2px 8px; border-radius: 4px;">Hanya menyimpan Secure HttpOnly Cookies</span>
     </div>
   </div>
   
   <!-- Flow 1 -->
   <div style="text-align: center; color: var(--on-surface-variant, #6b6b6b); font-size: 0.85rem; margin: 0.4rem 0;">
-    │ &nbsp; <span style="color: #165ba6;">POST /auth/login</span> (Internal API via Secure HttpOnly Cookie)
+    │ &nbsp; <span style="color: #165ba6;">POST /auth/login</span> (Session Cookie)
     <br>▼
   </div>
 
   <!-- BFF Layer -->
   <div style="background: var(--surface-container-lowest, #ffffff); border: 1px solid #7a1ca6; border-radius: 6px; padding: 1rem; margin: 0.8rem 0;">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-      <span style="color: #7a1ca6; font-weight: bold;">⚙️ BFF Layer (Go / Node Backend)</span>
-      <span style="color: #b25e00; font-size: 0.85rem; background: rgba(178,94,0,0.1); padding: 2px 8px; border-radius: 4px;">GCRA Rate Limiter, Zero-Leak Log, AES-256 Session Encrypt</span>
+      <span style="color: #7a1ca6; font-weight: bold;">⚙️ BFF Gateway (Go / Node.js)</span>
+      <span style="color: #b25e00; font-size: 0.85rem; background: rgba(178,94,0,0.1); padding: 2px 8px; border-radius: 4px;">Validasi Token &amp; Enkripsi Sesi</span>
     </div>
   </div>
 
   <!-- Flow 2 -->
   <div style="text-align: center; color: var(--on-surface-variant, #6b6b6b); font-size: 0.85rem; margin: 0.4rem 0;">
-    │ &nbsp; <span style="color: #2b6e30;">Direct Auth API</span> (USER_PASSWORD_AUTH / USER_SRP_AUTH)
+    │ &nbsp; <span style="color: #2b6e30;">Direct OAuth / API Call</span>
     <br>▼
   </div>
 
   <!-- Managed IdP Layer -->
   <div style="background: var(--surface-container-lowest, #ffffff); border: 1px solid #2b6e30; border-radius: 6px; padding: 1rem; margin-top: 0.8rem;">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-      <span style="color: #2b6e30; font-weight: bold;">🛡️ Managed IdP (AWS Cognito / Auth0)</span>
-      <span style="color: #165ba6; font-size: 0.85rem; background: rgba(22,91,166,0.1); padding: 2px 8px; border-radius: 4px;">Brankas Identitas, TOTP Engine, SOC 2 / ISO Tier</span>
+      <span style="color: #2b6e30; font-weight: bold;">🛡️ Identity Provider (Cognito / Keycloak)</span>
+      <span style="color: #165ba6; font-size: 0.85rem; background: rgba(22,91,166,0.1); padding: 2px 8px; border-radius: 4px;">User Directory &amp; Crypto Signing Engine</span>
     </div>
   </div>
 </div>
 
-### Validasi Standar Global:
-1. **IETF OAuth 2.0 for Browser-Based Apps (RFC 9700 / BCP)**:
-   Browser diklasifikasikan sebagai *Public Client* yang tidak aman. IETF menetapkan **BFF Proxy Pattern**: browser tidak pernah memegang token JWT mentah di JavaScript, melainkan hanya menyimpan *session identifier* terenkripsi sisi server.
-2. **OWASP Token Storage Standard**:
-   Melarang keras penyimpanan JWT di `localStorage` atau `sessionStorage` (target empuk serangan XSS). Seluruh token sensitif wajib dibungkus dalam cookie dengan atribut `HttpOnly`, `Secure`, dan `SameSite=Strict/Lax`.
+### Standar Implementasi Keamanan:
+1.  **IETF RFC 9700 (OAuth 2.0 for Browser-Based Apps)**: Browser dikategorikan sebagai lingkungan tidak aman. Gunakan BFF Proxy untuk menukar otorisasi menjadi cookie sesi terenkripsi. Hindari penyimpanan token JWT mentah di JavaScript client-side (seperti localStorage).
+2.  **Atribut Cookie Sesi**: Setel cookie sesi dengan parameter `HttpOnly`, `Secure`, dan `SameSite=Strict` untuk memitigasi serangan Cross-Site Scripting (XSS) dan Cross-Site Request Forgery (CSRF).
 
 ---
 
 ## Chapter 4: SRE Runbook: Kegagalan Produksi & Mitigasi Kritis
 
-Bagi engineer on-call, berikut adalah matriks penanganan insiden autentikasi yang paling sering terjadi di produksi:
+Gunakan panduan berikut untuk menangani insiden sistem autentikasi di produksi:
 
-| Vektor Kegagalan / Insiden | Dampak Sistem | Mitigasi & Runbook SRE |
+| Gejala Insiden | Dampak Sistem | Langkah Mitigasi SRE |
 | :--- | :--- | :--- |
-| **1. Bcrypt / CPU Exhaustion**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(1MB Password Attack)</span> | Pod Kubernetes CPU 100%, Pod restarts, OOM / Evictions masif. | <span style="color: #2b6e30;">✓</span> Batasi panjang input (maks 128 char) di layer BFF sebelum hashing.<br><span style="color: #2b6e30;">✓</span> Terapkan GCRA Rate Limiting per IP + User. |
-| **2. Token Revocation Storm**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(Redis Blacklist Freeze)</span> | Redis latency melonjak, timeout berantai (cascading failure) ke API Gateway. | <span style="color: #2b6e30;">✓</span> Gunakan short-lived Access Token (5–15 menit).<br><span style="color: #2b6e30;">✓</span> Terapkan Refresh Token rotation; hindari sinkronisasi blacklist di setiap hit API. |
-| **3. TOTP MFA Time-Drift**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(Desinkronisasi Jam Klien)</span> | Pengguna sah gagal login massal akibat deviasi NTP server dan ponsel. | <span style="color: #2b6e30;">✓</span> Izinkan toleransi clock drift ±1 time-step (RFC 6238 window = 30s x 3).<br><span style="color: #2b6e30;">✓</span> Pastikan node Kubernetes tersinkronisasi Chrony/NTP. |
-| **4. Key Confusion Attack**<br><span style="font-size: 0.8rem; color: var(--on-surface-variant, #6b6b6b); font-weight: normal;">(RS256 ➔ HS256 Forgery)</span> | Attacker membypass otentikasi via pemalsuan signature menggunakan Public Key. | <span style="color: #2b6e30;">✓</span> Kunci verifikasi algoritma hanya dari JWKS endpoint.<br><span style="color: #2b6e30;">✓</span> Tolak token dengan header `alg: none` atau algoritma simetris tak terduga. |
+| **Bcrypt CPU Exhaustion** (Serangan Brute Force) | CPU Pod Kubernetes 100%, terjadi restating pod berulang akibat kegagalan liveness probe. | 1. Terapkan rate limiting ketat pada IP penyerang di level WAF.<br>2. Setel batas panjang karakter password input (maksimal 128 karakter) pada BFF. |
+| **Token Revocation Storm** (Blacklist lookup latency) | Latensi Redis melonjak tinggi, memicu kegagalan beruntun pada API Gateway. | 1. Gunakan durasi token yang pendek (short-lived access tokens, 5-15 menit).<br>2. Implementasikan local cache berdurasi singkat di sisi gateway. |
+| **TOTP MFA Time-Drift** (Desinkronisasi waktu) | Pengguna sah gagal login akibat kegagalan validasi kode OTP. | 1. Aktifkan fitur sinkronisasi waktu NTP otomatis pada host mesin.<br>2. Berikan toleransi clock drift ±1 time-step (RFC 6238 window = 90 detik). |
+| **JWKS Signature Failure** (Kegagalan rotasi kunci) | Validasi JWT gagal total di seluruh microservices. | 1. Validasi cache JWKS dan paksa refresh JWKS endpoint dari IdP.<br>2. Pastikan outbound connectivity ke URL JWKS dari cluster dalam kondisi normal. |
 
 ---
 
-## Chapter 5: Migration Playbook: Menembus 'Relational Monolith' Tanpa Downtime
+## Chapter 5: Migration Playbook: Just-In-Time User Migration
 
-Jika organisasi Anda saat ini terjebak dengan basis data monolit warisan, jangan lakukan *Big Bang Migration*. Gunakan **Strangler Fig Pattern dengan Lazy Migration (Just-In-Time)**:
+Untuk memigrasikan data pengguna dari basis data monolit lama ke Managed IdP tanpa downtime, gunakan pola **Strangler Fig dengan Just-In-Time (JIT) Migration**:
 
 <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; font-size: 0.88rem;">
   <!-- Start -->
   <div style="text-align: center; margin-bottom: 0.8rem;">
-    <span style="background: var(--surface-container-highest, #e5e4e3); border: 1px solid #165ba6; color: #165ba6; padding: 6px 14px; border-radius: 20px; font-weight: bold;">1. User Login Request</span>
+    <span style="background: var(--surface-container-highest, #e5e4e3); border: 1px solid #165ba6; color: #165ba6; padding: 6px 14px; border-radius: 20px; font-weight: bold;">User Mengirim Request Login</span>
     <div style="color: var(--on-surface-variant, #6b6b6b); margin-top: 0.4rem;">▼</div>
   </div>
 
   <!-- Step 1 Box -->
   <div style="background: var(--surface-container-lowest, #ffffff); border: 1px solid var(--outline, #e5e5e5); border-radius: 6px; padding: 1rem; margin-bottom: 0.8rem;">
-    <div style="color: #165ba6; font-weight: bold;">Cek Status di Managed IdP (Cognito / Auth0)</div>
+    <div style="color: #165ba6; font-weight: bold;">Cek Status User di Managed IdP</div>
     <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; gap: 1rem; flex-wrap: wrap;">
-      <span style="color: #2b6e30;">➔ SUDAH ADA: Terbitkan Sesi BFF &amp; Selesai (Fast Path)</span>
-      <span style="color: #b25e00;">➔ BELUM ADA: Lanjut ke Verifikasi DB Lama (Legacy Path)</span>
+      <span style="color: #2b6e30;">➔ ADA: Validasi password di IdP. Selesai.</span>
+      <span style="color: #b25e00;">➔ TIDAK ADA: Lanjut verifikasi ke Database Lama.</span>
     </div>
   </div>
 
@@ -161,53 +134,43 @@ Jika organisasi Anda saat ini terjebak dengan basis data monolit warisan, jangan
 
   <!-- Step 2 Box -->
   <div style="background: var(--surface-container-lowest, #ffffff); border: 1px solid var(--outline, #e5e5e5); border-radius: 6px; padding: 1rem; margin-bottom: 0.8rem;">
-    <div style="color: #b25e00; font-weight: bold;">Verifikasi Hash Kata Sandi di Basis Data Monolit Lama</div>
+    <div style="color: #b25e00; font-weight: bold;">Verifikasi Hash di Database Lama</div>
     <div style="margin-top: 0.5rem;">
-      <div style="color: #a61c14;">✖ GAGAL: Kembalikan 401 Unauthorized (Password Salah)</div>
-      <div style="color: #2b6e30; margin-top: 0.4rem;">✔ VALID: Jalankan Migrasi Tepat Waktu (Just-In-Time):</div>
+      <div style="color: #a61c14;">✖ PASSWORD SALAH: Kembalikan respons 401.</div>
+      <div style="color: #2b6e30; margin-top: 0.4rem;">✔ PASSWORD BENAR: Jalankan Migrasi Otomatis JIT:</div>
       <ul style="color: var(--on-surface-variant, #6b6b6b); margin: 0.4rem 0 0 1.2rem; line-height: 1.4;">
-        <li>Daftarkan user ke Managed IdP via API dengan plaintext password saat ini.</li>
-        <li>Tandai flag <code style="color: #165ba6;">migrated = true</code> di basis data lokal.</li>
-        <li>Terbitkan Sesi BFF &amp; Kembalikan respons sukses ke pengguna.</li>
+        <li>Daftarkan user dan password ke Managed IdP menggunakan API admin.</li>
+        <li>Setel flag lokal migrated = true pada database lama.</li>
+        <li>Keluarkan token sesi dan izinkan pengguna masuk.</li>
       </ul>
     </div>
   </div>
 </div>
 
-### Langkah Eksekusi:
-1. **Fase 1 (Dual Verification)**: Saat pengguna login, backend memeriksa Managed IdP terlebih dahulu. Jika belum ada, verifikasi hash di database lama.
-2. **Fase 2 (Just-In-Time Import)**: Jika kata sandi cocok di database lama, daftarkan pengguna tersebut ke Managed IdP secara otomatis menggunakan kata sandi teks asli yang baru dimasukkan (*zero plaintext storage*).
-3. **Fase 3 (Decommission)**: Setelah 90 hari, 80-90% pengguna aktif telah termigrasi otomatis. Pengguna tidak aktif sisanya dapat dipaksa melalui alur *Reset Password* saat kembali.
+### Alur Eksekusi Migrasi:
+1.  **Fase 1 (Dual Verification)**: Gateway memeriksa IdP terlebih dahulu. Jika pengguna belum terdaftar di IdP, sistem memvalidasi password menggunakan hash pada database lama.
+2.  **Fase 2 (Just-In-Time Import)**: Jika password valid pada database lama, daftarkan pengguna tersebut secara otomatis ke IdP baru menggunakan password teks asli yang diinput saat login. SRE tidak perlu menyimpan password teks asli secara permanen pada basis data.
+3.  **Fase 3 (Clean Up)**: Setelah masa transisi (misalnya 90 hari), matikan alur verifikasi database lama. Pengguna yang belum login selama periode tersebut dapat diarahkan untuk menggunakan alur *Reset Password* pada IdP baru.
 
 ---
 
-## Chapter 6: Matriks Pengambilan Keputusan (Decision Matrix)
+## Chapter 6: Matriks Infrastruktur & Kepatuhan
 
-Gunakan matriks ini saat merancang inisiatif rekayasa baru:
+Gunakan panduan berikut untuk menentukan opsi deployment autentikasi yang sesuai dengan kebutuhan ketersediaan sistem dan standar kepatuhan (compliance):
 
-| Karakteristik Organisasi & Kebutuhan | Strategi Autentikasi yang Direkomendasikan |
-| :--- | :--- |
-| • Tim rekayasa ramping (< 100 engineers)<br>• Fokus utama: akselerasi produk & fitur bisnis<br>• Butuh kepatuhan SOC 2 / ISO 27001 / HIPAA cepat | **✅ Managed Cloud IdP**<br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">(AWS Cognito, Clerk, Auth0) via Pola **Headless Identity + BFF**</span> |
-| • Regulasi ketat residensi data / air-gapped network<br>• Larangan mutlak transfer data identitas ke SaaS luar | **✅ Self-Hosted Open-Source IdP**<br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">(Keycloak, Ory Kratos, Zitadel) terisolasi di kluster Kubernetes privat</span> |
-| • Skala Big Tech (Google, Netflix, Uber)<br>• Ribuan microservices & miliaran request/detik | **✅ Dedicated Internal Identity Platform Team**<br><span style="font-size: 0.85rem; color: var(--on-surface-variant, #6b6b6b);">(Hanya valid jika biaya R&D teramortisasi penuh ke ratusan produk internal)</span> |
+| Kebutuhan Infrastruktur & Kepatuhan | Opsi Rekomendasi | Arsitektur & Keamanan |
+| :--- | :--- | :--- |
+| Membutuhkan skalabilitas tinggi, pemeliharaan minimal, dan pemenuhan standar kepatuhan industri (SOC 2 Type II, ISO 27001, HIPAA) secara instan. | **Managed Cloud IdP** (Cognito / Auth0) | Integrasikan menggunakan BFF pattern untuk mengamankan pertukaran token di layer backend. |
+| Regulasi ketat (seperti kedaulatan data finansial atau PCI-DSS lokal) mewajibkan penyimpanan data identitas di cluster tertutup (air-gapped network). | **Self-Hosted Open-Source IdP** (Keycloak / Zitadel) | Deploy di cluster Kubernetes privat dengan hardening keamanan OS, backup terenkripsi, dan HPA dinamis. |
+| Ingin membangun solusi kustom sendiri dengan alasan performa latensi mikro tanpa biaya lisensi. | **Sangat Tidak Direkomendasikan** | Menambah celah keamanan OWASP, beban audit pentest mandiri, dan kerentanan Denial of Service (DoS). |
 
----
-
-## Kesimpulan & Kaidah Utama
-
-Prinsip fundamental bagi para pemimpin teknologi (*engineering leaders*) dan SRE adalah:
-
-> **"Buy for parity, build for competitive advantage."**
-
-Kecuali bisnis inti Anda adalah menjual produk keamanan siber, mengorbankan kapasitas rekayasa dan keandalan sistem untuk membangun ulang brankas kata sandi dari nol adalah bentuk pemborosan sumber daya.
-
-Pisahkan antarmuka dari mesin identitas. Adopsi pola **Headless Identity**, dan biarkan platform teruji menjaga keandalan infrastruktur Anda sepanjang waktu.
+Mengalokasikan resource SRE untuk membangun ulang sistem autentikasi dari nol merupakan langkah tidak efisien dan memperbesar liabilitas keamanan (security liability). Pilihlah opsi managed atau platform open-source teruji, dan biarkan tim fokus pada performa keandalan sistem inti.
 
 ---
 
 ## Referensi & Bacaan Lanjutan
-* [IETF RFC 9700: OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
-* [OWASP Token Storage and Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
-* [AWS Cognito Developer Guide: Direct Authentication API](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html)
-* [Descope: State of CIAM & In-House Identity Report](https://www.descope.com/)
-* [Netflix Technology Blog: Evolution of Edge Identity & Passports](https://netflixtechblog.com/)
+*   [IETF RFC 9700: OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
+*   [OWASP Token Storage and Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
+*   [AWS Cognito Developer Guide: Direct Authentication API](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html)
+*   [Keycloak Deployment and Scaling Guide](https://www.keycloak.org/guides)
+*   [Netflix Technology Blog: Evolution of Edge Identity & Passports](https://netflixtechblog.com/)
