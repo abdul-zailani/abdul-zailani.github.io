@@ -78,6 +78,7 @@ help: `<span class="section-title">Available commands:</span><br>
 <span class="key">about</span>       <span class="comment">— who am i</span><br>
 <span class="key">experience</span>  <span class="comment">— work history</span><br>
 <span class="key">skills</span>      <span class="comment">— tech stack</span><br>
+<span class="key">projects</span>    <span class="comment">— featured projects & demos 🚀</span><br>
 <span class="key">education</span>   <span class="comment">— academic background</span><br>
 <span class="key">contact</span>     <span class="comment">— reach me</span><br>
 <span class="key">download</span>    <span class="comment">— get PDF resume</span><br>
@@ -147,6 +148,15 @@ neofetch: `<pre class="ascii">        .--.         <span class="key">OS:</span> 
 
 playground: `<span class="key">resume-as-code playground:</span> <span class="val"><a href="https://abdul-zailani.github.io/resume-as-code/" target="_blank">abdul-zailani.github.io/resume-as-code/</a></span><br>
 <span class="bullet-text">Live JSON resume builder — edit, preview, print. Fork it on <a href="https://github.com/abdul-zailani/resume-as-code" target="_blank">GitHub</a>.</span>`,
+
+projects: `<span class="section-title">Featured Projects & Live Demos:</span><br>
+<span class="bullet">├─</span> <span class="val">[1] <a href="./projects/plafon/" target="_blank">Plafon — SRE Operations & Identity Platform</a></span> <span class="tag">Go</span><span class="tag">Next.js</span><span class="tag">AWS Cognito</span><br>
+<span class="bullet">│  </span> <span class="comment">Internal platform for automated access provisioning, RBAC, and VPN/DB audits.</span><br>
+<span class="bullet">└─</span> <span class="val">[2] <a href="https://abdul-zailani.github.io/resume-as-code/" target="_blank">Resume-as-Code Playground</a></span> <span class="tag">React</span><span class="tag">JSON Schema</span><br>
+<span class="bullet">   </span> <span class="comment">Interactive resume builder driven entirely by declarative JSON schemas.</span>`,
+
+plafon: `<span class="key">Plafon Live Demo:</span> <span class="val"><a href="./projects/plafon/" target="_blank">abdul-zailani.github.io/projects/plafon/</a></span><br>
+<span class="bullet-text">SRE operations hub featuring Custom Cognito Authentication, RBAC, and unified infrastructure tooling.</span>`,
 
 sudo: `<span class="err">aziz is not in the sudoers file. nice try 😏</span>`,
 
@@ -231,6 +241,29 @@ function exec(raw) {
     line += '<span class="bullet-text">Opening resume-as-code playground...</span><br>';
     output.innerHTML += line;
     window.open('https://abdul-zailani.github.io/resume-as-code/', '_blank');
+    return;
+  }
+  if (cmd === 'plafon') {
+    line += '<span class="bullet-text">Opening Plafon dashboard demo...</span><br>';
+    output.innerHTML += line;
+    window.open('./projects/plafon/', '_blank');
+    return;
+  }
+  if (cmd === 'projects') {
+    if (arg === '1' || arg === 'plafon') {
+      line += '<span class="bullet-text">Opening Plafon dashboard demo...</span><br>';
+      output.innerHTML += line;
+      window.open('./projects/plafon/', '_blank');
+      return;
+    }
+    if (arg === '2' || arg === 'resume') {
+      line += '<span class="bullet-text">Opening resume-as-code playground...</span><br>';
+      output.innerHTML += line;
+      window.open('https://abdul-zailani.github.io/resume-as-code/', '_blank');
+      return;
+    }
+    line += cmds.projects + '<br>';
+    output.innerHTML += line;
     return;
   }
   if (cmd === 'blog') {

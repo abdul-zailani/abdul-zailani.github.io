@@ -9,6 +9,9 @@ github_username: abdul-zailani
 
 # Konfigurasi agar folder blog di-scan oleh jekyll sebagai posts
 permalink: /:year/:month/:day/:title/
+include:
+  - _next
+  - projects
 defaults:
   - scope:
       path: "blog"
