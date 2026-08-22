@@ -9,11 +9,22 @@ github_username: abdul-zailani
 
 # Konfigurasi agar folder blog di-scan oleh jekyll sebagai posts
 permalink: /:year/:month/:day/:title/
+
+# Jekyll ignores files/directories starting with '_' by default.
+# We need to include '_next' so Next.js static export assets (e.g. for projects/plafon) are processed and copied.
 include:
   - _next
   - projects
+
+# Explicitly control navigation items in the header
+header_pages:
+  - projects/index.html
+  - blog/index.html
+
 defaults:
   - scope:
-      path: "blog"
+      path: ""
+      type: "posts"
     values:
       layout: "post"
+

@@ -1,0 +1,48 @@
+<header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-border-subtle">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-16 flex items-center justify-between">
+    <div class="flex items-center gap-gutter">
+      <a class="font-h3 text-h3 font-bold text-primary" href="/">Abdul Aziz Zailani</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-gutter">
+      <a class="font-body-md text-body-md {% if page.url == '/' or page.url == '/index.html' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/">About</a>
+      <a class="font-body-md text-body-md {% if page.url contains '/projects/' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/projects/">Projects</a>
+      <a class="font-body-md text-body-md {% if page.url contains '/blog/' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/blog/">Blog</a>
+      <a class="font-body-md text-body-md {% if page.url contains '/terminal/' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/terminal/">Terminal CV</a>
+    </nav>
+    <div class="flex items-center gap-gutter">
+      <button id="mobile-menu-button" class="md:hidden text-primary focus:outline-none" aria-label="Toggle Menu">
+        <span class="material-symbols-outlined" style="font-size: 24px;">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-border-subtle bg-surface-container-lowest">
+    <nav class="flex flex-col px-margin-mobile py-4 gap-4">
+      <a class="font-body-md text-body-md {% if page.url == '/' or page.url == '/index.html' %}text-primary font-semibold{% else %}text-text-muted{% endif %}" href="/">About</a>
+      <a class="font-body-md text-body-md {% if page.url contains '/projects/' %}text-primary font-semibold{% else %}text-text-muted{% endif %}" href="/projects/">Projects</a>
+      <a class="font-body-md text-body-md {% if page.url contains '/blog/' %}text-primary font-semibold{% else %}text-text-muted{% endif %}" href="/blog/">Blog</a>
+      <a class="font-body-md text-body-md {% if page.url contains '/terminal/' %}text-primary font-semibold{% else %}text-text-muted{% endif %}" href="/terminal/">Terminal CV</a>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const button = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      if (button && menu) {
+        button.addEventListener('click', function() {
+          menu.classList.toggle('hidden');
+          const icon = button.querySelector('.material-symbols-outlined');
+          if (icon) {
+            if (menu.classList.contains('hidden')) {
+              icon.textContent = 'menu';
+            } else {
+              icon.textContent = 'close';
+            }
+          }
+        });
+      }
+    });
+  </script>
+</header>
