@@ -631,3 +631,22 @@ pre, .highlight, .highlighter-rouge, .highlighter-rouge .highlight {
   .vi { color: #24292e; } // Name.Variable.Instance
   .il { color: #005cc5; } // Literal.Number.Integer.Long
 }
+
+/* Mermaid Diagram Styling */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0;
+  padding: 24px 16px;
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  overflow-x: auto;
+
+  svg {
+    max-width: 100%;
+    height: auto;
+    font-family: var(--font-main) !important;
+  }
+}
+

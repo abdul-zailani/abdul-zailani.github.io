@@ -357,6 +357,20 @@ layout: default
         container.parentNode.replaceChild(div, container);
       }
     });
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      themeVariables: {
+        fontFamily: "'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        fontSize: '14px',
+        primaryColor: '#ffffff',
+        primaryTextColor: '#1a1a1a',
+        primaryBorderColor: '#cfc4c5',
+        lineColor: '#5e5e5e',
+        secondaryColor: '#f4f3f2',
+        tertiaryColor: '#ebeae9',
+        edgeLabelBackground: '#ffffff'
+      }
+    });
   });
 </script>
