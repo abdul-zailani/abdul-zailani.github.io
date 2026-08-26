@@ -1,31 +1,32 @@
 ---
 layout: default
 ---
-<div class="chirpy-layout-container">
-  <!-- Left Sidebar (id="sidebar") -->
-  <aside id="sidebar" class="chirpy-sidebar">
-    <div class="sidebar-brand">
-      <span class="brand-title">Abdul Aziz</span>
-      <span class="brand-subtitle">Zailani</span>
-    </div>
-    
-    <nav class="sidebar-nav">
-      <ul>
-        <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
-        <li><a href="{{ '/projects/' | relative_url }}">🚀 Proyek & Showcase</a></li>
-        <li><a href="{{ '/blog/' | relative_url }}" class="active">✍️ Blog & Catatan</a></li>
-        <li><a href="{{ '/terminal/' | relative_url }}">💻 Terminal CV</a></li>
-      </ul>
-    </nav>
-    
-    <div class="sidebar-profile-mini">
-      <div class="mini-avatar"></div>
-      <span class="mini-name">SRE / DevOps</span>
-    </div>
-  </aside>
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-6">
+  <div class="chirpy-layout-container">
+    <!-- Left Sidebar (id="sidebar") -->
+    <aside id="sidebar" class="chirpy-sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Abdul Aziz</span>
+        <span class="brand-subtitle">Zailani</span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
+          <li><a href="{{ '/projects/' | relative_url }}">🚀 Proyek & Showcase</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}" class="active">✍️ Blog & Catatan</a></li>
+          <li><a href="{{ '/terminal/' | relative_url }}">💻 Terminal CV</a></li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-profile-mini">
+        <div class="mini-avatar"></div>
+        <span class="mini-name">SRE / DevOps</span>
+      </div>
+    </aside>
 
-  <!-- Main Content Wrapper (id="main-wrapper") -->
-  <main id="main-wrapper" class="chirpy-main">
+    <!-- Main Content Wrapper (id="main-wrapper") -->
+    <div id="main-wrapper" class="chirpy-main">
     <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
       <header class="post-header">
         <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
@@ -303,19 +304,20 @@ layout: default
 
       <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
     </article>
-  </main>
-
-  <!-- Right Sidebar (TOC Wrapper) -->
-  <aside id="toc-wrapper" class="chirpy-toc-sidebar">
-    <div class="toc-container">
-      <h3 class="toc-title">Daftar Isi</h3>
-      <!-- We can render a neat list of anchors representing H2s in the post dynamically via JS or HTML parser -->
-      <ul class="toc-list" id="dynamic-toc">
-        <!-- populated dynamically via JS for lightweight layout -->
-      </ul>
     </div>
-  </aside>
-</div>
+
+    <!-- Right Sidebar (TOC Wrapper) -->
+    <aside id="toc-wrapper" class="chirpy-toc-sidebar">
+      <div class="toc-container">
+        <h3 class="toc-title">Daftar Isi</h3>
+        <!-- We can render a neat list of anchors representing H2s in the post dynamically via JS or HTML parser -->
+        <ul class="toc-list" id="dynamic-toc">
+          <!-- populated dynamically via JS for lightweight layout -->
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
 
 <!-- Simple inline JS script to dynamically generate TOC list like Chirpy -->
 <script>

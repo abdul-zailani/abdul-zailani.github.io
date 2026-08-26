@@ -267,6 +267,10 @@ hr {
   padding: 0 16px;
 }
 
+html {
+  scroll-padding-top: 64px;
+}
+
 /* 3-Column Chirpy-like Layout CSS */
 .wrapper:has(.chirpy-layout-container) {
   max-width: 100% !important;
@@ -275,11 +279,11 @@ hr {
 
 .chirpy-layout-container {
   display: grid;
-  grid-template-columns: 260px 1fr 240px;
-  gap: 36px;
-  max-width: 1360px;
+  grid-template-columns: 240px 1fr 220px;
+  gap: 32px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0;
   align-items: start;
 }
 
@@ -426,7 +430,7 @@ hr {
   .chirpy-layout-container {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 16px;
+    padding: 0;
   }
   .chirpy-sidebar {
     position: static;
