@@ -41,7 +41,19 @@ Perbedaan mendasar antara *generative AI* biasa dan sistem berbasis agen terleta
 Untuk membagi tingkat risiko dari setiap tindakan yang akan dieksekusi ke dalam sistem, kita harus menetapkan kerangka kerja pembagian tingkat otonomi agen AI. Dengan pembagian ini, kita menjaga keseimbangan antara kecepatan operasional dan keamanan sistem.
 
 <figure>
-  <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="Jaringan Server Terotomatisasi">
+  <img 
+    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" 
+    srcset="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=480&q=80 480w,
+            https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80 800w,
+            https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80 1200w"
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
+    width="1200"
+    height="675"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    alt="Jaringan Server Terotomatisasi"
+  >
   <figcaption>Otoritas bertingkat memastikan koordinasi delegasi wewenang AI tetap berada dalam batas kendali operasional.</figcaption>
 </figure>
 

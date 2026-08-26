@@ -6,6 +6,7 @@ categories: [Teknologi, Produktivitas]
 tags: [DevOps, SRE, Platform Engineering, Tooling, Culture]
 description: "Mengapa kompleksitas perkakas DevOps modern memicu cognitive overload dan bagaimana tim SRE/Platform Engineering menyederhanakannya untuk fokus pada nilai bisnis."
 reading_time: "⏱️ 6 min read"
+mermaid: true
 image: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=1200&q=80"
 ---
 
@@ -18,7 +19,7 @@ Namun hari ini, lanskap tersebut telah berubah drastis menjadi labirin perkakas 
 Dari manajemen repositori (*Git*), kontainerisasi (*Docker*), orkestrasi (*Kubernetes*), infrastruktur sebagai kode (*Terraform*, *Ansible*), hingga pemantauan sistem (*Prometheus*, *Grafana*, *ELK*), jumlah teknologi yang harus dikuasai melonjak secara eksponensial. Keadaan ini menciptakan fenomena *cognitive overload* (kelebihan beban kognitif) yang luar biasa bagi para engineer. Kita menghabiskan lebih banyak waktu untuk menyambungkan berbagai alat daripada menulis kode yang memberikan nilai nyata bagi bisnis.
 
 <figure>
-  <img src="{{ '/assets/images/devops-then-vs-now.jpg' | relative_url }}" alt="DevOps 8 Years Ago vs Today">
+  <img src="{{ '/assets/images/devops-then-vs-now.jpg' | relative_url }}" width="800" height="450" loading="eager" fetchpriority="high" decoding="async" alt="DevOps 8 Years Ago vs Today">
   <figcaption>Perbandingan realitas DevOps 8 tahun lalu dengan kompleksitas perkakas hari ini.</figcaption>
 </figure>
 

@@ -14,7 +14,7 @@ image: "/assets/images/xplore_day_2026_photo_1.jpg"
 Banyak organisasi merayakan peluncuran teknologi baru layaknya pesta besar. Balon diterbangkan dan manajemen bersulang atas rilis sistem baru. Namun, menjaga efisiensi **alur kerja AI** pasca-rilis jauh lebih penting daripada sekadar perayaan peluncuran tersebut.
 
 <figure>
-  <img src="/assets/images/xplore_day_2026_photo_1.jpg" alt="Sesi diskusi panel bertema Humans, AI, and Agents at Work di Xplore Day 2026">
+  <img src="/assets/images/xplore_day_2026_photo_1.jpg" width="800" height="533" loading="eager" fetchpriority="high" decoding="async" alt="Sesi diskusi panel bertema Humans, AI, and Agents at Work di Xplore Day 2026">
   <figcaption>Dokumentasi Tim Lion Parcel di Xplore Day 2026: Sesi Humans, AI, and Agents at Work</figcaption>
 </figure>
 

@@ -14,7 +14,7 @@ image: "/assets/images/ai-superpower-junior.png"
 AI tidak menggantikan insinyur pemula. AI hanya menggantikan mereka yang menolak beradaptasi. Bagi pengembang yang adaptif, AI meningkatkan produktivitas kerja harian.
 
 <figure>
-  <img src="/assets/images/ai-superpower-junior.png" alt="Meme perbandingan AI menggantikan junior engineer vs memberikan superpower">
+  <img src="/assets/images/ai-superpower-junior.png" width="800" height="450" loading="eager" fetchpriority="high" decoding="async" alt="Meme perbandingan AI menggantikan junior engineer vs memberikan superpower">
   <figcaption>Ilustrasi peran adaptasi AI bagi junior engineer.</figcaption>
 </figure>
 

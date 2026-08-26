@@ -14,7 +14,7 @@ image: "/assets/images/thinking-vs-understanding.jpg"
 Kehadiran AI sering dinilai sebagai penyelamat produktivitas kerja. AI membantu menulis surel, menyusun presentasi, hingga menulis kode pemrograman. Namun, ketergantungan berlebih pada AI merusak proses kognitif manusia.
 
 <figure>
-  <img src="/assets/images/thinking-vs-understanding.jpg" alt="Ilustrasi pemisahan antara pemahaman otak manusia dengan eksekusi robotik AI">
+  <img src="/assets/images/thinking-vs-understanding.jpg" width="800" height="450" loading="eager" fetchpriority="high" decoding="async" alt="Ilustrasi pemisahan antara pemahaman otak manusia dengan eksekusi robotik AI">
   <figcaption>Pemahaman konsep tetap berada di otak manusia, sementara AI mengeksekusi detail teknis.</figcaption>
 </figure>
 
@@ -23,7 +23,7 @@ Sebuah diskusi di platform Threads yang dibuka oleh Raymond Chin menarik perhati
 > "Jujur walaupun mengajar AI, terkadang saya 'benci' AI, yakni ketika AI di-misuse untuk memperoleh jawaban soal secara instan. You may outsource your thinking to AI, but you may not outsource your understanding."
 
 <figure>
-  <img src="/assets/images/linkedin-discussion.png" alt="Tangkapan layar diskusi Threads yang dibagikan Fariz Darari di LinkedIn tentang mendelegasikan berpikir vs pemahaman menggunakan AI">
+  <img src="/assets/images/linkedin-discussion.png" width="700" height="500" loading="lazy" decoding="async" alt="Tangkapan layar diskusi Threads yang dibagikan Fariz Darari di LinkedIn tentang mendelegasikan berpikir vs pemahaman menggunakan AI">
   <figcaption>Diskusi Threads mengenai batas penggunaan AI dalam belajar.</figcaption>
 </figure>
 

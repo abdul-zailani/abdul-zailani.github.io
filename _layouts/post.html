@@ -297,10 +297,51 @@ layout: default
         </div>
       </div>
 
-      <!-- Custom Giscus Comment System -->
-      <div class="comments-section" style="margin-top: 50px; border-top: 1px solid #313244; padding-top: 30px;">
-        {% include giscus.html %}
+      <!-- Custom Giscus Comment System with IntersectionObserver -->
+      <div id="comments-container" class="comments-section" style="margin-top: 50px; border-top: 1px solid #313244; padding-top: 30px;">
+        <div id="giscus-target"></div>
       </div>
+      <script>
+        (function() {
+          const target = document.getElementById('comments-container');
+          if (!target) return;
+          
+          function loadGiscus() {
+            if (document.querySelector('script[src*="giscus.app/client.js"]')) return;
+            const script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.setAttribute('data-repo', 'abdul-zailani/abdul-zailani.github.io');
+            script.setAttribute('data-repo-id', 'R_kgDONyW-yA');
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', 'DIC_kwDONyW-yM4CmitW');
+            script.setAttribute('data-mapping', 'pathname');
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'top');
+            script.setAttribute('data-theme', 'noborder_dark');
+            script.setAttribute('data-lang', 'id');
+            script.setAttribute('data-loading', 'lazy');
+            document.getElementById('giscus-target').appendChild(script);
+          }
+
+          if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  loadGiscus();
+                  observer.disconnect();
+                }
+              });
+            }, { rootMargin: '100px' });
+            observer.observe(target);
+          } else {
+            loadGiscus();
+          }
+        })();
+      </script>
 
       <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
     </article>
@@ -324,8 +365,9 @@ layout: default
   document.addEventListener("DOMContentLoaded", function() {
     const tocList = document.getElementById("dynamic-toc");
     const headings = document.querySelectorAll(".post-content h2, .post-content h3");
-    if (headings.length === 0) {
-      document.getElementById("toc-wrapper").style.display = "none";
+    if (!tocList || headings.length === 0) {
+      const tocWrapper = document.getElementById("toc-wrapper");
+      if (tocWrapper) tocWrapper.style.display = "none";
       return;
     }
     headings.forEach((heading, index) => {
@@ -342,8 +384,9 @@ layout: default
   });
 </script>
 
-<!-- Load and initialize Mermaid for diagrams -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+{% if page.mermaid %}
+<!-- Load and initialize Mermaid for diagrams conditionally -->
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const codeBlocks = document.querySelectorAll("pre code.language-mermaid, div.language-mermaid pre");
@@ -359,20 +402,23 @@ layout: default
         container.parentNode.replaceChild(div, container);
       }
     });
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'neutral',
-      themeVariables: {
-        fontFamily: "'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        fontSize: '14px',
-        primaryColor: '#ffffff',
-        primaryTextColor: '#1a1a1a',
-        primaryBorderColor: '#cfc4c5',
-        lineColor: '#5e5e5e',
-        secondaryColor: '#f4f3f2',
-        tertiaryColor: '#ebeae9',
-        edgeLabelBackground: '#ffffff'
-      }
-    });
+    if (window.mermaid) {
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'neutral',
+        themeVariables: {
+          fontFamily: "'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          fontSize: '14px',
+          primaryColor: '#ffffff',
+          primaryTextColor: '#1a1a1a',
+          primaryBorderColor: '#cfc4c5',
+          lineColor: '#5e5e5e',
+          secondaryColor: '#f4f3f2',
+          tertiaryColor: '#ebeae9',
+          edgeLabelBackground: '#ffffff'
+        }
+      });
+    }
   });
 </script>
+{% endif %}

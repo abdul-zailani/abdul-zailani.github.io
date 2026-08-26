@@ -14,7 +14,19 @@ image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format
 Ketika kita mulai mempercayakan penanganan gangguan infrastruktur kepada sistem otonom, kekhawatiran terbesar adalah hilangnya kendali keamanan. Tanpa pembatasan ketat, celah keamanan ini dapat dimanfaatkan secara tidak sengaja oleh model kecerdasan buatan yang mengalami halusinasi. Oleh karena itu, kita memerlukan sistem **guardrails keamanan Agen AI** yang andal saat berjalan di atas lingkungan sensitif seperti Kubernetes.
 
 <figure>
-  <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1200&q=80" alt="Visualisasi Keamanan Siber">
+  <img 
+    src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1200&q=80" 
+    srcset="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=480&q=80 480w,
+            https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=800&q=80 800w,
+            https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1200&q=80 1200w"
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
+    width="1200"
+    height="675"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    alt="Visualisasi Keamanan Siber"
+  >
   <figcaption>Pemberian akses otonom pada infrastruktur wajib dilengkapi dengan validasi lapis kedua di sisi platform.</figcaption>
 </figure>
 
