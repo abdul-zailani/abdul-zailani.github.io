@@ -1,43 +1,42 @@
 ---
 layout: default
 ---
-<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-6">
-  <div class="chirpy-layout-container">
+<main class="flex-1 w-full max-w-[1280px] mx-auto px-4 md:px-8 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-[220px_1fr] lg:grid-cols-[240px_1fr_240px] gap-8 items-start">
     <!-- Left Sidebar (id="sidebar") -->
-    <aside id="sidebar" class="chirpy-sidebar">
-      <div class="sidebar-brand">
-        <span class="brand-title">Abdul Aziz</span>
-        <span class="brand-subtitle">Zailani</span>
-      </div>
-      
+    <aside id="sidebar" class="hidden md:flex flex-col justify-between sticky top-24 h-[calc(100vh-120px)] py-4 border-r border-[#E2E8F0] pr-6 bg-transparent">
       <nav class="sidebar-nav">
-        <ul>
-          <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
-          <li><a href="{{ '/projects/' | relative_url }}">🚀 Proyek & Showcase</a></li>
-          <li><a href="{{ '/blog/' | relative_url }}" class="active">✍️ Blog & Catatan</a></li>
-          <li><a href="{{ '/terminal/' | relative_url }}">💻 Terminal CV</a></li>
+        <span class="text-xs font-bold text-[#64748B] uppercase tracking-wider block mb-4">Navigasi</span>
+        <ul class="space-y-2">
+          <li><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-[#334155] hover:text-[#2563EB] hover:bg-[#F1F5F9] transition-all" href="{{ '/' | relative_url }}">🏠 Home</a></li>
+          <li><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-[#334155] hover:text-[#2563EB] hover:bg-[#F1F5F9] transition-all" href="{{ '/projects/' | relative_url }}">🚀 Proyek & Showcase</a></li>
+          <li><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-[#2563EB] bg-[#EFF6FF] font-semibold transition-all" href="{{ '/blog/' | relative_url }}">✍️ Blog & Catatan</a></li>
+          <li><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-[#334155] hover:text-[#2563EB] hover:bg-[#F1F5F9] transition-all" href="{{ '/terminal/' | relative_url }}">💻 Terminal CV</a></li>
         </ul>
       </nav>
       
-      <div class="sidebar-profile-mini">
-        <div class="mini-avatar"></div>
-        <span class="mini-name">SRE / DevOps</span>
+      <div class="sidebar-profile-mini flex items-center gap-3 pt-4 border-t border-[#E2E8F0] mt-auto">
+        <div class="w-9 h-9 rounded-full bg-cover border border-[#CBD5E1]" style="background-image: url('https://avatars.githubusercontent.com/u/15291772?v=4');"></div>
+        <div>
+          <span class="text-xs font-semibold text-[#1E293B] block">Abdul Aziz</span>
+          <span class="text-[11px] text-[#64748B] block">SRE / DevOps</span>
+        </div>
       </div>
     </aside>
 
     <!-- Main Content Wrapper (id="main-wrapper") -->
-    <div id="main-wrapper" class="chirpy-main">
+    <div id="main-wrapper" class="min-w-0 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0] p-6 md:p-10 shadow-sm">
     <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-      <header class="post-header">
-        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-        <div class="post-meta">
+      <header class="post-header mb-8 pb-6 border-b border-[#E2E8F0]">
+        <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-[#0F172A] mb-4 leading-tight" itemprop="name headline">{{ page.title | escape }}</h1>
+        <div class="post-meta flex flex-wrap items-center gap-3 text-sm text-[#64748B]">
           {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
           {%- assign pdate = page.date | date_to_xmlschema -%}
           <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
             📅 {{ pdate | date: date_format }}
           </time>
           {%- if page.reading_time -%}
-            <span class="bullet-divider">•</span>
+            <span class="bullet-divider text-[#CBD5E1]">•</span>
             <span class="reading-time">{{ page.reading_time }}</span>
           {%- endif -%}
         </div>
@@ -348,19 +347,18 @@ layout: default
     </div>
 
     <!-- Right Sidebar (TOC Wrapper) -->
-    <aside id="toc-wrapper" class="chirpy-toc-sidebar">
+    <aside id="toc-wrapper" class="hidden lg:block sticky top-24 h-[calc(100vh-120px)] overflow-y-auto py-4 pl-6 border-l border-[#E2E8F0] bg-transparent">
       <div class="toc-container">
-        <h3 class="toc-title">Daftar Isi</h3>
-        <!-- We can render a neat list of anchors representing H2s in the post dynamically via JS or HTML parser -->
-        <ul class="toc-list" id="dynamic-toc">
-          <!-- populated dynamically via JS for lightweight layout -->
+        <h3 class="text-xs font-bold text-[#475569] uppercase tracking-wider mb-4">Daftar Isi</h3>
+        <ul class="space-y-2 text-sm" id="dynamic-toc">
+          <!-- populated dynamically via JS -->
         </ul>
       </div>
     </aside>
   </div>
 </main>
 
-<!-- Simple inline JS script to dynamically generate TOC list like Chirpy -->
+<!-- Dynamic TOC Generation & Scroll Spy -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const tocList = document.getElementById("dynamic-toc");
@@ -370,6 +368,7 @@ layout: default
       if (tocWrapper) tocWrapper.style.display = "none";
       return;
     }
+    
     headings.forEach((heading, index) => {
       const id = heading.id || "heading-" + index;
       heading.id = id;
@@ -377,10 +376,34 @@ layout: default
       li.className = "toc-item toc-" + heading.tagName.toLowerCase();
       const a = document.createElement("a");
       a.href = "#" + id;
+      a.className = "text-[#64748B] hover:text-[#2563EB] block py-1 transition-colors duration-150 " + (heading.tagName.toLowerCase() === 'h3' ? 'pl-4 text-xs' : 'text-sm font-medium');
       a.textContent = heading.textContent.replace(/^[#\s]+/, '');
       li.appendChild(a);
       tocList.appendChild(li);
     });
+
+    // Scroll Spy for TOC Active State
+    const tocLinks = document.querySelectorAll("#dynamic-toc a");
+    function updateTocActive() {
+      let current = "";
+      headings.forEach((heading) => {
+        const top = heading.getBoundingClientRect().top;
+        if (top <= 120) {
+          current = heading.id;
+        }
+      });
+      tocLinks.forEach((link) => {
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("text-[#2563EB]", "font-semibold");
+          link.classList.remove("text-[#64748B]");
+        } else {
+          link.classList.remove("text-[#2563EB]", "font-semibold");
+          link.classList.add("text-[#64748B]");
+        }
+      });
+    }
+    window.addEventListener("scroll", updateTocActive, { passive: true });
+    updateTocActive();
   });
 </script>
 

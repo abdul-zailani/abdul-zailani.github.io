@@ -1,17 +1,17 @@
-<header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-border-subtle">
-  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-16 flex items-center justify-between">
-    <div class="flex items-center gap-gutter">
-      <a class="font-h3 text-h3 font-bold text-primary" href="/">Abdul Aziz Zailani</a>
+<header class="sticky top-0 left-0 w-full z-50 bg-[#ffffff]/90 backdrop-blur-md border-b border-[#E2E8F0] shadow-sm transition-all duration-200">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+    <div class="flex items-center">
+      <a class="text-xl md:text-2xl font-bold tracking-tight text-[#0F172A] hover:text-[#2563EB] transition-colors duration-200" href="/">Abdul Aziz Zailani</a>
     </div>
-    <nav class="hidden md:flex items-center gap-gutter">
-      <a class="font-body-md text-body-md {% if page.url == '/' or page.url == '/index.html' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/">About</a>
-      <a class="font-body-md text-body-md {% if page.url contains '/projects/' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/projects/">Projects</a>
-      <a class="font-body-md text-body-md {% if page.url contains '/blog/' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/blog/">Blog</a>
-      <a class="font-body-md text-body-md {% if page.url contains '/terminal/' %}text-primary font-semibold border-b-2 border-primary{% else %}text-text-muted hover:text-primary{% endif %} pb-1 transition-colors duration-200" href="/terminal/">Terminal CV</a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="text-[15px] font-medium {% if page.url == '/' or page.url == '/index.html' %}text-[#2563EB] font-semibold border-b-2 border-[#2563EB]{% else %}text-[#334155] hover:text-[#2563EB]{% endif %} pb-1 transition-colors duration-200" href="/">About</a>
+      <a class="text-[15px] font-medium {% if page.url contains '/projects/' %}text-[#2563EB] font-semibold border-b-2 border-[#2563EB]{% else %}text-[#334155] hover:text-[#2563EB]{% endif %} pb-1 transition-colors duration-200" href="/projects/">Projects</a>
+      <a class="text-[15px] font-medium {% if page.url contains '/blog/' %}text-[#2563EB] font-semibold border-b-2 border-[#2563EB]{% else %}text-[#334155] hover:text-[#2563EB]{% endif %} pb-1 transition-colors duration-200" href="/blog/">Blog</a>
+      <a class="text-[15px] font-medium {% if page.url contains '/terminal/' %}text-[#2563EB] font-semibold border-b-2 border-[#2563EB]{% else %}text-[#334155] hover:text-[#2563EB]{% endif %} pb-1 transition-colors duration-200" href="/terminal/">Terminal CV</a>
     </nav>
-    <div class="flex items-center gap-gutter">
-      <button id="mobile-menu-button" class="md:hidden text-primary focus:outline-none" aria-label="Toggle Menu">
-        <span class="material-symbols-outlined" style="font-size: 24px;">menu</span>
+    <div class="flex items-center">
+      <button id="mobile-menu-button" class="md:hidden text-[#0F172A] hover:text-[#2563EB] p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]" aria-label="Toggle Menu">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
       </button>
     </div>
   </div>
