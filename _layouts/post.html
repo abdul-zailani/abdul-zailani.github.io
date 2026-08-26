@@ -358,52 +358,71 @@ layout: default
   </div>
 </main>
 
-<!-- Dynamic TOC Generation & Scroll Spy -->
+<!-- Dynamic TOC Generation & Throttled Scroll Spy -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    const tocWrapper = document.getElementById("toc-wrapper");
     const tocList = document.getElementById("dynamic-toc");
     const headings = document.querySelectorAll(".post-content h2, .post-content h3");
-    if (!tocList || headings.length === 0) {
-      const tocWrapper = document.getElementById("toc-wrapper");
+    
+    if (!tocList || !tocWrapper || headings.length === 0) {
       if (tocWrapper) tocWrapper.style.display = "none";
       return;
     }
     
+    // Generate TOC Items with clean IDs
     headings.forEach((heading, index) => {
-      const id = heading.id || "heading-" + index;
-      heading.id = id;
+      const generatedId = heading.id || "heading-" + index;
+      heading.id = generatedId;
       const li = document.createElement("li");
       li.className = "toc-item toc-" + heading.tagName.toLowerCase();
       const a = document.createElement("a");
-      a.href = "#" + id;
-      a.className = "text-[#64748B] hover:text-[#2563EB] block py-1 transition-colors duration-150 " + (heading.tagName.toLowerCase() === 'h3' ? 'pl-4 text-xs' : 'text-sm font-medium');
-      a.textContent = heading.textContent.replace(/^[#\s]+/, '');
+      a.href = "#" + generatedId;
+      if (heading.tagName.toLowerCase() === "h3") {
+        a.classList.add("toc-h3");
+      }
+      a.textContent = (heading.innerText || heading.textContent).replace(/^[#\s]+/, '');
       li.appendChild(a);
       tocList.appendChild(li);
     });
 
-    // Scroll Spy for TOC Active State
-    const tocLinks = document.querySelectorAll("#dynamic-toc a");
-    function updateTocActive() {
+    // Throttled Scroll Spy using requestAnimationFrame
+    const tocLinks = document.querySelectorAll("#toc-wrapper .toc-item a");
+    if (tocLinks.length === 0) return;
+
+    function updateActiveToc() {
+      const headerHeight = document.querySelector('header')?.offsetHeight || 64;
+      const threshold = headerHeight + 30;
       let current = "";
+
       headings.forEach((heading) => {
         const top = heading.getBoundingClientRect().top;
-        if (top <= 120) {
+        if (top <= threshold) {
           current = heading.id;
         }
       });
+
       tocLinks.forEach((link) => {
         if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("text-[#2563EB]", "font-semibold");
-          link.classList.remove("text-[#64748B]");
+          link.classList.add("active");
         } else {
-          link.classList.remove("text-[#2563EB]", "font-semibold");
-          link.classList.add("text-[#64748B]");
+          link.classList.remove("active");
         }
       });
     }
-    window.addEventListener("scroll", updateTocActive, { passive: true });
-    updateTocActive();
+
+    let ticking = false;
+    window.addEventListener("scroll", function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateActiveToc();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateActiveToc();
   });
 </script>
 
