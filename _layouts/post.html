@@ -36,7 +36,7 @@ layout: default
             📅 {{ pdate | date: date_format }}
           </time>
           {%- if page.reading_time -%}
-            <span class="bullet-divider text-[#CBD5E1]">•</span>
+            <span class="bullet-divider text-text-muted" aria-hidden="true" role="presentation">•</span>
             <span class="reading-time">{{ page.reading_time }}</span>
           {%- endif -%}
         </div>
