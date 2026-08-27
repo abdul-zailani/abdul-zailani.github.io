@@ -66,7 +66,7 @@ layout: default
             <a href="https://api.whatsapp.com/send?text={{ page.title | url_encode }}%20{{ page.url | absolute_url }}" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="w-8 h-8 flex items-center justify-center rounded bg-surface-secondary hover:bg-secondary hover:text-on-secondary text-primary transition-colors focus-visible:ring-2 focus-visible:ring-secondary">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
             </a>
-            <button id="download-card-btn" title="Unduh Gambar (Insta Story)" class="w-8 h-8 flex items-center justify-center rounded bg-surface-secondary hover:bg-secondary hover:text-on-secondary text-primary transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-secondary border-none">
+            <button id="download-card-btn" title="Unduh Gambar (Insta Story)" aria-label="Unduh gambar Insta Story untuk artikel ini" class="w-8 h-8 flex items-center justify-center rounded bg-surface-secondary hover:bg-secondary hover:text-on-secondary text-primary transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-secondary border-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
             </button>
             <button id="copy-link-btn" title="Salin Link" class="w-8 h-8 flex items-center justify-center rounded bg-surface-secondary hover:bg-secondary hover:text-on-secondary text-primary transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-secondary border-none">
@@ -79,7 +79,20 @@ layout: default
       <!-- Script for Sharing Functionality -->
       <script>
         document.addEventListener("DOMContentLoaded", function() {
-          const shareTitle = "{{ page.title | escape }}";
+          const postData = {
+            title: {{ page.title | jsonify }},
+            desc: {{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 180 | jsonify }},
+            date: {{ page.date | date: "%d %b %Y" | jsonify }},
+            readingTime: {{ page.reading_time | default: "" | jsonify }},
+            categories: {{ page.categories | jsonify }},
+            tags: {{ page.tags | jsonify }},
+            url: window.location.href,
+            slug: {{ page.slug | default: "post" | jsonify }},
+            authorName: "Abdul Aziz Zailani",
+            authorRole: "Site Reliability Engineer / DevOps",
+            avatarUrl: "https://avatars.githubusercontent.com/u/15291772?v=4"
+          };
+          const shareTitle = postData.title;
           const shareUrl = window.location.href;
           const shareTriggerBtn = document.getElementById("share-trigger-btn");
           const sharePopover = document.getElementById("share-popover");
@@ -110,7 +123,7 @@ layout: default
                 }
               } catch (err) {
                 if (err.name !== "AbortError") {
-                  console.log("Error sharing:", err);
+                  console.warn("⚠️ Web Share error:", err);
                   togglePopover();
                 }
               } finally {
@@ -182,107 +195,314 @@ layout: default
             }
           });
 
-          // Draw custom share card on canvas for Insta Stories / Socials
+          // Draw custom share card on canvas for Insta Stories / Socials (1080x1920)
           function generateShareCard() {
-            return new Promise((resolve) => {
+            return new Promise(async (resolve) => {
+              console.log("🖼️ Generating share card for:", postData.title);
               const canvas = document.createElement("canvas");
-              canvas.width = 1080;
-              canvas.height = 1920;
+              const W = 1080;
+              const H = 1920;
+              canvas.width = W;
+              canvas.height = H;
               const ctx = canvas.getContext("2d");
-              
-              // 1. Background
-              ctx.fillStyle = "#1e1e2e";
-              ctx.fillRect(0, 0, 1080, 1920);
-              
-              // 2. Terminal Card Container
-              ctx.fillStyle = "#181825";
-              ctx.beginPath();
-              // Standard roundRect implementation
-              if (ctx.roundRect) {
-                ctx.roundRect(100, 320, 880, 1200, 24);
-              } else {
-                ctx.rect(100, 320, 880, 1200);
+
+              // Helper: Rounded Rectangle
+              function drawRoundRect(x, y, w, h, r, fill, stroke, strokeColor, strokeWidth = 1) {
+                ctx.beginPath();
+                if (ctx.roundRect) {
+                  ctx.roundRect(x, y, w, h, r);
+                } else {
+                  ctx.rect(x, y, w, h);
+                }
+                if (fill) {
+                  ctx.fillStyle = fill;
+                  ctx.fill();
+                }
+                if (stroke) {
+                  ctx.strokeStyle = strokeColor || "#334155";
+                  ctx.lineWidth = strokeWidth;
+                  ctx.stroke();
+                }
               }
+
+              // 1. Deep Rich Slate Background & Ambient Glow
+              ctx.fillStyle = "#0B0F19";
+              ctx.fillRect(0, 0, W, H);
+
+              const gradTop = ctx.createRadialGradient(880, 260, 50, 880, 260, 550);
+              gradTop.addColorStop(0, "rgba(56, 189, 248, 0.18)");
+              gradTop.addColorStop(1, "rgba(11, 15, 25, 0)");
+              ctx.fillStyle = gradTop;
+              ctx.fillRect(0, 0, W, H);
+
+              const gradBottom = ctx.createRadialGradient(200, 1450, 50, 200, 1450, 600);
+              gradBottom.addColorStop(0, "rgba(129, 140, 248, 0.14)");
+              gradBottom.addColorStop(1, "rgba(11, 15, 25, 0)");
+              ctx.fillStyle = gradBottom;
+              ctx.fillRect(0, 0, W, H);
+
+              // Technical Dot Grid
+              ctx.fillStyle = "rgba(255, 255, 255, 0.035)";
+              for (let gx = 60; gx < W - 60; gx += 48) {
+                for (let gy = 80; gy < H - 80; gy += 48) {
+                  ctx.beginPath();
+                  ctx.arc(gx, gy, 1.5, 0, Math.PI * 2);
+                  ctx.fill();
+                }
+              }
+
+              // 2. Author Header (Top Safe Zone)
+              const headerY = 175;
+              const avatarX = 85;
+              const avatarRadius = 42;
+
+              async function loadAvatar(url) {
+                return new Promise((res) => {
+                  const img = new Image();
+                  img.crossOrigin = "anonymous";
+                  const timer = setTimeout(() => {
+                    console.warn("⏱️ Avatar loading timed out (2s), fallback to monogram");
+                    res(null);
+                  }, 2000);
+                  img.onload = () => {
+                    clearTimeout(timer);
+                    res(img);
+                  };
+                  img.onerror = () => {
+                    clearTimeout(timer);
+                    console.warn("⚠️ Avatar failed to load, fallback to monogram");
+                    res(null);
+                  };
+                  img.src = url;
+                });
+              }
+
+              const avatarImg = await loadAvatar(postData.avatarUrl);
+
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(avatarX + avatarRadius, headerY + avatarRadius, avatarRadius, 0, Math.PI * 2);
+              ctx.closePath();
+              ctx.clip();
+
+              if (avatarImg) {
+                ctx.drawImage(avatarImg, avatarX, headerY, avatarRadius * 2, avatarRadius * 2);
+              } else {
+                const gradAvatar = ctx.createLinearGradient(avatarX, headerY, avatarX + 84, headerY + 84);
+                gradAvatar.addColorStop(0, "#2563EB");
+                gradAvatar.addColorStop(1, "#7C3AED");
+                ctx.fillStyle = gradAvatar;
+                ctx.fillRect(avatarX, headerY, avatarRadius * 2, avatarRadius * 2);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = "bold 34px -apple-system, BlinkMacSystemFont, sans-serif";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("AZ", avatarX + avatarRadius, headerY + avatarRadius);
+              }
+              ctx.restore();
+
+              // Avatar ring
+              ctx.beginPath();
+              ctx.arc(avatarX + avatarRadius, headerY + avatarRadius, avatarRadius + 2, 0, Math.PI * 2);
+              ctx.strokeStyle = "rgba(56, 189, 248, 0.6)";
+              ctx.lineWidth = 3;
+              ctx.stroke();
+
+              // Author Name & Role
+              ctx.textAlign = "left";
+              ctx.textBaseline = "alphabetic";
+              ctx.fillStyle = "#F8FAFC";
+              ctx.font = "bold 38px 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+              ctx.fillText(postData.authorName, 195, headerY + 40);
+
+              // Role with Green Status Dot
+              ctx.fillStyle = "#22C55E";
+              ctx.beginPath();
+              ctx.arc(200, headerY + 70, 5, 0, Math.PI * 2);
               ctx.fill();
-              
-              // 3. Terminal Header/Titlebar
-              ctx.fillStyle = "#313244";
+
+              ctx.fillStyle = "#94A3B8";
+              ctx.font = "500 24px 'Geist Mono', monospace, sans-serif";
+              ctx.fillText(postData.authorRole, 218, headerY + 78);
+
+              // 3. Main Terminal Card Window
+              const cardX = 80;
+              const cardY = 295;
+              const cardW = 920;
+              const cardH = 1240;
+              const cardR = 24;
+
+              // Card background & border
+              drawRoundRect(cardX, cardY + 6, cardW, cardH, cardR, "rgba(0, 0, 0, 0.4)", false);
+              drawRoundRect(cardX, cardY, cardW, cardH, cardR, "#0F172A", true, "rgba(51, 65, 85, 0.8)", 2);
+
+              // Titlebar
+              const tbH = 76;
+              ctx.save();
               ctx.beginPath();
               if (ctx.roundRect) {
-                ctx.roundRect(100, 320, 880, 100, [24, 24, 0, 0]);
+                ctx.roundRect(cardX, cardY, cardW, tbH, [cardR, cardR, 0, 0]);
               } else {
-                ctx.rect(100, 320, 880, 100);
+                ctx.rect(cardX, cardY, cardW, tbH);
               }
+              ctx.fillStyle = "#1E293B";
               ctx.fill();
-              
-              // Terminal Window buttons
-              ctx.fillStyle = "#f38ba8";
-              ctx.beginPath(); ctx.arc(150, 370, 15, 0, Math.PI * 2); ctx.fill();
-              ctx.fillStyle = "#f9e2af";
-              ctx.beginPath(); ctx.arc(200, 370, 15, 0, Math.PI * 2); ctx.fill();
-              ctx.fillStyle = "#a6e3a1";
-              ctx.beginPath(); ctx.arc(250, 370, 15, 0, Math.PI * 2); ctx.fill();
-              
-              // Titlebar Text
-              ctx.fillStyle = "#6c7086";
-              ctx.font = "bold 32px monospace";
-              ctx.fillText("aziz@sre:~/blog", 320, 380);
-              
-              // 4. Content - Title
-              ctx.fillStyle = "#f38ba8";
-              ctx.font = "bold 52px sans-serif";
-              wrapText(ctx, "{{ page.title | escape }}", 160, 520, 760, 70);
-              
-              // 5. Content - Meta (Date / Read time)
-              ctx.fillStyle = "#a6e3a1";
-              ctx.font = "italic 32px monospace";
-              ctx.fillText("📅 Aug 14, 2026  •  " + "{{ page.reading_time }}", 160, 720);
-              
-              // 6. Content - Description
-              ctx.fillStyle = "#cdd6f4";
-              ctx.font = "38px sans-serif";
-              const rawDesc = "{{ page.description | escape }}";
-              wrapText(ctx, rawDesc, 160, 820, 760, 56);
-              
-              // 7. Brand/Author Header at top
-              ctx.fillStyle = "#89b4fa";
-              ctx.font = "bold 60px monospace";
-              ctx.fillText("Abdul Aziz Zailani", 100, 180);
-              ctx.fillStyle = "#a6e3a1";
-              ctx.font = "36px monospace";
-              ctx.fillText("Site Reliability Engineer / DevOps", 100, 240);
-              
-              // 8. Footer Info
-              ctx.fillStyle = "#cba6f7";
-              ctx.font = "bold 42px monospace";
-              ctx.fillText("abdul-zailani.github.io", 160, 1420);
-              
-              ctx.fillStyle = "#a6adc8";
-              ctx.font = "32px sans-serif";
-              ctx.fillText("Klik link di bio atau kunjungi situs untuk membaca.", 100, 1720);
-              
-              canvas.toBlob((blob) => {
-                resolve(blob);
-              }, "image/png");
+              ctx.strokeStyle = "rgba(51, 65, 85, 0.8)";
+              ctx.lineWidth = 2;
+              ctx.stroke();
+              ctx.restore();
+
+              // Terminal Traffic Lights
+              const btnY = cardY + 38;
+              const btnRadius = 10;
+              ctx.fillStyle = "#EF4444";
+              ctx.beginPath(); ctx.arc(cardX + 45, btnY, btnRadius, 0, Math.PI * 2); ctx.fill();
+              ctx.fillStyle = "#F59E0B";
+              ctx.beginPath(); ctx.arc(cardX + 75, btnY, btnRadius, 0, Math.PI * 2); ctx.fill();
+              ctx.fillStyle = "#10B981";
+              ctx.beginPath(); ctx.arc(cardX + 105, btnY, btnRadius, 0, Math.PI * 2); ctx.fill();
+
+              // Terminal Titlebar Text
+              ctx.fillStyle = "#64748B";
+              ctx.font = "600 22px 'Geist Mono', monospace, sans-serif";
+              const termPath = "aziz@sre:~/blog/" + (postData.slug ? postData.slug.substring(0, 24) : "post") + ".md";
+              ctx.fillText(termPath, cardX + 140, btnY + 7);
+
+              // 4. Dynamic Content Flow Layout Engine
+              let contentX = cardX + 50;
+              let maxContentW = cardW - 100; // 820px
+              let currentY = cardY + tbH + 55;
+
+              // A. Category / Tag Badges
+              const allBadges = [...(postData.categories || []), ...(postData.tags || [])].slice(0, 3);
+              if (allBadges.length > 0) {
+                let badgeX = contentX;
+                allBadges.forEach((badge) => {
+                  ctx.font = "bold 20px 'Geist Mono', monospace, sans-serif";
+                  const textMetrics = ctx.measureText(badge.toUpperCase());
+                  const bW = textMetrics.width + 28;
+                  const bH = 36;
+                  drawRoundRect(badgeX, currentY - 26, bW, bH, 8, "rgba(30, 41, 59, 0.9)", true, "rgba(56, 189, 248, 0.5)", 1.5);
+                  ctx.fillStyle = "#38BDF8";
+                  ctx.fillText(badge.toUpperCase(), badgeX + 14, currentY - 2);
+                  badgeX += bW + 14;
+                });
+                currentY += 45;
+              }
+
+              // Word Wrap Text Renderer with Hyphenation & Truncation
+              function renderWrappedText(text, x, y, maxWidth, lineHeight, maxLines, font, color) {
+                ctx.font = font;
+                ctx.fillStyle = color;
+                const rawWords = (text || "").split(" ");
+                let words = [];
+
+                // Hyphenation / chunk breaking for words wider than maxWidth
+                for (let w of rawWords) {
+                  if (ctx.measureText(w).width > maxWidth) {
+                    let chunk = "";
+                    for (let char of w) {
+                      if (ctx.measureText(chunk + char + "-").width > maxWidth) {
+                        words.push(chunk + "-");
+                        chunk = char;
+                      } else {
+                        chunk += char;
+                      }
+                    }
+                    if (chunk) words.push(chunk);
+                  } else {
+                    words.push(w);
+                  }
+                }
+
+                let lines = [];
+                let currentLine = "";
+
+                for (let word of words) {
+                  const testLine = currentLine ? currentLine + " " + word : word;
+                  if (ctx.measureText(testLine).width > maxWidth && currentLine) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                  } else {
+                    currentLine = testLine;
+                  }
+                }
+                if (currentLine) lines.push(currentLine);
+
+                // Truncation jika melebihi maxLines
+                if (lines.length > maxLines) {
+                  lines = lines.slice(0, maxLines);
+                  let lastLine = lines[lines.length - 1];
+                  while (ctx.measureText(lastLine + "...").width > maxWidth && lastLine.length > 0) {
+                    lastLine = lastLine.slice(0, -1);
+                  }
+                  lines[lines.length - 1] = lastLine + "...";
+                }
+
+                // Render lines
+                lines.forEach((line, i) => {
+                  ctx.fillText(line, x, y + (i * lineHeight));
+                });
+
+                return y + (lines.length * lineHeight);
+              }
+
+              // B. Post Title
+              currentY += 15;
+              const titleFont = "bold 48px 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+              currentY = renderWrappedText(postData.title, contentX, currentY, maxContentW, 64, 4, titleFont, "#FFFFFF");
+
+              // C. Meta Information (Dynamic Date & Reading Time)
+              currentY += 20;
+              ctx.fillStyle = "#38BDF8";
+              ctx.font = "600 24px 'Geist Mono', monospace, sans-serif";
+              const metaStr = "📅 " + postData.date + (postData.readingTime ? "   •   " + postData.readingTime : "");
+              ctx.fillText(metaStr, contentX, currentY);
+              currentY += 28;
+
+              // D. Decorative Separator
+              currentY += 15;
+              ctx.save();
+              ctx.setLineDash([8, 6]);
+              ctx.strokeStyle = "rgba(51, 65, 85, 0.8)";
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(contentX, currentY);
+              ctx.lineTo(contentX + maxContentW, currentY);
+              ctx.stroke();
+              ctx.restore();
+              currentY += 40;
+
+              // E. Description / Excerpt
+              if (postData.desc) {
+                const descFont = "400 32px 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+                currentY = renderWrappedText(postData.desc, contentX, currentY, maxContentW, 48, 5, descFont, "#CBD5E1");
+              }
+
+              // F. Terminal Prompt Box (Bottom of Card)
+              const promptBoxY = cardY + cardH - 120;
+              drawRoundRect(contentX, promptBoxY, maxContentW, 72, 12, "#0B0F19", true, "rgba(51, 65, 85, 0.7)", 1.5);
+              ctx.fillStyle = "#10B981";
+              ctx.font = "bold 24px 'Geist Mono', monospace, sans-serif";
+              ctx.fillText("$", contentX + 24, promptBoxY + 44);
+              ctx.fillStyle = "#E2E8F0";
+              ctx.font = "500 22px 'Geist Mono', monospace, sans-serif";
+              ctx.fillText("curl -sSL https://abdul-zailani.github.io", contentX + 54, promptBoxY + 44);
+
+              // 5. Footer Outside Card (Call to Action Safe Zone)
+              const footerY = 1605;
+              ctx.textAlign = "center";
+              ctx.fillStyle = "#818CF8";
+              ctx.font = "bold 34px 'Geist Mono', monospace, sans-serif";
+              ctx.fillText("🔗 abdul-zailani.github.io", W / 2, footerY);
+
+              ctx.fillStyle = "#94A3B8";
+              ctx.font = "500 26px 'Geist', -apple-system, BlinkMacSystemFont, sans-serif";
+              ctx.fillText("Ketuk link di bio atau kunjungi situs untuk membaca lengkap", W / 2, footerY + 44);
+
+              console.log("✅ Card generated successfully at", new Date().toISOString());
+              canvas.toBlob((blob) => resolve(blob), "image/png");
             });
-          }
-          
-          function wrapText(context, text, x, y, maxWidth, lineHeight) {
-            const words = text.split(" ");
-            let line = "";
-            for (let n = 0; n < words.length; n++) {
-              let testLine = line + words[n] + " ";
-              let metrics = context.measureText(testLine);
-              let testWidth = metrics.width;
-              if (testWidth > maxWidth && n > 0) {
-                context.fillText(line, x, y);
-                line = words[n] + " ";
-                y += lineHeight;
-              } else {
-                line = testLine;
-              }
-            }
-            context.fillText(line, x, y);
           }
         });
       </script>
