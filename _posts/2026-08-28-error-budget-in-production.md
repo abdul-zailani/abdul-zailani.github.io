@@ -191,19 +191,4 @@ Dengan aturan tertulis ini, perdebatan antara tim pengembang yang ingin merilis 
 * [Prometheus Documentation: Implementing SLOs](https://prometheus.io/docs/practices/slo/)
 * [Sloth: Easy Prometheus SLO generator](https://sloth.dev/)
 
----
-
-### 💡 Pojok Bahasa Inggris
-
-| Istilah Teknis | Pelafalan & Arti Fungsional |
-| :--- | :--- |
-| **Error Budget** | Kuota batas toleransi kegagalan sistem yang diizinkan dalam periode waktu tertentu sebelum kepuasan pengguna terganggu. |
-| **Burn Rate** | Laju kecepatan konsumsi kuota kegagalan sistem relatif terhadap batas target keandalan yang ditetapkan. |
-| **Rolling Window** | Jendela rentang waktu dinamis yang bergeser mengikuti waktu terkini (misalnya 30 hari ke belakang) tanpa terikat bulan kalender. |
-| **Recording Rule** | Aturan di Prometheus untuk menghitung metrik kompleks terlebih dahulu dan menyimpannya sebagai *time series* baru agar kueri dasbor lebih cepat. |
-| **Alert Fatigue** | Kondisi kelelahan mental pada tim teknik akibat terlalu sering menerima notifikasi alarm palsu atau tidak dapat ditindaklanjuti. |
-| **Consequence Engine** | Kebijakan tata kelola otomatis yang mengatur hak rilis produk berdasarkan sisa kuota keandalan sistem. |
-
----
-
 [← Kembali ke Daftar Artikel]({{ '/blog/' | relative_url }})
