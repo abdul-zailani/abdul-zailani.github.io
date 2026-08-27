@@ -7,6 +7,7 @@ tags: [SRE, Error Budget, SLO, Prometheus, Alertmanager, Grafana, Observability]
 description: "Panduan praktis implementasi error budget dengan SLO 99.5%, multi-window alerting, dan consequence engine berbasis Prometheus & Alertmanager."
 excerpt: "Error budget adalah kuota kegagalan yang dapat diterima. Pelajari cara menghitung, memonitor, dan menegakkannya di produksi dengan SLO 99.5%."
 reading_time: "⏱️ 8 min read"
+mermaid: true
 image: "/assets/images/error-budget-in-production.png"
 ---
 
@@ -44,13 +45,15 @@ Mengejar tingkat ketersediaan layanan (*uptime*) sebesar 100% adalah target yang
 
 Dasar perhitungan *error budget* bertumpu pada rumus sederhana:
 
-$$\text{Error Budget} = \text{Total Waktu} \times (1 - \text{SLO})$$
+```
+Error Budget = Total Waktu × (1 - SLO)
+```
 
 Jika layanan menetapkan target SLO ketersediaan sebesar **99.5%** dalam kurun waktu 30 hari:
 
-* Total waktu per bulan: $30 \times 24\text{ jam} = 720\text{ jam}$ ($43.200\text{ menit}$).
-* Jatah toleransi kegagalan (*allowed downtime*): $720 \times (1 - 0.995) = 3.6\text{ jam}$ atau setara dengan **3 jam 39 menit**.
-* Rata-rata per hari: toleransi eror sekitar 7.2 menit per hari.
+* **Total waktu per bulan**: 30 hari × 24 jam = 720 jam (43.200 menit).
+* **Jatah toleransi kegagalan (*allowed downtime*)**: 720 jam × (1 - 0.995) = 3.6 jam atau setara dengan **3 jam 39 menit**.
+* **Rata-rata toleransi harian**: toleransi eror sekitar **7.2 menit per hari**.
 
 | Target SLO | Toleransi Downtime per Bulan (30 Hari) | Toleransi Downtime per Hari | Kompleksitas Arsitektur |
 | :--- | :--- | :--- | :--- |
@@ -190,5 +193,7 @@ Dengan aturan tertulis ini, perdebatan antara tim pengembang yang ingin merilis 
 * [Google SRE Workbook: Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
 * [Prometheus Documentation: Implementing SLOs](https://prometheus.io/docs/practices/slo/)
 * [Sloth: Easy Prometheus SLO generator](https://sloth.dev/)
+
+---
 
 [← Kembali ke Daftar Artikel]({{ '/blog/' | relative_url }})
