@@ -4,9 +4,9 @@ title: Projects
 permalink: /projects/
 ---
 <!-- Main Canvas -->
-<main class="flex-grow pt-24 pb-16 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+<main class="flex-grow py-16 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
 <!-- Header Section -->
-<section class="mb-16">
+<section class="mb-12">
 <h1 class="font-h1-mobile md:font-h1 text-h1-mobile md:text-h1 text-primary mb-4">Projects &amp; Engineering Showcase</h1>
 <p class="font-body-lg text-body-lg text-text-muted max-w-2xl">A collection of production-grade infrastructure tools and software engineering projects.</p>
 </section>
@@ -14,41 +14,41 @@ permalink: /projects/
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <!-- Project Card 1: Plafon -->
 <article class="bg-surface-primary border border-border-subtle rounded-lg overflow-hidden flex flex-col hover:border-outline-variant transition-colors group">
-<div class="w-full aspect-[1.79] overflow-hidden bg-surface-container-low border-b border-border-subtle p-4 border">
-<img alt="Plafon Dashboard Screenshot" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFaqOSyPUzYi4tH5l0EXeDulET6VJilRaO2aU8OE2DzCiMG2KilIMmTLNvaaldH264z-Prc6O_n4YfMRAc0ad3Hn7yl3RK3mLcvbjhjzJhXB5d_qKG-MFPAJc6yAfRm1jhZR7nXgFbRV_WK8tTyT4EIQ1I8rNUTdKVxwYyLQ3p2VOrXVKtu2WT4jiUIQcWH-bpGAcI9PjBxv0BJFv6mjKM24px68eSzJyKCHj2DsPqutVlXyOdPHbQxZcc9wm_5-kh4DN1C1VRadZdz8M">
+<div class="w-full aspect-[1.79] overflow-hidden bg-surface-container-low border-b border-border-subtle p-3">
+<img alt="Plafon Kubernetes and Observability SRE Dashboard interface" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 rounded" src="{{ '/assets/images/plafon-preview.png' | relative_url }}" loading="lazy">
 </div>
 <div class="p-6 flex flex-col flex-grow">
 <h2 class="font-h3 text-h3 text-primary mb-2">Plafon</h2>
 <p class="font-body-md text-body-md text-text-muted mb-6 flex-grow">A professional Kubernetes and Observability dashboard featuring complex metrics graphs, RBAC matrix tables, and database audit logs.</p>
 <div class="flex flex-wrap gap-2 mb-6">
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">Go</span>
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">Next.js 16</span>
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">AWS Cognito</span>
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">PostgreSQL</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">Go</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">Next.js 16</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">AWS Cognito</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">PostgreSQL</span>
 </div>
 <div class="flex gap-3">
-<button onclick="window.open('/projects/plafon/', '_blank')" class="flex-1 border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 rounded-DEFAULT transition-colors">Live Demo</button>
-<button onclick="window.open('/2026/08/21/modern-identity-and-auth-handbook/', '_blank')" class="flex-1 border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 rounded-DEFAULT transition-colors">Case Study</button>
+<a href="{{ '/projects/plafon/' | relative_url }}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex justify-center items-center border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 px-3 rounded text-center transition-colors focus-visible:ring-2 focus-visible:ring-secondary">Live Demo</a>
+<a href="{{ '/2026/08/21/modern-identity-and-auth-handbook/' | relative_url }}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex justify-center items-center border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 px-3 rounded text-center transition-colors focus-visible:ring-2 focus-visible:ring-secondary">Case Study</a>
 </div>
 </div>
 </article>
 <!-- Project Card 2: Resume-as-Code -->
 <article class="bg-surface-primary border border-border-subtle rounded-lg overflow-hidden flex flex-col hover:border-outline-variant transition-colors group">
 <div class="w-full aspect-[1.79] overflow-hidden bg-surface-container-low border-b border-border-subtle">
-<img alt="Resume-as-Code Screenshot" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiBL9k9-x5z_9SKYsJdApOujTt7HexFSOGQLOO-Dz9zvaZen3qG6BuTgm7N_H7oC1e7janO2HwyGZSNYlaJUbx-YPI9wkPFevbLdVFF41Hc79xi-dScT9tkalvSCnh-sKs-_G5Ou_XIiimKciKAi1DiBgz-EtZSosX-9EApfbcvi97hILEXku-SynBvb43oy07yDU2LTfBUJUfM4_iATSrkUQJhaVU9NVO9Hi_A0ko1f2Gkz_1AKe-MQ">
+<img alt="Resume-as-Code interactive JSON editor and resume preview interface" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" src="{{ '/assets/images/resume-preview.png' | relative_url }}" loading="lazy">
 </div>
 <div class="p-6 flex flex-col flex-grow">
 <h2 class="font-h3 text-h3 text-primary mb-2">Resume-as-Code</h2>
 <p class="font-body-md text-body-md text-text-muted mb-6 flex-grow">A modern web application featuring a split-view interface with a JSON code editor and a beautifully formatted PDF resume preview.</p>
 <div class="flex flex-wrap gap-2 mb-6">
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">React</span>
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">Tailwind</span>
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">JSON</span>
-<span class="bg-surface-secondary px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm text-on-surface">TypeScript</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">React</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">Tailwind</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">JSON</span>
+<span class="bg-surface-secondary px-2.5 py-1 rounded font-label-sm text-label-sm text-on-surface">TypeScript</span>
 </div>
 <div class="flex gap-3">
-<button onclick="window.open('https://abdul-zailani.github.io/resume-as-code/', '_blank')" class="flex-1 border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 rounded-DEFAULT transition-colors">Live Demo</button>
-<button onclick="window.open('https://github.com/abdul-zailani/resume-as-code', '_blank')" class="flex-1 border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 rounded-DEFAULT transition-colors">Source Code</button>
+<a href="https://abdul-zailani.github.io/resume-as-code/" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex justify-center items-center border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 px-3 rounded text-center transition-colors focus-visible:ring-2 focus-visible:ring-secondary">Live Demo</a>
+<a href="https://github.com/abdul-zailani/resume-as-code" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex justify-center items-center border border-border-subtle bg-transparent hover:bg-surface-secondary text-primary font-label-md text-label-md py-2 px-3 rounded text-center transition-colors focus-visible:ring-2 focus-visible:ring-secondary">Source Code</a>
 </div>
 </div>
 </article>

@@ -1,34 +1,34 @@
-<header class="sticky top-0 left-0 w-full z-50 bg-[#ffffff]/90 dark:bg-[#1E293B]/90 backdrop-blur-md border-b border-[#E2E8F0] dark:border-[#475569] shadow-sm transition-all duration-200">
+<header class="sticky top-0 left-0 w-full z-50 bg-surface-primary/90 dark:bg-[#1E293B]/90 backdrop-blur-md border-b border-border-subtle dark:border-[#475569] shadow-sm transition-all duration-200">
   <div class="max-w-[1200px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
     <!-- Brand Name (Aligned with Left Column) -->
     <div class="flex items-center">
-      <a class="text-xl md:text-2xl font-bold tracking-tight text-[#0F172A] dark:text-[#F8FAFC] hover:text-[#2563EB] dark:hover:text-[#60A5FA] transition-colors duration-200" href="/">
+      <a class="text-xl md:text-2xl font-bold tracking-tight text-primary dark:text-[#F8FAFC] hover:text-secondary dark:hover:text-[#60A5FA] transition-colors duration-200" href="/">
         Abdul Aziz Zailani
       </a>
     </div>
     
     <!-- Desktop Navigation (Aligned with Right Column) -->
     <nav class="hidden md:flex items-center gap-6 lg:gap-8">
-      <a class="text-[0.95rem] font-semibold {% if page.url == '/' or page.url == '/index.html' %}text-[#2563EB] dark:text-[#60A5FA] border-b-2 border-[#2563EB] dark:border-[#60A5FA]{% else %}text-[#1E293B] dark:text-[#CBD5E1] hover:text-[#2563EB] dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/">About</a>
-      <a class="text-[0.95rem] font-semibold {% if page.url contains '/projects/' %}text-[#2563EB] dark:text-[#60A5FA] border-b-2 border-[#2563EB] dark:border-[#60A5FA]{% else %}text-[#1E293B] dark:text-[#CBD5E1] hover:text-[#2563EB] dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/projects/">Projects</a>
-      <a class="text-[0.95rem] font-semibold {% if page.url contains '/blog/' %}text-[#2563EB] dark:text-[#60A5FA] border-b-2 border-[#2563EB] dark:border-[#60A5FA]{% else %}text-[#1E293B] dark:text-[#CBD5E1] hover:text-[#2563EB] dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/blog/">Blog</a>
-      <a class="text-[0.95rem] font-semibold {% if page.url contains '/terminal/' %}text-[#2563EB] dark:text-[#60A5FA] border-b-2 border-[#2563EB] dark:border-[#60A5FA]{% else %}text-[#1E293B] dark:text-[#CBD5E1] hover:text-[#2563EB] dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/terminal/">Terminal CV</a>
+      <a class="text-[0.95rem] font-semibold {% if page.url == '/' or page.url == '/index.html' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/">About</a>
+      <a class="text-[0.95rem] font-semibold {% if page.url contains '/projects/' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/projects/">Projects</a>
+      <a class="text-[0.95rem] font-semibold {% if page.url contains '/blog/' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/blog/">Blog</a>
+      <a class="text-[0.95rem] font-semibold {% if page.url contains '/terminal/' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/terminal/">Terminal CV</a>
     </nav>
     
     <!-- Mobile Menu Button -->
     <div class="flex items-center md:hidden">
-      <button id="mobile-menu-button" class="text-[#0F172A] dark:text-[#F8FAFC] hover:text-[#2563EB] p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] rounded-lg" aria-label="Toggle Menu" aria-expanded="false">
-        <span class="material-symbols-outlined text-[24px]">menu</span>
+      <button id="mobile-menu-button" class="text-primary dark:text-[#F8FAFC] hover:text-secondary p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded-lg" aria-label="Toggle Menu" aria-expanded="false">
+        <span class="material-symbols-outlined text-[24px]" aria-hidden="true">menu</span>
       </button>
     </div>
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-b border-[#E2E8F0] dark:border-[#475569] bg-[#ffffff] dark:bg-[#1E293B] px-4 py-4 space-y-3">
-    <a class="block text-base font-semibold {% if page.url == '/' or page.url == '/index.html' %}text-[#2563EB] dark:text-[#60A5FA]{% else %}text-[#334155] dark:text-[#CBD5E1]{% endif %}" href="/">About</a>
-    <a class="block text-base font-semibold {% if page.url contains '/projects/' %}text-[#2563EB] dark:text-[#60A5FA]{% else %}text-[#334155] dark:text-[#CBD5E1]{% endif %}" href="/projects/">Projects</a>
-    <a class="block text-base font-semibold {% if page.url contains '/blog/' %}text-[#2563EB] dark:text-[#60A5FA]{% else %}text-[#334155] dark:text-[#CBD5E1]{% endif %}" href="/blog/">Blog</a>
-    <a class="block text-base font-semibold {% if page.url contains '/terminal/' %}text-[#2563EB] dark:text-[#60A5FA]{% else %}text-[#334155] dark:text-[#CBD5E1]{% endif %}" href="/terminal/">Terminal CV</a>
+  <div id="mobile-menu" class="hidden md:hidden border-b border-border-subtle dark:border-[#475569] bg-surface-primary dark:bg-[#1E293B] px-4 py-4 space-y-3">
+    <a class="block text-base font-semibold {% if page.url == '/' or page.url == '/index.html' %}text-secondary dark:text-[#60A5FA]{% else %}text-on-surface-variant dark:text-[#CBD5E1]{% endif %}" href="/">About</a>
+    <a class="block text-base font-semibold {% if page.url contains '/projects/' %}text-secondary dark:text-[#60A5FA]{% else %}text-on-surface-variant dark:text-[#CBD5E1]{% endif %}" href="/projects/">Projects</a>
+    <a class="block text-base font-semibold {% if page.url contains '/blog/' %}text-secondary dark:text-[#60A5FA]{% else %}text-on-surface-variant dark:text-[#CBD5E1]{% endif %}" href="/blog/">Blog</a>
+    <a class="block text-base font-semibold {% if page.url contains '/terminal/' %}text-secondary dark:text-[#60A5FA]{% else %}text-on-surface-variant dark:text-[#CBD5E1]{% endif %}" href="/terminal/">Terminal CV</a>
   </div>
 
   <script>

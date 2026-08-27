@@ -4,7 +4,7 @@ title: Blog
 permalink: /blog/
 ---
 <!-- Main Canvas -->
-<main class="flex-grow pt-24 pb-16 px-4 md:px-8 max-w-[1200px] mx-auto w-full">
+<main class="flex-grow py-16 px-4 md:px-8 max-w-[1200px] mx-auto w-full">
 <header class="mb-12">
 <h1 class="font-h1-mobile text-h1-mobile md:font-h1 md:text-h1 text-primary mb-4">Blog &amp; Catatan Teknis</h1>
 <p class="font-body-lg text-body-lg text-text-muted max-w-2xl">Reflections on site reliability, infrastructure architecture, and building resilient systems.</p>
@@ -15,7 +15,7 @@ permalink: /blog/
 <article class="group py-8 border-b border-border-subtle hover:bg-surface-secondary transition-colors duration-200 px-4 -mx-4 rounded">
 <a class="flex flex-col gap-3" href="{{ post.url | relative_url }}">
 <div class="flex items-center gap-3 text-text-muted font-label-sm text-label-sm">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> {{ post.date | date: "%b %d, %Y" }}</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today" aria-hidden="true">calendar_today</span> {{ post.date | date: "%b %d, %Y" }}</span>
 <span class="">•</span>
 <span class="">{% if post.reading_time %}{{ post.reading_time }}{% else %}{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read{% endif %}</span>
 {% if post.featured %}
