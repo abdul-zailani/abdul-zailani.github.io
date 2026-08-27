@@ -23,7 +23,7 @@
 @layer base {
   :root {
     /* Color Palette - High Contrast WCAG 2.1 Compliant */
-    --surface: #f8fafc;
+    --surface: #faf9f8;
     --surface-dim: #e2e8f0;
     --surface-bright: #ffffff;
     --surface-container-lowest: #ffffff;
@@ -39,6 +39,7 @@
     
     --primary: #0f172a;
     --on-primary: #ffffff;
+    --secondary: #2563eb;
     --accent: #2563eb;
     
     /* Typography */
