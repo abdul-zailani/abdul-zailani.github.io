@@ -22,7 +22,7 @@ description: >-
 excerpt: >-
   Otomasi bukan tiket untuk duduk santai. Simak anatomi beban kerja SRE nyata,
   mitigasi CrashLoopBackOff, etcd timeout, dan cara menghindari burnout on-call.
-reading_time: 7 min read
+reading_time: 8 min read
 image: /assets/images/real-devops-job-vs-myth.webp
 mermaid: true
 ---
@@ -181,11 +181,29 @@ Melalui pemeriksaan otomatis (*shift-left testing*) dan rilis bertahap (*canary 
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Rangkuman Aksi & Klimaks Filosofis
 
-* [Google SRE Book: Eliminating Toil](https://sre.google/sre-book/eliminating-toil/)
-* [Kubernetes Documentation: Troubleshoot Applications](https://kubernetes.io/docs/tasks/debug/debug-application/)
-* [etcd Documentation: Hardware Recommendations & Latency](https://etcd.io/docs/latest/op-guide/hardware/)
-* [DORA Research: State of DevOps Report](https://dora.dev/research/)
+Ketenangan sejati dalam dunia *DevOps* dan *Site Reliability Engineering* bukanlah datang dari mitos "otomasi sekali lalu santai selamanya".
 
-[← Kembali ke Daftar Artikel]({{ '/blog/' | relative_url }})
+Ketenangan seorang *engineer* lahir dari **ketahanan sistem (*system resilience*) yang dirancang dengan disiplin tinggi**:
+- Menghilangkan *toil* (pekerjaan repetitif tanpa nilai tambah) secara sistematis.
+- Membangun observabilitas cerdas berbasis SLO untuk memusnahkan kelelahan alarm (*alert fatigue*).
+- Menjalankan *shift-left validation* dan *canary deployment* agar tidur malam Anda tetap tenang.
+
+**"Otomasi bukanlah pengganti kehati-hatian manusia; ia adalah penguat dari kedisiplinan rekayasa Anda. Bangun sistem yang siap menghadapi kegagalan, validasi setiap asumsi dengan data, dan raih ketenangan kerja yang nyata melalui keandalan arsitektur."**
+
+---
+
+### Bagikan & Diskusikan
+Apakah tim Anda pernah terjebak dalam mitos *Automate and Chill* yang berujung pada insiden dini hari?
+- 📤 **Bagikan wawasan realitas ini** kepada sesama rekan insinyur dan komunitas DevOps Anda.
+- 📊 Pelajari strategi penetapan metrik keandalan di [Menerapkan Error Budget di Produksi]({{ '/2026/08/28/error-budget-in-production/' | relative_url }}).
+- 💬 Ceritakan pengalaman operasional dan perjuangan *on-call* Anda di kolom komentar di bawah!
+
+---
+
+<div style="background-color: #1E293B; color: #F8FAFC; padding: 12px; border-radius: 8px; border-left: 4px solid #38BDF8;">
+<strong>💡 Pojok Bahasa Inggris</strong><br>
+1. <strong>Alert Fatigue</strong>: <em>Kelelahan alarm</em> — kondisi penurunan sensitivitas tim terhadap notifikasi darurat akibat terlalu seringnya sistem mengirimkan peringatan palsu atau tidak penting.<br>
+2. <strong>Shift-Left Testing</strong>: <em>Pengujian di fase awal</em> — praktik menjalankan validasi keamanan dan kepatuhan konfigurasi sedini mungkin dalam siklus pengembangan sebelum kode mencapai produksi.
+</div>
