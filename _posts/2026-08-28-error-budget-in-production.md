@@ -1,14 +1,27 @@
 ---
 layout: post
-title: "Implementasi Error Budget di Produksi: Praktik Nyata Melampaui Teori SRE"
-date: 2026-08-28 09:00:00 +0700
-categories: [SRE, Infrastruktur]
-tags: [SRE, Error Budget, SLO, Prometheus, Alertmanager, Grafana, Observability]
-description: "Panduan praktis implementasi error budget dengan SLO 99.5%, multi-window alerting, dan consequence engine berbasis Prometheus & Alertmanager."
-excerpt: "Error budget adalah kuota kegagalan yang dapat diterima. Pelajari cara menghitung, memonitor, dan menegakkannya di produksi dengan SLO 99.5%."
-reading_time: "⏱️ 8 min read"
+title: 'Implementasi Error Budget di Produksi: Praktik Nyata Melampaui Teori SRE'
+date: '2026-08-28 09:00:00 +0700'
+categories:
+  - SRE
+  - Infrastruktur
+tags:
+  - SRE
+  - Error Budget
+  - SLO
+  - Prometheus
+  - Alertmanager
+  - Grafana
+  - Observability
+description: >-
+  Panduan praktis implementasi error budget dengan SLO 99.5%, multi-window
+  alerting, dan consequence engine berbasis Prometheus & Alertmanager.
+excerpt: >-
+  Error budget adalah kuota kegagalan yang dapat diterima. Pelajari cara
+  menghitung, memonitor, dan menegakkannya di produksi dengan SLO 99.5%.
+reading_time: 6 min read
 mermaid: true
-image: "/assets/images/error-budget-in-production.png"
+image: /assets/images/error-budget-in-production.webp
 ---
 
 > ### 🎯 Ringkasan Utama (Key Takeaways)

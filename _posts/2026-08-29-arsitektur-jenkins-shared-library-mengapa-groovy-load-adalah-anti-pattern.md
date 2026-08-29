@@ -1,13 +1,32 @@
 ---
 layout: post
-title: "Refactoring Arsitektur Jenkins CI/CD: Mengapa Menggunakan Groovy 'load' Adalah Anti-Pattern dan Cara Memperbaikinya"
-date: 2026-08-29 21:40:00 +0700
-categories: [DevOps, CI/CD]
-tags: [Jenkins, CI/CD, DevOps, Shared Library, JCasC, Groovy, SRE, Platform Engineering]
-description: "Membedah jebakan arsitektur Pseudo-Shared Library via Groovy load di Jenkins, dampaknya terhadap memori master dan 200+ pipeline, serta panduan migrasi ke Native Jenkins Shared Library dengan JCasC."
-excerpt: "Mengelola ratusan pipeline dengan Groovy load terlihat praktis di awal, namun memicu double checkout, memory leak di Jenkins Master, dan beban pemeliharaan masif. Simak strategi refactoring ke native Jenkins Shared Library."
-reading_time: "⏱️ 7 min read"
-image: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=1200&q=80"
+title: >-
+  Refactoring Arsitektur Jenkins CI/CD: Mengapa Menggunakan Groovy 'load' Adalah
+  Anti-Pattern dan Cara Memperbaikinya
+date: '2026-08-29 21:40:00 +0700'
+categories:
+  - DevOps
+  - CI/CD
+tags:
+  - Jenkins
+  - CI/CD
+  - DevOps
+  - Shared Library
+  - JCasC
+  - Groovy
+  - SRE
+  - Platform Engineering
+description: >-
+  Membedah jebakan arsitektur Pseudo-Shared Library via Groovy load di Jenkins,
+  dampaknya terhadap memori master dan 200+ pipeline, serta panduan migrasi ke
+  Native Jenkins Shared Library dengan JCasC.
+excerpt: >-
+  Mengelola ratusan pipeline dengan Groovy load terlihat praktis di awal, namun
+  memicu double checkout, memory leak di Jenkins Master, dan beban pemeliharaan
+  masif. Simak strategi refactoring ke native Jenkins Shared Library.
+reading_time: 9 min read
+image: >-
+  https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=1200&q=80
 mermaid: true
 ---
 

@@ -1,12 +1,22 @@
 ---
 layout: post
-title: "Guardrails Keamanan Agen AI: Proteksi Otonom di Kubernetes EKS"
-date: 2026-08-16 09:30:00 +0700
-categories: [Teknologi, Produktivitas]
-tags: [AI, Agentic AI, SRE, Kubernetes, EKS]
-description: "Panduan membangun guardrails keamanan Agen AI pada klaster Amazon EKS untuk membatasi hak akses sistem otonom secara terprogram."
-reading_time: "⏱️ 5 min read"
-image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1200&q=80"
+title: 'Guardrails Keamanan Agen AI: Proteksi Otonom di Kubernetes EKS'
+date: '2026-08-16 09:30:00 +0700'
+categories:
+  - Teknologi
+  - Produktivitas
+tags:
+  - AI
+  - Agentic AI
+  - SRE
+  - Kubernetes
+  - EKS
+description: >-
+  Panduan membangun guardrails keamanan Agen AI pada klaster Amazon EKS untuk
+  membatasi hak akses sistem otonom secara terprogram.
+reading_time: 3 min read
+image: >-
+  https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1200&q=80
 ---
 
 ### Menghadapi Risiko Akses Otonom Agen AI

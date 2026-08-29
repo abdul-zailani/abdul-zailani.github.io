@@ -1,12 +1,20 @@
 ---
 layout: post
-title: "Alur Kerja AI: Mengapa AI Tidak Memperbaiki Proses Rusak"
-date: 2026-08-14 09:00:00 +0700
-categories: [Teknologi, Produktivitas]
-tags: [AI, Workflow, SRE, Ops]
-description: "Penerapan alur kerja AI tanpa pembenahan proses bisnis internal hanya akan mempercepat kekacauan operasional organisasi Anda."
-reading_time: "⏱️ 5 min read"
-image: "/assets/images/xplore_day_2026_photo_1.jpg"
+title: 'Alur Kerja AI: Mengapa AI Tidak Memperbaiki Proses Rusak'
+date: '2026-08-14 09:00:00 +0700'
+categories:
+  - Teknologi
+  - Produktivitas
+tags:
+  - AI
+  - Workflow
+  - SRE
+  - Ops
+description: >-
+  Penerapan alur kerja AI tanpa pembenahan proses bisnis internal hanya akan
+  mempercepat kekacauan operasional organisasi Anda.
+reading_time: 6 min read
+image: /assets/images/xplore_day_2026_photo_1.webp
 ---
 
 ### Menanti Dampak Nyata Setelah Pesta Peluncuran

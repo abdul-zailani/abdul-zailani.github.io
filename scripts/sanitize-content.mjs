@@ -2,6 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
+import readingTime from 'reading-time';
 
 const POSTS_DIR = path.resolve(process.cwd(), '_posts');
 
@@ -14,7 +15,7 @@ const FORBIDDEN_INTERNAL_LABELS = [/\(GEO-Optimized\)/i, /Direct Answer:/i, /AI-
 const ALLOWED_LIQUID_PATTERN = /\{\{\s*['"]?[^'"]*['"]?\s*\|\s*(relative_url|absolute_url|url_encode|escape|date_to_xmlschema|date:[^}]+)\s*\}\}/;
 
 async function validatePosts() {
-  console.log(`🔍 [AST Sanitizer] Memeriksa berkas artikel di ${POSTS_DIR}...`);
+  console.log(`🔍 [AST Sanitizer & Quality Linter] Memeriksa artikel di ${POSTS_DIR}...`);
   
   let files;
   try {
@@ -25,6 +26,7 @@ async function validatePosts() {
   }
 
   let totalErrors = 0;
+  let totalWords = 0;
 
   for (const file of files) {
     const filePath = path.join(POSTS_DIR, file);
@@ -46,11 +48,26 @@ async function validatePosts() {
       continue;
     }
 
+    // Hitung reading time akurat
+    const stats = readingTime(parsed.content);
+    totalWords += stats.words;
+
     // 1. Validasi Frontmatter
     for (const key of REQUIRED_FRONTMATTER) {
       if (!parsed.data[key]) {
         console.error(`❌ [${file}] Frontmatter kehilangan field wajib: '${key}'`);
         totalErrors++;
+      }
+    }
+
+    // Validasi format reading_time
+    if (parsed.data.reading_time) {
+      const calculatedMin = Math.max(1, Math.ceil(stats.minutes));
+      const expectedText = `${calculatedMin} min read`;
+      // Verifikasi jika estimasi terlalu jauh berbeda (lebih dari selisih 3 menit)
+      const currentMin = parseInt(parsed.data.reading_time);
+      if (!isNaN(currentMin) && Math.abs(currentMin - calculatedMin) > 3) {
+        console.warn(`  ⚠️ [${file}] Peringatan durasi baca: tercatat "${parsed.data.reading_time}", estimasi akurat "${expectedText}" (${stats.words} kata).`);
       }
     }
 
@@ -91,7 +108,8 @@ async function validatePosts() {
     process.exit(1);
   }
 
-  console.log(`✅ [AST Sanitizer] Seluruh artikel (${files.length} berkas) tervalidasi bersih. 0 galat sanitasi.`);
+  const avgWords = Math.round(totalWords / files.length);
+  console.log(`✅ [AST Sanitizer & Quality Linter] ${files.length} artikel tervalidasi bersih (Total ${totalWords.toLocaleString()} kata, rata-rata ${avgWords} kata/pos).`);
 }
 
 validatePosts();
