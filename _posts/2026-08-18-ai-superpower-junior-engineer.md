@@ -1,12 +1,21 @@
 ---
 layout: post
-title: "AI Bukan Ancaman: Bagaimana AI Menjadi Superpower untuk Junior Engineer"
-date: 2026-08-18 11:15:00 +0700
-categories: [Teknologi, Karir]
-tags: [AI, Software-Engineering, Karir, Edukasi]
-description: "Jangan takut digantikan AI. Pelajari bagaimana kecerdasan buatan dapat melipatgandakan produktivitas dan menjadi kekuatan super bagi pengembang perangkat lunak pemula berdasarkan data 2026."
-reading_time: "⏱️ 5 min read"
-image: "/assets/images/ai-superpower-junior.png"
+title: 'AI Bukan Ancaman: Bagaimana AI Menjadi Superpower untuk Junior Engineer'
+date: '2026-08-18 11:15:00 +0700'
+categories:
+  - Teknologi
+  - Karir
+tags:
+  - AI
+  - Software-Engineering
+  - Karir
+  - Edukasi
+description: >-
+  Jangan takut digantikan AI. Pelajari bagaimana kecerdasan buatan dapat
+  melipatgandakan produktivitas dan menjadi kekuatan super bagi pengembang
+  perangkat lunak pemula berdasarkan data 2026.
+reading_time: 3 min read
+image: /assets/images/ai-superpower-junior.webp
 ---
 
 ### Ringkasan: Peran AI untuk Insinyur Pemula

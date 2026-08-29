@@ -1,12 +1,22 @@
 ---
 layout: post
-title: "Mendesain Alur Kerja Agentic AI: Delegasi Otoritas Aman"
-date: 2026-08-16 09:00:00 +0700
-categories: [Teknologi, Produktivitas]
-tags: [AI, Agentic AI, Workflow, Ops, SRE]
-description: "Bagaimana cara mendelegasikan wewenang keputusan kepada Agentic AI secara aman tanpa kehilangan kontrol operasional infrastruktur Anda."
-reading_time: "⏱️ 6 min read"
-image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
+title: 'Mendesain Alur Kerja Agentic AI: Delegasi Otoritas Aman'
+date: '2026-08-16 09:00:00 +0700'
+categories:
+  - Teknologi
+  - Produktivitas
+tags:
+  - AI
+  - Agentic AI
+  - Workflow
+  - Ops
+  - SRE
+description: >-
+  Bagaimana cara mendelegasikan wewenang keputusan kepada Agentic AI secara aman
+  tanpa kehilangan kontrol operasional infrastruktur Anda.
+reading_time: 5 min read
+image: >-
+  https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80
 ---
 
 ### Dilema Delegasi Kontrol pada Agen AI

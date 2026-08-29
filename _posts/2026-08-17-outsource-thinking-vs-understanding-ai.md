@@ -1,12 +1,20 @@
 ---
 layout: post
-title: "Outsource Thinking, Not Understanding: Batas Aman Belajar dengan AI"
-date: 2026-08-17 08:00:00 +0700
-categories: [Teknologi, Produktivitas]
-tags: [AI, Edukasi, Produktivitas, Mindset]
-description: "Delegasikan pencarian sintaks atau boilerplate ke AI, namun jangan pernah menyerahkan pemahaman konsep terdalam Anda ke mesin."
-reading_time: "⏱️ 4 min read"
-image: "/assets/images/thinking-vs-understanding.jpg"
+title: 'Outsource Thinking, Not Understanding: Batas Aman Belajar dengan AI'
+date: '2026-08-17 08:00:00 +0700'
+categories:
+  - Teknologi
+  - Produktivitas
+tags:
+  - AI
+  - Edukasi
+  - Produktivitas
+  - Mindset
+description: >-
+  Delegasikan pencarian sintaks atau boilerplate ke AI, namun jangan pernah
+  menyerahkan pemahaman konsep terdalam Anda ke mesin.
+reading_time: 3 min read
+image: /assets/images/thinking-vs-understanding.webp
 ---
 
 ### Dampak Pintasan pada Proses Belajar
