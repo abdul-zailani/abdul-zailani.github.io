@@ -45,6 +45,12 @@ jobs:
       - name: Optimize Images to WebP
         run: npm run optimize:images
 
+      - name: Optimize Post Content & Sync Reading Time
+        run: npm run optimize:posts
+
+      - name: Generate Open Graph Images & LLMs.txt
+        run: npm run build:seo
+
       - name: Lint & Sanitize Content
         run: npm run lint:content
 
@@ -55,6 +61,9 @@ jobs:
 
       - name: Generate Pagefind Search Index
         run: npm run build:search
+
+      - name: Merge & Finalize XML Sitemap
+        run: npm run merge:sitemap
 
       - name: Minify Final HTML
         run: npm run minify:html

@@ -7,14 +7,19 @@
     "lint:content": "node scripts/sanitize-content.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:posts": "node scripts/optimize-posts.mjs",
+    "generate:og": "node scripts/generate-og-images.mjs",
+    "generate:llms": "node scripts/generate-llms-txt.mjs",
+    "build:seo": "npm run generate:og && npm run generate:llms",
     "build:search": "pagefind --site _site",
+    "merge:sitemap": "node scripts/merge-sitemap.mjs",
     "minify:html": "html-minifier-terser --input-dir _site --output-dir _site --file-ext html --collapse-whitespace --remove-comments --minify-js true --minify-css true",
     "build:slides": "marp --no-stdin --theme-set _slides/theme.css --pdf _slides/template-carousel.md -o assets/slides/template-carousel.pdf",
-    "build": "npm run build:css && npm run optimize:images && npm run optimize:posts",
-    "postbuild:site": "npm run build:search && npm run minify:html"
+    "build": "npm run build:css && npm run optimize:images && npm run optimize:posts && npm run build:seo",
+    "postbuild:site": "npm run build:search && npm run merge:sitemap && npm run minify:html"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.5.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
     "glob": "^13.0.6",
@@ -31,7 +36,9 @@
     "remark-stringify": "^11.0.0",
     "retext": "^9.0.0",
     "retext-readability": "^8.0.0",
+    "satori": "^0.33.4",
     "sharp": "^0.35.4",
+    "sitemap": "^9.0.1",
     "tailwindcss": "^3.4.19",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0"
