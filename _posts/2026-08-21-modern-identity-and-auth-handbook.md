@@ -4,6 +4,9 @@ title: "SRE & Security Handbook: Modern Identity & Authentication Infrastructure
 date: 2026-08-21 16:45:00 +0700
 categories: [engineering, architecture, sre, security]
 tags: [handbook, sre, authentication, security, aws-cognito, bff, identity-fabric, ietf, owasp]
+description: "Buku panduan arsitektur modern identity, authentication infrastructure, Cognito, BFF proxy, dan SRE runbook mitigasi kegagalan sistemik."
+reading_time: "⏱️ 12 min read"
+image: "/assets/images/infra-preview.png"
 ---
 
 Autentikasi dan Single Sign-On (SSO) merupakan komponen infrastruktur krusial yang berdampak langsung pada ketersediaan sistem (availability) dan postur keamanan organisasi. Kegagalan pada sistem autentikasi bertindak sebagai titik kegagalan tunggal (single point of failure) yang dapat melumpuhkan seluruh layanan mikro, sekaligus menjadi target utama serangan kebocoran kredensial dan eksploitasi token.
