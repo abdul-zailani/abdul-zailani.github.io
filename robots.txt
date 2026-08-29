@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /_next/
+Disallow: /assets/slides/*.pdf
+
+# AI Search & Retrieval Crawlers (Allowed for GEO citations)
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap Reference
+Sitemap: https://abdul-zailani.github.io/sitemap.xml
