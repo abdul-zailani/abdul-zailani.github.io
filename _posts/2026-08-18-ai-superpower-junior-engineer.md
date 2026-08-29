@@ -15,7 +15,7 @@ description: >-
   Strategi praktis bagi junior engineer untuk memanfaatkan kecerdasan buatan
   sebagai pengungkit karir tanpa kehilangan esensi kemampuan teknis mendasar.
 reading_time: 3 min read
-image: /assets/images/og/ai-superpower-junior-engineer.webp
+image: /assets/images/ai-superpower-junior.webp
 ---
 
 ### Pergeseran Standar di Titik Masuk Industri Perangkat Lunak

@@ -16,6 +16,7 @@ description: >-
   produktivitas pengembang dan bagaimana Platform Engineering menjadi jalan
   keluarnya.
 reading_time: 4 min read
+mermaid: true
 image: /assets/images/og/overload-tooling-devops-modern.webp
 ---
 

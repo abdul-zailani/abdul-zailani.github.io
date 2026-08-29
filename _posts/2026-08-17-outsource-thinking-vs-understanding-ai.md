@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Outsource Thinking vs Deep Understanding di Era AI
+title: 'Outsource Thinking vs Deep Understanding di Era AI'
 date: '2026-08-17 08:30:00 +0700'
 categories:
   - Karir
@@ -14,7 +14,7 @@ description: >-
   Mengapa mengandalkan AI untuk berpikir kritis adalah jebakan berbahaya bagi
   insinyur perangkat lunak dan bagaimana membangun pemahaman mendalam.
 reading_time: 3 min read
-image: /assets/images/og/outsource-thinking-vs-understanding-ai.webp
+image: /assets/images/thinking-vs-understanding.webp
 ---
 
 ### Ilusi Produktivitas Instan
