@@ -13,10 +13,20 @@
       <a class="text-[0.95rem] font-semibold {% if page.url contains '/projects/' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/projects/">Projects</a>
       <a class="text-[0.95rem] font-semibold {% if page.url contains '/blog/' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/blog/">Blog</a>
       <a class="text-[0.95rem] font-semibold {% if page.url contains '/terminal/' %}text-secondary dark:text-[#60A5FA] border-b-2 border-secondary dark:border-[#60A5FA]{% else %}text-on-surface dark:text-[#CBD5E1] hover:text-secondary dark:hover:text-[#60A5FA]{% endif %} pb-1 transition-colors duration-200" href="/terminal/">Terminal CV</a>
+      
+      <!-- Search Button (Desktop) -->
+      <button id="search-open-button" class="flex items-center gap-2 px-3 py-1.5 text-xs text-text-muted hover:text-primary dark:text-[#94A3B8] dark:hover:text-[#F8FAFC] bg-surface-secondary dark:bg-[#334155] border border-border-subtle dark:border-[#475569] rounded-lg transition-colors duration-200" aria-label="Search posts (Cmd+K)">
+        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">search</span>
+        <span>Search</span>
+        <kbd class="hidden lg:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-surface-primary dark:bg-[#1E293B] border border-border-subtle dark:border-[#475569] rounded shadow-xs">⌘K</kbd>
+      </button>
     </nav>
     
-    <!-- Mobile Menu Button -->
-    <div class="flex items-center md:hidden">
+    <!-- Mobile Navigation Actions -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button id="mobile-search-open-button" class="text-primary dark:text-[#F8FAFC] hover:text-secondary p-2 focus:outline-none rounded-lg" aria-label="Search">
+        <span class="material-symbols-outlined text-[24px]" aria-hidden="true">search</span>
+      </button>
       <button id="mobile-menu-button" class="text-primary dark:text-[#F8FAFC] hover:text-secondary p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded-lg" aria-label="Toggle Menu" aria-expanded="false">
         <span class="material-symbols-outlined text-[24px]" aria-hidden="true">menu</span>
       </button>
@@ -31,8 +41,27 @@
     <a class="block text-base font-semibold {% if page.url contains '/terminal/' %}text-secondary dark:text-[#60A5FA]{% else %}text-on-surface-variant dark:text-[#CBD5E1]{% endif %}" href="/terminal/">Terminal CV</a>
   </div>
 
+  <!-- Search Modal Overlay -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4">
+    <div id="search-modal-card" class="bg-surface-primary dark:bg-[#1E293B] border border-border-subtle dark:border-[#475569] rounded-xl shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-border-subtle dark:border-[#475569]">
+        <div class="flex items-center gap-2 text-primary dark:text-[#F8FAFC] font-semibold text-sm">
+          <span class="material-symbols-outlined text-[20px]">search</span>
+          <span>Search Articles & Content</span>
+        </div>
+        <button id="search-close-button" class="text-text-muted hover:text-primary dark:hover:text-[#F8FAFC] p-1 rounded-lg hover:bg-surface-secondary dark:hover:bg-[#334155] transition-colors" aria-label="Close search">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <div class="p-4 overflow-y-auto max-h-[calc(80vh-60px)]">
+        <div id="pagefind-search-container"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Drawer Toggle
       const button = document.getElementById('mobile-menu-button');
       const menu = document.getElementById('mobile-menu');
       if (button && menu) {
@@ -46,6 +75,75 @@
           }
         });
       }
+
+      // Search Modal Logic
+      const modal = document.getElementById('search-modal');
+      const openBtn = document.getElementById('search-open-button');
+      const mobileOpenBtn = document.getElementById('mobile-search-open-button');
+      const closeBtn = document.getElementById('search-close-button');
+      let pagefindInitialized = false;
+
+      function initPagefind() {
+        if (pagefindInitialized) return;
+        pagefindInitialized = true;
+        
+        // Lazy load Pagefind UI script
+        const script = document.createElement('script');
+        script.src = "{{ '/pagefind/pagefind-ui.js' | relative_url }}";
+        script.onload = () => {
+          if (window.PagefindUI) {
+            new PagefindUI({
+              element: "#pagefind-search-container",
+              showSubResults: true,
+              showImages: false,
+              autofocus: true
+            });
+          }
+        };
+        document.body.appendChild(script);
+      }
+
+      function openSearch() {
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        initPagefind();
+        setTimeout(() => {
+          const input = modal.querySelector('input');
+          if (input) input.focus();
+        }, 150);
+      }
+
+      function closeSearch() {
+        if (!modal) return;
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openSearch);
+      if (mobileOpenBtn) mobileOpenBtn.addEventListener('click', openSearch);
+      if (closeBtn) closeBtn.addEventListener('click', closeSearch);
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) closeSearch();
+        });
+      }
+
+      // Keyboard Shortcut: Cmd+K / Ctrl+K & Escape
+      document.addEventListener('keydown', function(e) {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          if (modal && modal.classList.contains('hidden')) {
+            openSearch();
+          } else {
+            closeSearch();
+          }
+        }
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+          closeSearch();
+        }
+      });
     });
   </script>
 </header>
