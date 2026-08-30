@@ -581,6 +581,10 @@ layout: default
   </div>
 </main>
 
+<!-- Modern Reading Experience & Accessibility Suite Toolbar -->
+{% include reader-toolbar.html %}
+<script defer src="{{ '/assets/js/reader-mode.js' | relative_url }}"></script>
+
 <!-- Dynamic TOC Generation & Throttled Scroll Spy -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
