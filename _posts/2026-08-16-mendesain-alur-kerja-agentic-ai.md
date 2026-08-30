@@ -118,7 +118,7 @@ Bagaimana dengan sistem di organisasi Anda saat ini? Apakah Anda sudah siap mend
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Anthropic Research: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
 * [Google DeepMind: Agentic Workflow Architecture & Evaluation](https://deepmind.google/research/)

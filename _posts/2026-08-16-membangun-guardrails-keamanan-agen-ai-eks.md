@@ -125,7 +125,7 @@ Bagaimana tim Anda mengamankan sistem otomatisasi dan agen AI saat ini? Apakah s
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
 * [AWS EKS Security Best Practices Guide](https://aws.github.io/aws-eks-best-practices/security/docs/)
