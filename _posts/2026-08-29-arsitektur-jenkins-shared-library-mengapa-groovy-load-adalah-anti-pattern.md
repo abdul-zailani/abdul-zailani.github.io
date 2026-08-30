@@ -236,7 +236,7 @@ Definisikan pustaka secara deklaratif pada konfigurasi *Jenkins Configuration as
 ```yaml
 unclassified:
   location:
-    url: "https://jenkins.company.internal/"
+    url: "https://jenkins.example.com/"
   globalLibraries:
     libraries:
       - name: "company-pipeline-library"
@@ -245,7 +245,7 @@ unclassified:
           modernSCM:
             scm:
               github:
-                repoOwner: "MyCompany"
+                repoOwner: "example-org"
                 repository: "jenkins-shared-library"
                 credentialsId: "github-service-account"
                 traits:
@@ -290,7 +290,7 @@ def call(Map config = [:]) {
             $class: 'GitSCM',
             branches: [[name: config.ref ?: params.REF ?: '*/development']],
             extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'PruneStaleBranch']],
-            userRemoteConfigs: [[credentialsId: 'git-creds', url: "git@github.com:MyCompany/${config.serviceName}.git"]]
+            userRemoteConfigs: [[credentialsId: 'git-creds', url: "git@github.com:example-org/${config.serviceName}.git"]]
           ])
         }
       }
@@ -329,12 +329,12 @@ Dengan abstraksi penuh pada pustaka bersama, berkas pipeline di setiap repositor
 ```groovy
 // Jenkinsfile pada repositori microservice: Sangat bersih dan deklaratif!
 backendPipeline(
-  serviceName: 'shipment-tracker-api',
-  group: 'logistics',
+  serviceName: 'sample-service-api',
+  group: 'core-backend',
   namespace: 'production',
   languageVersion: '1.23.0',
-  credentialSource: 's3',
-  webhookToken: '6k80UXMWM1STbBWOxd01ezAmbtBXHxvU'
+  credentialSource: 'secrets-manager',
+  webhookToken: '<YOUR_WEBHOOK_VERIFICATION_TOKEN>'
 )
 ```
 
