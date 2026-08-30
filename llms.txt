@@ -1,0 +1,22 @@
+# Abdul Aziz Zailani - SRE & DevOps Knowledge Base
+> Catatan teknis, analisis arsitektur cloud, rekayasa keandalan sistem (SRE), otomatisasi CI/CD, dan arsitektur agentic AI.
+
+## Artikel & Panduan Teknis Rekayasa Sistem
+- [Dosa Fatal di Kubernetes: Mengapa Menyimpan Password di ConfigMap Bikin SRE Merinding](https://abdul-zailani.github.io/2026/08/30/bahaya-simpan-password-di-configmap-kubernetes/): Membongkar bahaya menyimpan password di ConfigMap Kubernetes. Dari risiko plaintext etcd, kebocoran RBAC, hingga panduan migrasi ke External Secrets Operator. (6 min read)
+- [Realitas DevOps di Balik Mitos 'Automate and Chill': Mengapa Otomasi Bukan Berarti Duduk Santai](https://abdul-zailani.github.io/2026/08/29/realitas-devops-di-balik-mitos-automate-and-chill/): Membongkar paradoks 'automate and chill' di dunia DevOps. Dari CrashLoopBackOff, etcd timeout, hingga badai alert jam 3 pagi beserta strategi mitigasinya. (8 min read)
+- [Refactoring Arsitektur Jenkins CI/CD: Mengapa Menggunakan Groovy 'load' Adalah Anti-Pattern dan Cara Memperbaikinya](https://abdul-zailani.github.io/2026/08/29/arsitektur-jenkins-shared-library-mengapa-groovy-load-adalah-anti-pattern/): Membedah jebakan arsitektur Pseudo-Shared Library via Groovy load di Jenkins, dampaknya terhadap memori master dan 200+ pipeline, serta panduan migrasi ke Native Jenkins Shared Library dengan JCasC. (10 min read)
+- [Implementasi Error Budget di Produksi: Praktik Nyata Melampaui Teori SRE](https://abdul-zailani.github.io/2026/08/28/error-budget-in-production/): Panduan praktis implementasi error budget dengan SLO 99.5%, multi-window alerting, dan consequence engine berbasis Prometheus & Alertmanager. (8 min read)
+- [SRE & Security Handbook: Modern Identity & Authentication Infrastructure](https://abdul-zailani.github.io/2026/08/21/modern-identity-and-auth-handbook/): Buku panduan arsitektur modern identity, authentication infrastructure, Cognito, BFF proxy, dan SRE runbook mitigasi kegagalan sistemik. (11 min read)
+- [Menjadi Junior Engineer Superpower di Era AI: Panduan Bertumbuh Cepat](https://abdul-zailani.github.io/2026/08/18/ai-superpower-junior-engineer/): Strategi praktis bagi junior engineer untuk memanfaatkan kecerdasan buatan sebagai pengungkit karir tanpa kehilangan esensi kemampuan teknis mendasar. (4 min read)
+- [Outsource Thinking vs Deep Understanding di Era AI](https://abdul-zailani.github.io/2026/08/17/outsource-thinking-vs-understanding-ai/): Mengapa mengandalkan AI untuk berpikir kritis adalah jebakan berbahaya bagi insinyur perangkat lunak dan bagaimana membangun pemahaman mendalam. (4 min read)
+- [Overload Tooling dalam DevOps Modern: Solusi Platform Engineering](https://abdul-zailani.github.io/2026/08/16/overload-tooling-devops-modern/): Mengapa tumpukan alat DevOps yang terlalu banyak justru menurunkan produktivitas pengembang dan bagaimana Platform Engineering menjadi jalan keluarnya. (4 min read)
+- [Mendesain Alur Kerja Agentic AI: Delegasi Otoritas Aman](https://abdul-zailani.github.io/2026/08/16/mendesain-alur-kerja-agentic-ai/): Bagaimana cara mendelegasikan wewenang keputusan kepada Agentic AI secara aman tanpa kehilangan kontrol operasional infrastruktur Anda. (5 min read)
+- [Guardrails Keamanan Agen AI: Proteksi Otonom di Kubernetes EKS](https://abdul-zailani.github.io/2026/08/16/membangun-guardrails-keamanan-agen-ai-eks/): Panduan membangun guardrails keamanan Agen AI pada klaster Amazon EKS untuk membatasi hak akses sistem otonom secara terprogram. (4 min read)
+- [Alur Kerja AI: Mengapa AI Tidak Memperbaiki Proses Rusak](https://abdul-zailani.github.io/2026/08/14/ai-tidak-menyelesaikan-alur-kerja-yang-rusak/): Penerapan alur kerja AI tanpa pembenahan proses bisnis internal hanya akan mempercepat kekacauan operasional organisasi Anda. (6 min read)
+
+## Proyek & Showcase
+- [Plafon Showcase](https://abdul-zailani.github.io/projects/plafon/): Prototip aplikasi static export Next.js.
+- [Interactive Terminal CV](https://abdul-zailani.github.io/terminal/): Resume interaktif berbasis command-line interface.
+
+## Penulis
+- [Profil & Portofolio](https://abdul-zailani.github.io/): Abdul Aziz Zailani - Site Reliability Engineer & DevOps Specialist.
