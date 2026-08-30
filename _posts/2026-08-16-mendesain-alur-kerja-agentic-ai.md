@@ -108,17 +108,32 @@ Melalui alur di atas, tim SRE tidak perlu terganggu di tengah malam hanya untuk 
 
 ---
 
-## Cara Menyeimbangkan Kecepatan dan Keamanan Otomasi
+## Langkah Taktis yang Bisa Diterapkan
 
-Mendelegasikan otoritas kepada Agentic AI bukan berarti membiarkan sistem berjalan tanpa aturan. Kunci sukses dari otomatisasi modern adalah memperlakukan kecerdasan buatan seperti karyawan baru yang sedang magang: beri mereka akses terbatas, tinjau hasil kerjanya, tingkatkan wewenangnya secara berkala seiring dengan meningkatnya akurasi sistem, dan pasang pagar pengaman yang kokoh di sekitar mereka.
+Untuk mendelegasikan wewenang operasional kepada sistem agen pintar secara aman, terapkan empat langkah berikut:
 
-Dengan menata alur kerja delegasi secara bertahap, Anda dapat melipatgandakan kecepatan operasional organisasi Anda tanpa perlu mengorbankan stabilitas sistem.
+1. **Petakan Matriks Otoritas Bertingkat (*Tiered Authority*)**: Kategorikan setiap aksi operasional ke dalam Tingkat 1 (*Advisory*), Tingkat 2 (*Human-in-the-Loop*), atau Tingkat 3 (*Fully Autonomous*) berdasarkan dampak risikonya terhadap sistem.
+2. **Integrasikan Gerbang Persetujuan Satu Klik (*Interactive HITL*)**: Hubungkan agen AI dengan platform komunikasi tim (seperti Slack atau Discord via *webhook*) agar insinyur dapat menyetujui atau menolak draf mitigasi berisiko sedang dalam hitungan detik.
+3. **Terapkan Pembatasan Laju Terprogram (*Programmatic Rate Limiting*)**: Pasang pembatas frekuensi eksekusi dan kuota perubahan pada aksi Tingkat 3 guna mencegah terjadinya efek bola salju (*cascading failure*) akibat kegagalan berulang.
+4. **Evaluasi Akurasi Mitigasi Berkala (*Continuous Feedback Loop*)**: Tinjau riwayat eksekusi agen secara rutin; naikkan wewenang dari *Advisory* ke *Autonomous* hanya setelah akurasi mitigasi mencapai ambang batas yang terbukti stabil.
+
+> "Mendelegasikan tugas ke mesin bukan berarti melepaskan akuntabilitas manusia. Otomasi terbaik adalah kemitraan di mana mesin menyediakan kecepatan dan manusia memegang kendali penilaian akhir."
 
 ---
 
-**Bagaimana dengan sistem di organisasi Anda?**
+### Diskusikan Kesiapan Sistem Anda
 
-Apakah Anda sudah siap mendelegasikan tindakan otomatis ke AI, atau masih berada di tahap eksplorasi wacana? Mari kita diskusikan di kolom komentar!
+Bagaimana dengan sistem di organisasi Anda saat ini? Apakah Anda sudah siap mendelegasikan tindakan mitigasi otomatis ke AI, atau masih berada di tahap eksplorasi wacana? Mari kita diskusikan di kolom komentar!
+
+---
+
+<div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
+  <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
+  <ul class="text-sm space-y-1 text-text-secondary">
+    <li><strong>Human-in-the-Loop (HITL)</strong>: Model operasional di mana otomatisasi memerlukan verifikasi atau intervensi manusia pada titik keputusan krusial.</li>
+    <li><strong>Autonomous Agent</strong>: Perangkat lunak berbasis AI yang mampu merencanakan langkah mandiri dan mengeksekusi aksi secara otomatis untuk mencapai tujuan tertentu.</li>
+  </ul>
+</div>
 
 ---
 

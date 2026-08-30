@@ -71,17 +71,32 @@ Status pemutusan ini akan langsung memicu notifikasi eskalasi darurat ke saluran
 
 ---
 
-## Mengintegrasikan Keamanan dengan Alur Kerja SRE
+## Langkah Taktis yang Bisa Diterapkan
 
-Pembangunan pagar pengaman ini merupakan kelanjutan dari prinsip delegasi wewenang yang aman. Pada artikel sebelumnya mengenai [Mendesain Alur Kerja Agentic AI]({{ '/2026/08/16/mendesain-alur-kerja-agentic-ai/' | relative_url }}), kita membagi wewenang ke dalam tiga tingkat risiko. Lapisan keamanan di atas bertindak sebagai pelindung fisik yang memastikan pembagian tingkat tersebut dipatuhi secara absolut oleh agen.
+Untuk mengamankan agen otonom di atas klaster Kubernetes produksi, terapkan empat langkah proteksi terprogram berikut:
 
-Dengan menerapkan sistem keamanan berlapis, kita dapat memanfaatkan potensi penuh dari agen pintar untuk mempercepat penanganan insiden tanpa perlu khawatir akan stabilitas klaster Kubernetes produksi kita.
+1. **Terapkan RBAC dengan Prinsip Hak Minimum (*Least Privilege*)**: Batasi *service account* agen AI hanya pada operasi baca (`get`, `list`) dan pembaruan terbatas (`update`) pada *namespace* non-kritis, tanpa pernah memberikan wewenang `cluster-admin` atau hak hapus (`delete`).
+2. **Bangun Lapisan Validasi Aturan Keras (*Hardcoded Validator Proxy*)**: Tempatkan layanan perantara untuk memvalidasi batas parameter (seperti batas minimal-maksimal replika pod atau kapasitas memori) sebelum perintah mencapai Kubernetes API server.
+3. **Pasang Pemutus Sirkuit Otomatis (*Circuit Breaker*)**: Batasi frekuensi aksi perbaikan agen; jika mitigasi gagal tiga kali berturut-turut, bekukan akses otonom seketika dan kirimkan notifikasi darurat ke saluran Slack tim on-call SRE.
+4. **Sentralisasi Jejak Audit (*Immutable Audit Logs*)**: Catat setiap panggilan API, input instruksi, dan keputusan mitigasi agen ke sistem pemantauan terpusat untuk keperluan forensik dan evaluasi pasca-insiden.
+
+> "Di lingkungan produksi, probabilitas model AI wajib tunduk pada kepastian deterministik. Pagar pengaman bukan penghambat inovasi, melainkan fondasi kepercayaan bagi sistem otonom."
 
 ---
 
-**Bagaimana Anda mengamankan sistem otomatisasi Anda?**
+### Diskusikan Pengamanan Sistem Anda
 
-Apakah Anda sudah menerapkan pembatasan hak akses di level API, atau masih mengandalkan instruksi sistem (*system prompt*) saja? Mari diskusikan di bawah!
+Bagaimana tim Anda mengamankan sistem otomatisasi dan agen AI saat ini? Apakah sudah menerapkan pembatasan hak akses di level API, atau masih mengandalkan instruksi teks (*system prompt*) semata? Mari berbagi wawasan di kolom komentar!
+
+---
+
+<div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
+  <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
+  <ul class="text-sm space-y-1 text-text-secondary">
+    <li><strong>Least Privilege</strong>: Prinsip keamanan siber yang hanya memberikan hak akses minimum yang mutlak diperlukan untuk menyelesaikan tugas tertentu.</li>
+    <li><strong>Circuit Breaker</strong>: Mekanisme proteksi perangkat lunak yang otomatis menghentikan operasi berulang saat mendeteksi ambang batas kegagalan sistem.</li>
+  </ul>
+</div>
 
 ---
 

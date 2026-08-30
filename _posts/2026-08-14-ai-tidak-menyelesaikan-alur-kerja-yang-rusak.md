@@ -85,19 +85,32 @@ Kehadiran [agen AI otonom (Agentic AI)](https://www.ibm.com/topics/ai-agents) ti
 
 ---
 
-## Langkah Krusial Menata Alur Proses Sebelum Adopsi Teknologi
+## Langkah Taktis yang Bisa Diterapkan
 
-Transformasi digital bukan kompetisi mengadopsi teknologi terbaru karena takut tertinggal (*fear of missing out / FOMO*). Keberhasilan bergantung pada kemampuan pemimpin menyelaraskan strategi, kematangan tim (*maturity*), dan realitas operasional.
+Sebelum mengalokasikan anggaran besar untuk adopsi kecerdasan buatan, terapkan empat langkah pembenahan proses kerja berikut:
 
-Sebelum mengalokasikan anggaran besar untuk kecerdasan buatan, lakukan audit pada alur kerja internal. Benahi alur proses yang rumit, pertegas pembagian wewenang keputusan, dan bangun budaya kolaborasi yang transparan. Setelah meletakkan fondasi proses kerja yang sehat, Anda baru bisa menggunakan AI untuk melipatgandakan efisiensinya.
+1. **Audit Alur Kerja Internal (*Workflow Audit*)**: Petakan titik kemacetan (*bottleneck*) operasional dan pangkas birokrasi persetujuan manual yang tidak memberikan nilai tambah sebelum mengintegrasikan API atau model AI.
+2. **Ubah Prediksi Menjadi Instruksi Konkret**: Jangan biarkan *output* AI berhenti pada angka probabilitas abstrak di dasbor. Rancang sistem agar langsung menyajikan rekomendasi tindakan mitigasi spesifik yang siap dieksekusi tim lapangan.
+3. **Delegasikan Otoritas Keputusan**: Berikan wewenang kepada staf lini depan untuk mengeksekusi rekomendasi sistem tanpa harus menunggu persetujuan berjenjang berhari-hari.
+4. **Selaraskan KPI dengan Keputusan Data**: Sesuaikan indikator kinerja utama (*Key Performance Indicators / KPI*) karyawan agar sejalan dengan arahan efisiensi sistem, bukan bertentangan dengan rekomendasi otomatisasi.
+
+> "Teknologi adalah penguat kecepatan, bukan pembenah arah. Mengotomasi alur kerja yang berantakan hanya akan melipatgandakan kekacauan dengan kecepatan ganda."
 
 ---
 
-**Bagaimana dengan organisasi Anda saat ini?**
+### Diskusikan Pengalaman Anda
 
-Apakah tim Anda sudah memiliki alur kerja yang lincah sebelum mengadopsi AI? Atau kehadiran teknologi baru ini justru menambah birokrasi di kantor Anda? 
+Apakah tim Anda sudah memiliki alur kerja yang rapi sebelum mengadopsi AI, atau kehadiran perkakas baru ini justru menambah tumpukan birokrasi di kantor? Mari bagikan sudut pandang Anda di kolom komentar!
 
-Mari berbagi cerita dan pengalaman Anda di kolom komentar di bawah!
+---
+
+<div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
+  <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
+  <ul class="text-sm space-y-1 text-text-secondary">
+    <li><strong>Workflow Integration</strong>: Proses menyatukan sistem teknologi baru ke dalam alur kerja operasional harian secara mulus.</li>
+    <li><strong>Authority Delegation</strong>: Pelimpahan hak pengambilan keputusan kepada tim pelaksana agar tindakan operasional dapat dieksekusi secara instan.</li>
+  </ul>
+</div>
 
 ---
 

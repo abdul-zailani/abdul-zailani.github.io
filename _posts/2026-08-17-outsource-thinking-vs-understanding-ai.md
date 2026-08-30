@@ -57,25 +57,32 @@ Kemampuan menyelesaikan masalah dibentuk melalui proses mencoba, gagal, dan meng
 
 ---
 
-## Cara Sehat Belajar dengan Bantuan AI
+## Langkah Taktis yang Bisa Diterapkan
 
-Jadikan AI sebagai mentor pribadi (personalized tutor), bukan pembuat jalan pintas (shortcut maker). Gunakan pendekatan praktis berikut:
+Agar ketajaman logika dan keahlian rekayasa Anda tetap terasah saat berkolaborasi dengan kecerdasan buatan, terapkan empat prinsip berikut:
 
-1.  **Minta Penjelasan Konsep**: Ubah instruksi (prompt) dari meminta solusi langsung menjadi permintaan penjelasan alur kerja. Gunakan *"Jelaskan cara kerja algoritma QuickSort"* daripada *"Buatkan kode QuickSort"*.
-2.  **Validasi Mandiri**: Tulis ulang kode solusi AI dari awal secara mandiri untuk memastikan pemahaman logika di setiap barisnya.
-3.  **Kendali Penuh (Human-in-the-Loop)**: Posisikan dirimu sebagai pengambil keputusan utama. AI hanya berfungsi membantu draf awal. Kebenaran dan keamanan sistem tetap menjadi tanggung jawab pengembang.
+1. **Gunakan Prompt Dekonstruksi Konsep (*Concept-First Prompting*)**: Alihkan kebiasaan meminta kode jadi instan menjadi permintaan penjelasan alur kerja dan analogi sistem (contoh: *"Jelaskan trade-off antara algoritma Raft dan Paxos"* alih-alih *"Buatkan kode konsensus"*).
+2. **Ketik Ulang dan Rekonstruksi Solusi Secara Mandiri**: Tulis kembali potongan kode dari AI baris demi baris, ubah nama variabel, serta modifikasi strukturnya guna memastikan Anda memahami model mental di baliknya.
+3. **Uji Skenario Kegagalan Ekstrem (*Stress-Test the Output*)**: Tantang kode buatan AI dengan kasus batas (*edge cases*), beban konkuren tinggi, dan skenario kesalahan jaringan untuk memverifikasi keamanannya.
+4. **Pertahankan Kendali Arsitektur (*Human-Centric Ownership*)**: Posisikan AI hanya sebagai asisten riset awal atau pembuat draf; keputusan desain tingkat tinggi dan tanggung jawab stabilitas sistem tetap berada di tangan Anda.
 
-Logika dan arsitektur sistem sepenuhnya berada di bawah kendali pengembang, bukan AI.
+> "Anda boleh mendelegasikan eksekusi teknis kepada mesin, tetapi jangan pernah menyerahkan pemahaman Anda. Saat sistem produksi tumbang, yang menyelesaikan krisis adalah model mental di kepala Anda, bukan AI."
 
 ---
 
-## Kesimpulan
+### Diskusikan Pendekatan Belajar Anda
 
-AI mempercepat kecepatan kerja dan pencarian referensi. Namun, pemahaman mendalam dan intuisi pemecahan masalah tetap menjadi aset utama manusia yang tidak boleh diotomatisasi.
+Bagaimana Anda memanfaatkan AI dalam alur kerja harian? Apakah lebih sering mendelegasikan tugas mekanis (*outsource thinking*) atau pernah terjebak menyerahkan pemahaman konsep (*outsource understanding*) ke mesin? Mari bagikan refleksi Anda di kolom komentar!
 
-Sebelum menggunakan AI, pastikan alat tersebut digunakan untuk mempercepat eksekusi, bukan untuk menghindari proses berpikir.
+---
 
-Bagikan pendapatmu di kolom komentar.
+<div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
+  <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
+  <ul class="text-sm space-y-1 text-text-secondary">
+    <li><strong>Outsource Thinking</strong>: Mendelegasikan tugas mekanis atau repetitif ke mesin tanpa kehilangan kendali atas logika proses.</li>
+    <li><strong>Mental Model</strong>: Representasi pemahaman konseptual di benak seorang engineer mengenai cara kerja internal suatu sistem.</li>
+  </ul>
+</div>
 
 ---
 

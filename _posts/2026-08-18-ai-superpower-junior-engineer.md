@@ -55,15 +55,32 @@ Delegasikan tugas berulang seperti pembuatan dokumen dan pengujian kode ke AI. F
 
 ---
 
-## Cara Bijak Memanfaatkan AI
+## Langkah Taktis yang Bisa Diterapkan
 
-Agar kemampuan berpikir tidak melemah karena terlalu bergantung pada AI, terapkan langkah berikut secara konsisten:
+Untuk mengubah AI menjadi *superpower* karir rekayasa perangkat lunak Anda, lakukan empat langkah taktis berikut:
 
-1.  **Validasi Aktif**: Jangan menyalin solusi kode AI langsung ke sistem produksi. Tulis kembali kode tersebut secara mandiri dan pahami fungsi setiap barisnya.
-2.  **Fokus pada Verifikasi**: AI sering menghasilkan kode yang terlihat benar namun salah. Kuasai teknik pengujian dan audit keamanan untuk memverifikasi hasil kode.
-3.  **Desain Portofolio Berbasis Keputusan**: Buat portofolio yang menunjukkan caramu mendesain arsitektur sistem, menangani kesalahan, dan berkolaborasi dengan AI untuk menyelesaikan masalah nyata.
+1. **Percepat Triage Akar Masalah (*Root Cause Triage*)**: Gunakan AI untuk membedah *stack trace* dan pesan error yang rumit dalam hitungan detik, lalu telusuri dokumentasi resmi untuk memahami alasan teknis terjadinya galat tersebut.
+2. **Praktikkan Pemrograman Berpasangan (*AI Pair Programming*)**: Manfaatkan AI untuk menghasilkan rancangan pengujian (*test cases*) dan variasi skenario kegagalan, lalu tulis logika kode inti secara disiplin dan terstruktur.
+3. **Alihkan Waktu Belajar ke Desain Sistem (*System Architecture Focus*)**: Manfaatkan efisiensi waktu dari penulisan kode *boilerplate* untuk mendalami topik berbobot tinggi seperti arsitektur sistem terdistribusi, optimasi basis data, dan jaringan.
+4. **Bangun Portofolio Berbasis Keputusan Rekayasa**: Tunjukkan dalam proyek portofolio Anda bagaimana Anda mengevaluasi trade-off arsitektur, menangani kegagalan sistem, dan memvalidasi keamanan kode yang dihasilkan oleh AI.
 
-Industri mencari perancang sistem yang mahir memadukan logika manusia dengan komputasi AI, bukan penghafal sintaks bahasa pemrograman.
+> "AI tidak akan menggantikan insinyur perangkat lunak; AI hanya akan menggantikan mereka yang berhenti berpikir dan sekadar menjadi pengetik sintaks."
+
+---
+
+### Diskusikan Langkah Karir Anda
+
+Sebagai *engineer*, strategi apa yang paling efektif bagi Anda dalam memanfaatkan AI saat ini? Apakah Anda menggunakannya sebagai rekan *debugging*, atau fokus merancang arsitektur sistem? Mari diskusikan di kolom komentar!
+
+---
+
+<div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
+  <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
+  <ul class="text-sm space-y-1 text-text-secondary">
+    <li><strong>Pair Programming</strong>: Praktik rekayasa perangkat lunak di mana dua pihak berkolaborasi bersama pada satu basis kode secara aktif.</li>
+    <li><strong>Stack Trace</strong>: Laporan jejak eksekusi fungsi dan alur panggilan program sesaat sebelum terjadinya error pada sistem.</li>
+  </ul>
+</div>
 
 ---
 
