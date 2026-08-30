@@ -1,12 +1,27 @@
 ---
 layout: post
-title: "SRE & Security Handbook: Modern Identity & Authentication Infrastructure"
-date: 2026-08-21 16:45:00 +0700
-categories: [engineering, architecture, sre, security]
-tags: [handbook, sre, authentication, security, aws-cognito, bff, identity-fabric, ietf, owasp]
-description: "Buku panduan arsitektur modern identity, authentication infrastructure, Cognito, BFF proxy, dan SRE runbook mitigasi kegagalan sistemik."
-reading_time: "⏱️ 12 min read"
-image: "/assets/images/infra-preview.png"
+title: 'SRE & Security Handbook: Modern Identity & Authentication Infrastructure'
+date: '2026-08-21 16:45:00 +0700'
+categories:
+  - engineering
+  - architecture
+  - sre
+  - security
+tags:
+  - handbook
+  - sre
+  - authentication
+  - security
+  - aws-cognito
+  - bff
+  - identity-fabric
+  - ietf
+  - owasp
+description: >-
+  Buku panduan arsitektur modern identity, authentication infrastructure,
+  Cognito, BFF proxy, dan SRE runbook mitigasi kegagalan sistemik.
+reading_time: 10 min read
+image: /assets/images/infra-preview.webp
 ---
 
 Autentikasi dan Single Sign-On (SSO) merupakan komponen infrastruktur krusial yang berdampak langsung pada ketersediaan sistem (availability) dan postur keamanan organisasi. Kegagalan pada sistem autentikasi bertindak sebagai titik kegagalan tunggal (single point of failure) yang dapat melumpuhkan seluruh layanan mikro, sekaligus menjadi target utama serangan kebocoran kredensial dan eksploitasi token.
@@ -157,17 +172,15 @@ Untuk memigrasikan data pengguna dari basis data monolit lama ke Managed IdP tan
 
 ---
 
-## Chapter 6: Matriks Infrastruktur & Kepatuhan
+## Chapter 6: Matriks Keputusan Arsitektur & Kepatuhan
 
-Gunakan panduan berikut untuk menentukan opsi deployment autentikasi yang sesuai dengan kebutuhan ketersediaan sistem dan standar kepatuhan (compliance):
+Gunakan panduan berikut untuk menentukan opsi deployment autentikasi yang sesuai dengan kebutuhan ketersediaan sistem dan standar kepatuhan (*compliance*):
 
 | Kebutuhan Infrastruktur & Kepatuhan | Opsi Rekomendasi | Arsitektur & Keamanan |
 | :--- | :--- | :--- |
-| Membutuhkan skalabilitas tinggi, pemeliharaan minimal, dan pemenuhan standar kepatuhan industri (SOC 2 Type II, ISO 27001, HIPAA) secara instan. | **Managed Cloud IdP** (Cognito / Auth0) | Integrasikan menggunakan BFF pattern untuk mengamankan pertukaran token di layer backend. |
-| Regulasi ketat (seperti kedaulatan data finansial atau PCI-DSS lokal) mewajibkan penyimpanan data identitas di cluster tertutup (air-gapped network). | **Self-Hosted Open-Source IdP** (Keycloak / Zitadel) | Deploy di cluster Kubernetes privat dengan hardening keamanan OS, backup terenkripsi, dan HPA dinamis. |
-| Ingin membangun solusi kustom sendiri dengan alasan performa latensi mikro tanpa biaya lisensi. | **Sangat Tidak Direkomendasikan** | Menambah celah keamanan OWASP, beban audit pentest mandiri, dan kerentanan Denial of Service (DoS). |
-
-Mengalokasikan resource SRE untuk membangun ulang sistem autentikasi dari nol merupakan langkah tidak efisien dan memperbesar liabilitas keamanan (security liability). Pilihlah opsi managed atau platform open-source teruji, dan biarkan tim fokus pada performa keandalan sistem inti.
+| Skalabilitas elastis, zero maintenance server, kepatuhan instan (SOC 2, ISO 27001). | **Managed Cloud IdP** (AWS Cognito / Auth0) | Integrasikan menggunakan pola BFF untuk mengamankan pertukaran token di backend. |
+| Regulasi kedaulatan data finansial ketat / jaringan tertutup (*air-gapped network*). | **Self-Hosted Open-Source IdP** (Keycloak / Zitadel) | Deploy di Kubernetes privat dengan enkripsi penyimpanan dan backup terotomatisasi. |
+| Membangun server autentikasi sendiri dari nol (*In-House Auth Engine*). | **Sangat Tidak Direkomendasikan** | Memperbesar liabilitas keamanan (*OWASP vulnerabilities*) dan menyedot kapasitas tim. |
 
 ---
 

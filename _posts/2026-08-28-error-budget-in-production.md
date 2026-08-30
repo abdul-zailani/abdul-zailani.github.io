@@ -1,14 +1,27 @@
 ---
 layout: post
-title: "Implementasi Error Budget di Produksi: Praktik Nyata Melampaui Teori SRE"
-date: 2026-08-28 09:00:00 +0700
-categories: [SRE, Infrastruktur]
-tags: [SRE, Error Budget, SLO, Prometheus, Alertmanager, Grafana, Observability]
-description: "Panduan praktis implementasi error budget dengan SLO 99.5%, multi-window alerting, dan consequence engine berbasis Prometheus & Alertmanager."
-excerpt: "Error budget adalah kuota kegagalan yang dapat diterima. Pelajari cara menghitung, memonitor, dan menegakkannya di produksi dengan SLO 99.5%."
-reading_time: "⏱️ 8 min read"
+title: 'Implementasi Error Budget di Produksi: Praktik Nyata Melampaui Teori SRE'
+date: '2026-08-28 09:00:00 +0700'
+categories:
+  - SRE
+  - Infrastruktur
+tags:
+  - SRE
+  - Error Budget
+  - SLO
+  - Prometheus
+  - Alertmanager
+  - Grafana
+  - Observability
+description: >-
+  Panduan praktis implementasi error budget dengan SLO 99.5%, multi-window
+  alerting, dan consequence engine berbasis Prometheus & Alertmanager.
+excerpt: >-
+  Error budget adalah kuota kegagalan yang dapat diterima. Pelajari cara
+  menghitung, memonitor, dan menegakkannya di produksi dengan SLO 99.5%.
+reading_time: 7 min read
 mermaid: true
-image: "/assets/images/error-budget-in-production.png"
+image: /assets/images/error-budget-in-production.webp
 ---
 
 > ### 🎯 Ringkasan Utama (Key Takeaways)
@@ -183,7 +196,7 @@ Pendekatan ini sejalan dengan upaya kita dalam [Mengatasi Overload Tooling dalam
 | **< 10%** | *Emergency Reliability Mode* | Seluruh kapasitas rekayasa dialihkan untuk stabilitas sistem dan perbaikan performa. |
 | **0% (Exhausted)** | *Mandatory Post-Mortem* | Pembekuan total hingga akar masalah tuntas dan proses evaluasi RCA (*Root Cause Analysis*) selesai. |
 
-Dengan aturan tertulis ini, perdebatan antara tim pengembang yang ingin merilis fitur cepat dan tim operasional yang menjaga stabilitas dapat diselesaikan secara objektif berdasarkan data.
+Dengan aturan tertulis ini, perdebatan abadi antara tim pengembang yang ingin merilis fitur cepat dan tim operasional yang menjaga keandalan sistem dapat diselesaikan secara objektif berdasarkan data metrik terukur.
 
 ---
 

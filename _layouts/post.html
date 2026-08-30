@@ -26,7 +26,10 @@ layout: default
 
     <!-- Main Content Wrapper (id="main-wrapper") -->
     <div id="main-wrapper" class="min-w-0 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0] p-6 md:p-10 shadow-sm">
-    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <article class="post h-entry" itemscope itemtype="http://schema.org/TechArticle">
+      <meta itemprop="proficiencyLevel" content="Expert">
+      <meta itemprop="inLanguage" content="id-ID">
+      {%- if page.tags -%}<meta itemprop="keywords" content="{{ page.tags | join: ', ' }}">{%- endif -%}
       <header class="post-header mb-8 pb-6 border-b border-[#E2E8F0]">
         <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-[#0F172A] mb-4 leading-tight" itemprop="name headline">{{ page.title | escape }}</h1>
         <div class="post-meta flex flex-wrap items-center gap-3 text-sm text-[#64748B]">
@@ -643,6 +646,56 @@ layout: default
     }, { passive: true });
 
     updateActiveToc();
+  });
+</script>
+
+<!-- Medium Zoom Lightbox for Article Images & Diagrams -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function initMediumZoom() {
+      if (window.mediumZoom) {
+        window.mediumZoom('.post-content img:not(.no-zoom)', {
+          margin: 24,
+          background: 'rgba(15, 23, 42, 0.92)'
+        });
+      } else {
+        setTimeout(initMediumZoom, 100);
+      }
+    }
+    initMediumZoom();
+
+    // Copy Code Block Button Component
+    const codeBlocks = document.querySelectorAll(".post-content pre, .post-content .highlighter-rouge pre");
+    codeBlocks.forEach(function(pre) {
+      const parent = pre.parentElement;
+      if (parent) {
+        parent.style.position = "relative";
+      }
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "copy-code-btn absolute top-2.5 right-2.5 px-2.5 py-1 text-[11px] font-mono text-slate-300 hover:text-white bg-slate-800/85 hover:bg-slate-700/90 border border-slate-700/80 rounded shadow-sm transition-all flex items-center gap-1.5 cursor-pointer z-10 select-none";
+      copyBtn.setAttribute("aria-label", "Copy code snippet");
+      copyBtn.innerHTML = '<span class="material-symbols-outlined text-[14px]">content_copy</span><span>Copy</span>';
+
+      copyBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        const codeElement = pre.querySelector("code");
+        const codeText = codeElement ? codeElement.innerText : pre.innerText;
+        navigator.clipboard.writeText(codeText.trimEnd()).then(function() {
+          copyBtn.innerHTML = '<span class="material-symbols-outlined text-[14px] text-emerald-400">check</span><span class="text-emerald-400 font-semibold">Copied!</span>';
+          copyBtn.classList.add("border-emerald-500/60");
+          setTimeout(function() {
+            copyBtn.innerHTML = '<span class="material-symbols-outlined text-[14px]">content_copy</span><span>Copy</span>';
+            copyBtn.classList.remove("border-emerald-500/60");
+          }, 2000);
+        }).catch(function(err) {
+          console.error("Gagal menyalin kode:", err);
+        });
+      });
+
+      pre.appendChild(copyBtn);
+    });
   });
 </script>
 

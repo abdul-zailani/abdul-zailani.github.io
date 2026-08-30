@@ -7,6 +7,15 @@ future: true
 twitter_username: aazizzailani
 github_username: abdul-zailani
 
+# Plugins Jekyll
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Privacy-friendly analytics (GoatCounter code, e.g. "abdul-zailani")
+goatcounter_code: ""
+
 # Konfigurasi agar folder blog di-scan oleh jekyll sebagai posts
 permalink: /:year/:month/:day/:title/
 
@@ -27,4 +36,3 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-

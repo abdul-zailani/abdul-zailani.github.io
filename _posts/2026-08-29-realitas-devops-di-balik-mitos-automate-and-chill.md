@@ -1,13 +1,29 @@
 ---
 layout: post
-title: "Realitas DevOps di Balik Mitos 'Automate and Chill': Mengapa Otomasi Bukan Berarti Duduk Santai"
-date: 2026-08-29 09:00:00 +0700
-categories: [DevOps, SRE]
-tags: [DevOps, SRE, Kubernetes, Observability, Alert Fatigue, On-Call, Produksi]
-description: "Membongkar paradoks 'automate and chill' di dunia DevOps. Dari CrashLoopBackOff, etcd timeout, hingga badai alert jam 3 pagi beserta strategi mitigasinya."
-excerpt: "Otomasi bukan tiket untuk duduk santai. Simak anatomi beban kerja SRE nyata, mitigasi CrashLoopBackOff, etcd timeout, dan cara menghindari burnout on-call."
-reading_time: "⏱️ 7 min read"
-image: "/assets/images/real-devops-job-vs-myth.png"
+title: >-
+  Realitas DevOps di Balik Mitos 'Automate and Chill': Mengapa Otomasi Bukan
+  Berarti Duduk Santai
+date: '2026-08-29 09:00:00 +0700'
+categories:
+  - DevOps
+  - SRE
+tags:
+  - DevOps
+  - SRE
+  - Kubernetes
+  - Observability
+  - Alert Fatigue
+  - On-Call
+  - Produksi
+description: >-
+  Membongkar paradoks 'automate and chill' di dunia DevOps. Dari
+  CrashLoopBackOff, etcd timeout, hingga badai alert jam 3 pagi beserta strategi
+  mitigasinya.
+excerpt: >-
+  Otomasi bukan tiket untuk duduk santai. Simak anatomi beban kerja SRE nyata,
+  mitigasi CrashLoopBackOff, etcd timeout, dan cara menghindari burnout on-call.
+reading_time: 8 min read
+image: /assets/images/real-devops-job-vs-myth.webp
 mermaid: true
 ---
 

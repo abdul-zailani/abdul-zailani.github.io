@@ -1,0 +1,72 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  {%- if page.url == '/' or page.url == '/index.html' -%}
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "{{ site.url }}/#person",
+    "name": "{{ site.title }}",
+    "alternateName": "Aziz",
+    "jobTitle": "Site Reliability Engineer & DevOps Specialist",
+    "description": "{{ site.description }}",
+    "url": "{{ site.url }}",
+    "image": "https://avatars.githubusercontent.com/u/15291772?v=4",
+    "sameAs": [
+      "https://github.com/{{ site.github_username }}",
+      "https://x.com/{{ site.twitter_username }}"
+    ],
+    "knowsAbout": [
+      "Site Reliability Engineering",
+      "DevOps",
+      "Kubernetes",
+      "AWS Cloud Infrastructure",
+      "CI/CD Automation",
+      "Observability & Monitoring"
+    ]
+  }
+  {%- elsif page.layout == 'post' -%}
+  "@type": "TechArticle",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 180 | jsonify }},
+  "image": "{{ page.image | absolute_url }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "inLanguage": "id-ID",
+  "proficiencyLevel": "Expert",
+  "author": {
+    "@type": "Person",
+    "@id": "{{ site.url }}/#person",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "{{ site.url }}/#person",
+    "name": "{{ site.title }}"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  }
+  {%- if page.tags -%},"keywords": {{ page.tags | join: ', ' | jsonify }}{%- endif -%}
+  {%- else -%}
+  "@type": "WebPage",
+  "name": {{ page.title | default: site.title | jsonify }},
+  "url": "{{ page.url | absolute_url }}"
+  {%- endif -%}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }} - SRE & DevOps Engineering",
+  "url": "{{ site.url }}/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/blog/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
