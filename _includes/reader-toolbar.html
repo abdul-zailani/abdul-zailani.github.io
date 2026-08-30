@@ -1,0 +1,96 @@
+<!-- Top Reading Progress Indicator (Cross-Browser JS Driven) -->
+<div id="reading-progress-bar" class="reading-progress-bar" role="progressbar" aria-label="Progres Membaca Artikel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- Floating Reader Controls Dock -->
+<aside id="reader-controls-dock" class="fixed bottom-6 right-6 z-40 select-none flex flex-col items-end gap-2" role="region" aria-label="Bilah Kontrol Membaca">
+  
+  <!-- Reader Settings Popover (Hidden by default) -->
+  <div id="reader-settings-popover" class="hidden opacity-0 translate-y-2 transition-all duration-200 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-4 w-72 mb-2 backdrop-blur-md">
+    <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
+      <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Pengaturan Baca</span>
+      <button id="reader-close-popover" type="button" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm cursor-pointer p-1" aria-label="Tutup Pengaturan">✕</button>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="mb-3.5">
+      <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400 block mb-1.5 font-semibold">Tema Latar</span>
+      <div class="grid grid-cols-5 gap-1.5" role="radiogroup" aria-label="Pilih Tema Baca">
+        <button type="button" data-theme="default" class="theme-btn h-8 rounded-lg border border-slate-200 dark:border-slate-700 bg-[#FAF9F8] text-[#0F172A] text-xs font-bold flex items-center justify-center hover:scale-105 transition-transform cursor-pointer" title="Paper (Default)">☀️</button>
+        <button type="button" data-theme="sepia" class="theme-btn h-8 rounded-lg border border-[#EAD8B1] bg-[#FBF0D9] text-[#433422] text-xs font-bold flex items-center justify-center hover:scale-105 transition-transform cursor-pointer" title="Sepia (Hangat)">📜</button>
+        <button type="button" data-theme="solarized" class="theme-btn h-8 rounded-lg border border-[#073642] bg-[#002B36] text-[#93A1A1] text-xs font-bold flex items-center justify-center hover:scale-105 transition-transform cursor-pointer" title="Solarized">🌌</button>
+        <button type="button" data-theme="dark" class="theme-btn h-8 rounded-lg border border-slate-700 bg-[#0B0F19] text-[#E2E8F0] text-xs font-bold flex items-center justify-center hover:scale-105 transition-transform cursor-pointer" title="Slate Dark">🌙</button>
+        <button type="button" data-theme="oled" class="theme-btn h-8 rounded-lg border border-slate-800 bg-[#000000] text-[#D1D5DB] text-xs font-bold flex items-center justify-center hover:scale-105 transition-transform cursor-pointer" title="OLED Black">⬛</button>
+      </div>
+    </div>
+
+    <!-- Font Sizing -->
+    <div class="mb-3.5">
+      <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400 block mb-1.5 font-semibold">Ukuran Teks</span>
+      <div class="flex items-center justify-between gap-2 bg-slate-50 dark:bg-slate-800/60 p-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
+        <button id="font-decrease-btn" type="button" class="w-9 h-7 rounded-lg bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-mono font-bold text-xs shadow-xs border border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600 cursor-pointer" title="Perkecil Ukuran Huruf (Shortcut: -)">A−</button>
+        <span id="font-size-label" class="text-xs font-mono font-semibold text-slate-600 dark:text-slate-300">100%</span>
+        <button id="font-increase-btn" type="button" class="w-9 h-7 rounded-lg bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-mono font-bold text-xs shadow-xs border border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600 cursor-pointer" title="Perbesar Ukuran Huruf (Shortcut: +)">A+</button>
+      </div>
+    </div>
+
+    <!-- Font Family -->
+    <div>
+      <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400 block mb-1.5 font-semibold">Gaya Huruf</span>
+      <div class="grid grid-cols-2 gap-1.5">
+        <button type="button" data-family="sans" class="font-family-btn py-1.5 px-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-sans text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer text-center">Sans-Serif</button>
+        <button type="button" data-family="serif" class="font-family-btn py-1.5 px-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-serif text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer text-center">Serif Editorial</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio TTS Player Panel (Hidden by default) -->
+  <div id="reader-tts-panel" class="hidden opacity-0 translate-y-2 transition-all duration-200 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-3.5 w-76 mb-2 backdrop-blur-md">
+    <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800 mb-2.5">
+      <div class="flex items-center gap-2">
+        <span class="relative flex h-2.5 w-2.5">
+          <span id="tts-live-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75 hidden"></span>
+          <span id="tts-live-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-400"></span>
+        </span>
+        <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-200">Audio Narasi Artikel</span>
+      </div>
+      <button id="reader-close-tts" type="button" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs cursor-pointer p-1" aria-label="Tutup Audio">✕</button>
+    </div>
+    
+    <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-3 truncate" id="tts-current-reading">Siap memutar audio...</div>
+
+    <div class="flex items-center justify-between gap-1.5">
+      <button id="tts-play-btn" type="button" class="flex-1 py-1.5 px-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-mono text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs cursor-pointer">
+        <span id="tts-play-icon">▶</span>
+        <span id="tts-play-text">Putar</span>
+      </button>
+      <button id="tts-speed-btn" type="button" class="py-1.5 px-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-mono text-xs font-semibold cursor-pointer" title="Ubah Kecepatan">1.0x</button>
+      <button id="tts-stop-btn" type="button" class="py-1.5 px-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-950 dark:hover:text-red-400 text-slate-600 dark:text-slate-300 font-mono text-xs font-semibold cursor-pointer" title="Hentikan">⏹</button>
+    </div>
+  </div>
+
+  <!-- Primary Floating Action Dock -->
+  <div class="flex items-center gap-1.5 bg-white/95 dark:bg-slate-900/95 border border-slate-200/90 dark:border-slate-800/90 rounded-full shadow-lg p-1.5 backdrop-blur-md" role="toolbar" aria-label="Menu Opsi Membaca">
+    <!-- Zen Focus Mode Toggle -->
+    <button id="btn-toggle-zen" type="button" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-sky-400 transition-colors cursor-pointer relative" title="Mode Zen / Fokus (Shortcut: Z)" aria-label="Aktifkan Mode Zen">
+      <span class="text-sm">🧘</span>
+      <span id="zen-active-dot" class="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-600 rounded-full hidden"></span>
+    </button>
+
+    <!-- Bionic Reading Toggle -->
+    <button id="btn-toggle-bionic" type="button" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-sky-400 transition-colors cursor-pointer relative" title="Bionic Speed Reading (Shortcut: B)" aria-label="Aktifkan Bionic Reading">
+      <span class="text-xs font-mono font-black tracking-tighter">B<span class="opacity-40 font-normal">io</span></span>
+      <span id="bionic-active-dot" class="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-600 rounded-full hidden"></span>
+    </button>
+
+    <!-- TTS Audio Player Toggle -->
+    <button id="btn-toggle-tts" type="button" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-sky-400 transition-colors cursor-pointer relative" title="Dengarkan Artikel (Shortcut: T)" aria-label="Buka Pemutar Suara Artikel">
+      <span class="text-sm">🔊</span>
+      <span id="tts-dock-dot" class="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-600 rounded-full hidden"></span>
+    </button>
+
+    <!-- Reading Settings Toggle (Theme & Typography) -->
+    <button id="btn-toggle-settings" type="button" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-sky-400 transition-colors cursor-pointer" title="Pengaturan Tampilan & Tema" aria-label="Buka Pengaturan Baca">
+      <span class="text-sm">🎨</span>
+    </button>
+  </div>
+</aside>

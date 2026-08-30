@@ -23,6 +23,18 @@
       font-family: "Caveat", "Comic Sans MS", "Chalkboard SE", cursive, sans-serif;
     }
   </style>
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('reader-theme');
+        if (theme) document.documentElement.setAttribute('data-reading-theme', theme);
+        var size = localStorage.getItem('reader-font-size');
+        if (size) document.documentElement.style.setProperty('--reader-font-size', size);
+        var family = localStorage.getItem('reader-font-family');
+        if (family) document.documentElement.style.setProperty('--reader-font-family', family);
+      } catch (e) {}
+    })();
+  </script>
   {%- feed_meta -%}
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
   <link rel="icon" type="image/png" href="{{ '/favicon.png' | relative_url }}">
