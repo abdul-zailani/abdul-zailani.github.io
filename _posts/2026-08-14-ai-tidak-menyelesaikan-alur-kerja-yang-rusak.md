@@ -141,7 +141,7 @@ Apakah tim Anda sudah memiliki alur kerja yang rapi sebelum mengadopsi AI, atau 
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Harvard Business Review: AI Doesn't Fix Broken Processes](https://hbr.org/)
 * [MIT Sloan: When AI Meets Process Redesign](https://sloanreview.mit.edu/)

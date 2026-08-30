@@ -392,7 +392,7 @@ Apakah arsitektur CI/CD di tim Anda masih menggunakan pendekatan pemuatan skrip 
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Jenkins Official Documentation: Extending with Shared Libraries](https://www.jenkins.io/doc/book/pipeline/shared-libraries/)
 * [Jenkins Configuration as Code (JCasC) Documentation](https://plugins.jenkins.io/configuration-as-code/)

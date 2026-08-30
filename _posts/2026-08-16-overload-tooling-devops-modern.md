@@ -106,7 +106,7 @@ Bagaimana kondisi tumpukan perkakas di organisasi Anda saat ini? Apakah Anda mer
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Team Topologies: Organizing Business and Technology Teams for Fast Flow](https://teamtopologies.com/)
 * [CNCF Platform Engineering Whitepaper](https://tag-app-delivery.cncf.io/whitepapers/platform-eng/)

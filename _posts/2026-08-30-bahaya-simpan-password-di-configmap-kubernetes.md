@@ -185,7 +185,7 @@ Tiga tindakan yang bisa Anda jalankan hari ini untuk mengamankan kluster:
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Kubernetes Documentation: Secrets Management Best Practices](https://kubernetes.io/docs/concepts/configuration/secret/)
 * [External Secrets Operator (ESO) Official Documentation](https://external-secrets.io/latest/)
