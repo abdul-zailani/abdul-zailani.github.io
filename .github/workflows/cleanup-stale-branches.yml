@@ -1,0 +1,114 @@
+name: Cleanup Stale Branches
+
+on:
+  schedule:
+    # Berjalan otomatis setiap hari pukul 02:00 UTC (09:00 WIB)
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Mode Simulasi / Dry Run (Hanya tampilkan log tanpa menghapus)'
+        type: boolean
+        required: false
+        default: false
+      days_stale:
+        description: 'Batas hari tidak aktif sebelum dihapus'
+        type: number
+        required: false
+        default: 3
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  cleanup:
+    name: Delete Stale Branches (>3 Days)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan & Delete Stale Branches
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const dryRun = context.payload.inputs?.dry_run ?? false;
+            const daysStale = Number(context.payload.inputs?.days_stale ?? 3);
+            const protectedBranches = ['main', 'gh-pages'];
+            const cutoffDate = new Date(Date.now() - (daysStale * 24 * 60 * 60 * 1000));
+
+            console.log(`[INFO] Mode: ${dryRun ? 'DRY-RUN (Simulasi)' : 'ACTIVE (Penghapusan Nyata)'}`);
+            console.log(`[INFO] Batas waktu kadaluarsa: ${cutoffDate.toISOString()} (${daysStale} hari)`);
+            console.log(`[INFO] Protected branches: ${protectedBranches.join(', ')}`);
+
+            // 1. Ambil seluruh Open Pull Request untuk mencegah penghapusan cabang yang sedang aktif direview
+            const openPRs = await github.paginate(github.rest.pulls.list, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
+            const openPrBranches = new Set(openPRs.map(pr => pr.head.ref));
+            console.log(`[INFO] Cabang dengan Open PR aktif: ${Array.from(openPrBranches).join(', ') || 'Tidak ada'}\n`);
+
+            // 2. Ambil seluruh cabang di repository
+            const branches = await github.paginate(github.rest.repos.listBranches, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              protected: false
+            });
+
+            let deletedCount = 0;
+            let skippedCount = 0;
+
+            for (const branch of branches) {
+              const branchName = branch.name;
+
+              // Lewati protected branches
+              if (protectedBranches.includes(branchName)) {
+                console.log(`[PROTECTED] Cabang utama/deployment: ${branchName} (DILEWATI)`);
+                skippedCount++;
+                continue;
+              }
+
+              // Lewati cabang yang memiliki open PR aktif
+              if (openPrBranches.has(branchName)) {
+                console.log(`[OPEN PR] Cabang memiliki PR aktif: ${branchName} (DILEWATI)`);
+                skippedCount++;
+                continue;
+              }
+
+              // Dapatkan tanggal komit terakhir pada cabang
+              try {
+                const commit = await github.rest.repos.getCommit({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: branch.commit.sha
+                });
+
+                const commitDate = new Date(commit.data.commit.committer.date || commit.data.commit.author.date);
+                const ageDays = ((Date.now() - commitDate.getTime()) / (1000 * 60 * 60 * 24)).toFixed(1);
+
+                if (commitDate < cutoffDate) {
+                  if (dryRun) {
+                    console.log(`[DRY-RUN] Akan dihapus: ${branchName} (Terakhir aktif: ${ageDays} hari lalu)`);
+                  } else {
+                    console.log(`[DELETE] Menghapus cabang stale: ${branchName} (Terakhir aktif: ${ageDays} hari lalu)`);
+                    await github.rest.git.deleteRef({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      ref: `heads/${branchName}`
+                    });
+                  }
+                  deletedCount++;
+                } else {
+                  console.log(`[ACTIVE] Masih dalam batas waktu: ${branchName} (Terakhir aktif: ${ageDays} hari lalu - DIPERTAHANKAN)`);
+                  skippedCount++;
+                }
+              } catch (err) {
+                console.warn(`[ERROR] Gagal memproses branch ${branchName}:`, err.message);
+                skippedCount++;
+              }
+            }
+
+            console.log(`\n========================================`);
+            console.log(`Laporan: ${deletedCount} cabang ${dryRun ? 'dapat dihapus' : 'berhasil dihapus'}, ${skippedCount} cabang dipertahankan.`);
+            console.log(`========================================`);
