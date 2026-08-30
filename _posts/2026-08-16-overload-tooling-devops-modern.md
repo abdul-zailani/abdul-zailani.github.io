@@ -83,9 +83,12 @@ Untuk memangkas tumpukan perkakas dan mengatasi kelelahan kognitif (*cognitive o
 
 ---
 
-### Diskusikan Kondisi Tim Anda
+## Referensi & Bacaan Lanjutan
 
-Bagaimana kondisi tumpukan perkakas di organisasi Anda saat ini? Apakah Anda merasa kewalahan dengan jumlah konfigurasi YAML yang harus diurus setiap hari, atau sudah berhasil menyederhanakannya melalui rekayasa platform? Mari bagikan pengalaman Anda di kolom komentar!
+* [Team Topologies: Organizing Business and Technology Teams for Fast Flow](https://teamtopologies.com/)
+* [CNCF Platform Engineering Whitepaper](https://tag-app-delivery.cncf.io/whitepapers/platform-eng/)
+* [DORA Research: State of DevOps and Developer Productivity](https://dora.dev/)
+* [Gartner: Platform Engineering as a Top Strategic Technology Trend](https://www.gartner.com/en/articles/what-is-platform-engineering)
 
 ---
 
