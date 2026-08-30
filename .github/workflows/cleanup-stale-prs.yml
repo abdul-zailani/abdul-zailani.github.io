@@ -1,0 +1,126 @@
+name: Cleanup Stale Pull Requests
+
+on:
+  schedule:
+    # Berjalan otomatis setiap hari pukul 03:00 UTC (10:00 WIB)
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Mode Simulasi / Dry Run (Hanya tampilkan log tanpa menutup PR)'
+        type: boolean
+        required: false
+        default: false
+      days_stale:
+        description: 'Batas hari tidak aktif sebelum ditutup'
+        type: number
+        required: false
+        default: 3
+      delete_branch:
+        description: 'Hapus juga cabang PR yang ditutup'
+        type: boolean
+        required: false
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  cleanup-prs:
+    name: Close Stale Pull Requests (>3 Days)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan & Close Inactive Pull Requests
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const dryRun = context.payload.inputs?.dry_run ?? false;
+            const daysStale = Number(context.payload.inputs?.days_stale ?? 3);
+            const deleteBranch = context.payload.inputs?.delete_branch ?? true;
+            const cutoffDate = new Date(Date.now() - (daysStale * 24 * 60 * 60 * 1000));
+            const protectedBranches = ['main', 'gh-pages'];
+
+            console.log(`[INFO] Mode: ${dryRun ? 'DRY-RUN (Simulasi)' : 'ACTIVE (Penutupan Nyata)'}`);
+            console.log(`[INFO] Batas waktu inaktivitas: ${cutoffDate.toISOString()} (${daysStale} hari)`);
+
+            // 1. Ambil seluruh Open Pull Request
+            const openPRs = await github.paginate(github.rest.pulls.list, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
+
+            if (openPRs.length === 0) {
+              console.log('[INFO] Tidak ada Pull Request yang berstatus Open saat ini.');
+              return;
+            }
+
+            console.log(`[INFO] Ditemukan ${openPRs.length} Open Pull Request untuk diperiksa...\n`);
+
+            let closedCount = 0;
+            let keptCount = 0;
+
+            for (const pr of openPRs) {
+              const prNumber = pr.number;
+              const prTitle = pr.title;
+              const headRef = pr.head.ref;
+              const lastUpdatedDate = new Date(pr.updated_at);
+              const ageDays = ((Date.now() - lastUpdatedDate.getTime()) / (1000 * 60 * 60 * 24)).toFixed(1);
+
+              // Cek apakah usia inaktivitas melampaui batas hari
+              if (lastUpdatedDate < cutoffDate) {
+                if (dryRun) {
+                  console.log(`[DRY-RUN] Akan ditutup: PR #${prNumber} "${prTitle}" (Inaktif: ${ageDays} hari lalu)`);
+                  if (deleteBranch && !protectedBranches.includes(headRef)) {
+                    console.log(`[DRY-RUN] Akan menghapus head branch: ${headRef}`);
+                  }
+                } else {
+                  console.log(`[CLOSE] Menutup PR #${prNumber} "${prTitle}" (Inaktif: ${ageDays} hari lalu)`);
+
+                  // 1. Berikan komentar penutupan otomatis yang informatif
+                  try {
+                    await github.rest.issues.createComment({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: prNumber,
+                      body: `> [!NOTE]\n> **Pull Request Stale Notification**\n>\n> Pull Request ini ditutup secara otomatis karena tidak ada aktivitas penggabungan (*merge*) atau pembaruan komit selama lebih dari **${daysStale} hari**.\n>\n> Silakan buka kembali (*reopen*) atau buat PR baru jika ingin melanjutkan pengembangan ini.`
+                    });
+                  } catch (err) {
+                    console.warn(`[WARN] Gagal menambahkan komentar pada PR #${prNumber}:`, err.message);
+                  }
+
+                  // 2. Ubah status PR menjadi Closed
+                  await github.rest.pulls.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: prNumber,
+                    state: 'closed'
+                  });
+
+                  // 3. Hapus head branch jika diizinkan dan bukan protected branch
+                  if (deleteBranch && !protectedBranches.includes(headRef) && pr.head.repo?.full_name === `${context.repo.owner}/${context.repo.repo}`) {
+                    try {
+                      console.log(`[DELETE BRANCH] Menghapus cabang terkait: ${headRef}`);
+                      await github.rest.git.deleteRef({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        ref: `heads/${headRef}`
+                      });
+                    } catch (err) {
+                      console.warn(`[WARN] Gagal menghapus branch ${headRef}:`, err.message);
+                    }
+                  }
+                }
+                closedCount++;
+              } else {
+                console.log(`[ACTIVE] PR #${prNumber} "${prTitle}" masih aktif (Diperbarui: ${ageDays} hari lalu - DIPERTAHANKAN)`);
+                keptCount++;
+              }
+            }
+
+            console.log(`\n========================================`);
+            console.log(`Laporan: ${closedCount} PR ${dryRun ? 'dapat ditutup' : 'berhasil ditutup'}, ${keptCount} PR dipertahankan.`);
+            console.log(`========================================`);
