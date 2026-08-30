@@ -25,8 +25,7 @@ excerpt: >-
   memicu double checkout, memory leak di Jenkins Master, dan beban pemeliharaan
   masif. Simak strategi refactoring ke native Jenkins Shared Library.
 reading_time: 10 min read
-image: >-
-  https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=1200&q=80
+image: "/assets/images/jenkins-shared-library-anti-pattern.png"
 mermaid: true
 ---
 
@@ -42,6 +41,19 @@ Jika tim Anda mendistribusikan logika pipeline antar-layanan menggunakan perinta
 > 2. **Dampak laten pada performa dan stabilitas Master**: Pemuatan skrip anonim berulang memicu pembuatan *dynamic class loader* di memori *Metaspace* JVM, meningkatkan risiko latensi *Garbage Collection* hingga kegagalan *Out Of Memory* (OOM).
 > 3. **Redundansi Git I/O dan izin akses Docker**: Pola kloning repositori pustaka ke dalam direktori kerja *build* memicu *double checkout bug* dan memicu konflik izin berkas (*permission lock*) saat kontainer dijalankan dengan pengguna *root*.
 > 4. **Modernisasi deklaratif via JCasC**: Mengintegrasikan *Jenkins Configuration as Code* dengan *Native Shared Library* (`vars/`, `src/`) memangkas 100+ baris *boilerplate* di setiap repositori menjadi deklarasi satu fungsi yang ringkas dan terstandarisasi.
+
+<figure>
+  <img 
+    src="{{ '/assets/images/jenkins-shared-library-anti-pattern.png' | relative_url }}" 
+    width="1200" 
+    height="675" 
+    loading="eager" 
+    fetchpriority="high" 
+    decoding="async" 
+    alt="Infografis Arsitektur Jenkins Shared Library vs Groovy Load Anti-Pattern"
+  >
+  <figcaption>Perbandingan arsitektur: Anti-Pattern Pseudo-Shared Library via Groovy load (kiri) yang memicu kebocoran memori vs Native Jenkins Shared Library berbasis JCasC (kanan) yang modular dan terkompilasi aman.</figcaption>
+</figure>
 
 ---
 
@@ -224,7 +236,7 @@ Definisikan pustaka secara deklaratif pada konfigurasi *Jenkins Configuration as
 ```yaml
 unclassified:
   location:
-    url: "https://jenkins.company.internal/"
+    url: "https://jenkins.example.com/"
   globalLibraries:
     libraries:
       - name: "company-pipeline-library"
@@ -233,7 +245,7 @@ unclassified:
           modernSCM:
             scm:
               github:
-                repoOwner: "MyCompany"
+                repoOwner: "example-org"
                 repository: "jenkins-shared-library"
                 credentialsId: "github-service-account"
                 traits:
@@ -278,7 +290,7 @@ def call(Map config = [:]) {
             $class: 'GitSCM',
             branches: [[name: config.ref ?: params.REF ?: '*/development']],
             extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'PruneStaleBranch']],
-            userRemoteConfigs: [[credentialsId: 'git-creds', url: "git@github.com:MyCompany/${config.serviceName}.git"]]
+            userRemoteConfigs: [[credentialsId: 'git-creds', url: "git@github.com:example-org/${config.serviceName}.git"]]
           ])
         }
       }
@@ -317,12 +329,12 @@ Dengan abstraksi penuh pada pustaka bersama, berkas pipeline di setiap repositor
 ```groovy
 // Jenkinsfile pada repositori microservice: Sangat bersih dan deklaratif!
 backendPipeline(
-  serviceName: 'shipment-tracker-api',
-  group: 'logistics',
+  serviceName: 'sample-service-api',
+  group: 'core-backend',
   namespace: 'production',
   languageVersion: '1.23.0',
-  credentialSource: 's3',
-  webhookToken: '6k80UXMWM1STbBWOxd01ezAmbtBXHxvU'
+  credentialSource: 'secrets-manager',
+  webhookToken: '<YOUR_WEBHOOK_VERIFICATION_TOKEN>'
 )
 ```
 
