@@ -25,21 +25,21 @@ layout: default
     </aside>
 
     <!-- Main Content Wrapper (id="main-wrapper") -->
-    <div id="main-wrapper" class="min-w-0 bg-[#FFFFFF] rounded-xl border border-[#E2E8F0] p-6 md:p-10 shadow-sm">
+    <div id="main-wrapper" class="min-w-0 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-10 shadow-sm">
     <article class="post h-entry" itemscope itemtype="http://schema.org/TechArticle">
       <meta itemprop="proficiencyLevel" content="Expert">
       <meta itemprop="inLanguage" content="id-ID">
       {%- if page.tags -%}<meta itemprop="keywords" content="{{ page.tags | join: ', ' }}">{%- endif -%}
-      <header class="post-header mb-8 pb-6 border-b border-[#E2E8F0]">
-        <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-[#0F172A] mb-4 leading-tight" itemprop="name headline">{{ page.title | escape }}</h1>
-        <div class="post-meta flex flex-wrap items-center gap-3 text-sm text-[#64748B]">
+      <header class="post-header mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 leading-tight" itemprop="name headline">{{ page.title | escape }}</h1>
+        <div class="post-meta flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
           {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
           {%- assign pdate = page.date | date_to_xmlschema -%}
           <time class="dt-published" datetime="{{ pdate }}" itemprop="datePublished">
             📅 {{ pdate | date: date_format }}
           </time>
           {%- if page.reading_time -%}
-            <span class="bullet-divider text-text-muted" aria-hidden="true" role="presentation">•</span>
+            <span class="bullet-divider text-slate-400" aria-hidden="true" role="presentation">•</span>
             <span class="reading-time">{{ page.reading_time }}</span>
           {%- endif -%}
         </div>
