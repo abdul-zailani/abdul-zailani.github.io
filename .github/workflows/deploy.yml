@@ -68,8 +68,14 @@ jobs:
 
       - name: Deploy to GitHub Pages (gh-pages branch)
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          publish_branch: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd _site
+          touch .nojekyll
+          git init -b gh-pages
+          git -c credential.helper= config user.name "github-actions[bot]"
+          git -c credential.helper= config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "deploy: ${GITHUB_SHA} [skip ci]" || echo "No changes to commit"
+          git -c credential.helper= push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
