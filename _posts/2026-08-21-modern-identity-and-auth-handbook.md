@@ -245,7 +245,7 @@ Bagaimana tim Anda mengelola token sesi dan autentikasi pengguna saat ini? Apaka
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 *   [IETF RFC 9700: OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
 *   [OWASP Token Storage and Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 *   [AWS Cognito Developer Guide: Direct Authentication API](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow.html)
