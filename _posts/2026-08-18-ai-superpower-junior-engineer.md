@@ -16,6 +16,7 @@ description: >-
   sebagai pengungkit karir tanpa kehilangan esensi kemampuan teknis mendasar.
 reading_time: 3 min read
 image: /assets/images/ai-superpower-junior.webp
+mermaid: true
 ---
 
 ### Pergeseran Standar di Titik Masuk Industri Perangkat Lunak
@@ -34,10 +35,18 @@ Untuk unggul di pasar rekayasa modern, seorang *engineer* pemula harus bertransi
 
 ```mermaid
 graph TD
-    A[Junior Engineer Tradisional: Pengetik Kode] -->|Transformasi Era AI| B(Junior Engineer Superpower)
-    B --> C[1. Ahli Verifikasi & Audit Keamanan]
-    B --> D[2. Pemecah Masalah Berbasis Logika Bisnis]
-    B --> E[3. Pengungkit Produktivitas 10x via AI Pairing]
+    A[👨‍💻 Junior Engineer Tradisional: Pengetik Kode] -->|Transformasi Era AI| B(🚀 Junior Engineer Superpower)
+    B --> C[🛡️ 1. Ahli Verifikasi & Audit Keamanan]
+    B --> D[💡 2. Pemecah Masalah Berbasis Logika Bisnis]
+    B --> E[⚡ 3. Pengungkit Produktivitas 10x via AI Pairing]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+
+    class A warning;
+    class B primary;
+    class C,D,E success;
 ```
 
 ### 1. Verifikasi Aktif & Audit Keamanan (*Verification Specialist*)
@@ -72,9 +81,12 @@ Untuk mengubah AI menjadi *superpower* karir rekayasa perangkat lunak Anda, laku
 
 > "AI tidak akan menggantikan insinyur perangkat lunak; AI hanya akan menggantikan mereka yang berhenti berpikir dan sekadar menjadi pengetik sintaks."
 
+### Diskusikan Langkah Karir Anda
 
+Sebagai *engineer*, strategi apa yang paling efektif bagi Anda dalam memanfaatkan AI saat ini? Apakah Anda menggunakannya sebagai rekan *debugging*, atau fokus merancang arsitektur sistem? Mari diskusikan di kolom komentar!
 
 ---
+
 
 <div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
   <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>

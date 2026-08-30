@@ -16,6 +16,7 @@ description: >-
   membatasi hak akses sistem otonom secara terprogram.
 reading_time: 4 min read
 image: /assets/images/og/membangun-guardrails-keamanan-agen-ai-eks.webp
+mermaid: true
 ---
 
 ### Menghadapi Risiko Akses Otonom Agen AI
@@ -36,13 +37,23 @@ Berikut arsitektur pengamanan tiga lapis yang teruji:
 
 ```mermaid
 graph TD
-    A[Agentic AI Action Request] --> B{Layer 1: Kubernetes RBAC}
+    A[🤖 Agentic AI Action Request] --> B{Layer 1: Kubernetes RBAC}
     B -->|Lolos Hak Akses| C{Layer 2: Hardcoded Proxy Validator}
-    B -->|Ditolak| X[Drop & Log Violation]
+    B -->|Ditolak| X[❌ Drop & Log Violation]
     C -->|Parameter Aman| D{Layer 3: Circuit Breaker Loop Check}
     C -->|Parameter Ekstrem| X
-    D -->|Sehat < 3 Retry| E[Eksekusi ke K8s API Server]
-    D -->|Failure Loop Terdeteksi| F[Trip Breaker & Emergency SRE Pager]
+    D -->|Sehat < 3 Retry| E[🚀 Eksekusi ke K8s API Server]
+    D -->|Failure Loop Terdeteksi| F[🚨 Trip Breaker & Emergency SRE Pager]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+
+    class A primary;
+    class B,C,D warning;
+    class E success;
+    class X,F error;
 ```
 
 ---
@@ -98,14 +109,9 @@ Untuk mengamankan agen otonom di atas klaster Kubernetes produksi, terapkan empa
 
 > "Di lingkungan produksi, probabilitas model AI wajib tunduk pada kepastian deterministik. Pagar pengaman bukan penghambat inovasi, melainkan fondasi kepercayaan bagi sistem otonom."
 
----
+### Diskusikan Pengamanan Sistem Anda
 
-## Referensi & Bacaan Lanjutan
-
-* [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
-* [AWS EKS Security Best Practices Guide](https://aws.github.io/aws-eks-best-practices/security/docs/)
-* [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-* [Martin Fowler: Circuit Breaker Pattern in Cloud Systems](https://martinfowler.com/bliki/CircuitBreaker.html)
+Bagaimana tim Anda mengamankan sistem otomatisasi dan agen AI saat ini? Apakah sudah menerapkan pembatasan hak akses di level API, atau masih mengandalkan instruksi teks (*system prompt*) semata? Mari berbagi wawasan di kolom komentar!
 
 ---
 
@@ -116,6 +122,15 @@ Untuk mengamankan agen otonom di atas klaster Kubernetes produksi, terapkan empa
     <li><strong>Circuit Breaker</strong>: Mekanisme proteksi perangkat lunak yang otomatis menghentikan operasi berulang saat mendeteksi ambang batas kegagalan sistem.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
+* [AWS EKS Security Best Practices Guide](https://aws.github.io/aws-eks-best-practices/security/docs/)
+* [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+* [Martin Fowler: Circuit Breaker Pattern in Cloud Systems](https://martinfowler.com/bliki/CircuitBreaker.html)
 
 ---
 

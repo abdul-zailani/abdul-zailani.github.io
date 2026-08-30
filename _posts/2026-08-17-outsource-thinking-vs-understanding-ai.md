@@ -15,6 +15,7 @@ description: >-
   insinyur perangkat lunak dan bagaimana membangun pemahaman mendalam.
 reading_time: 3 min read
 image: /assets/images/thinking-vs-understanding.webp
+mermaid: true
 ---
 
 ### Ilusi Produktivitas Instan
@@ -32,10 +33,22 @@ Namun, tanpa disadari, terjadi erosi mental yang berbahaya: **kita mulai menyera
 Ketika kita selalu meminta jawaban instan dari AI tanpa menelusuri logika di baliknya, kita terjerumus ke dalam dua jebakan besar:
 
 ```mermaid
-graph LR
-    A[Ketergantungan Salin-Tempel AI] --> B[Ilusi Kemampuan Semu]
-    B --> C[Ketidakmampuan Debug Masalah Kompleks]
-    C --> D[Erosi Pemikiran Kritis & Daya Tahan Arsitektural]
+graph TD
+    subgraph Trap["❌ Jebakan: Outsource Understanding"]
+        A[Salin-Tempel AI Tanpa Verifikasi] --> B[Ilusi Kemampuan Semu]
+        B --> C[Gagal Menangani Insiden Nyata]
+    end
+
+    subgraph Master["✅ Penguasaan: AI-Augmented Engineer"]
+        D[Concept-First Prompting] --> E[Rekonstruksi Kode Mandiri]
+        E --> F[Model Mental Arsitektur Matang]
+    end
+
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+
+    class A,B,C error;
+    class D,E,F success;
 ```
 
 ### 1. Ilusi Pengetahuan (*Illusion of Competence*)
@@ -71,14 +84,9 @@ Agar ketajaman logika dan keahlian rekayasa Anda tetap terasah saat berkolaboras
 
 > "Anda boleh mendelegasikan eksekusi teknis kepada mesin, tetapi jangan pernah menyerahkan pemahaman Anda. Saat sistem produksi tumbang, yang menyelesaikan krisis adalah model mental di kepala Anda, bukan AI."
 
----
+### Diskusikan Pendekatan Belajar Anda
 
-## Referensi & Bacaan Lanjutan
-
-* [Cognitive Science Research: The Generation Effect in Learning](https://www.psychologytoday.com/us/basics/memory)
-* [ACM Queue: Mental Models in Software Engineering](https://queue.acm.org/)
-* [Richard Feynman: The Feynman Technique for Mental Mastery](https://fs.blog/feynman-technique/)
-* [Martin Fowler: Patterns of Distributed Systems Architecture](https://martinfowler.com/articles/patterns-of-distributed-systems/)
+Bagaimana Anda memanfaatkan AI dalam alur kerja harian? Apakah lebih sering mendelegasikan tugas mekanis (*outsource thinking*) atau pernah terjebak menyerahkan pemahaman konsep (*outsource understanding*) ke mesin? Mari bagikan refleksi Anda di kolom komentar!
 
 ---
 
@@ -89,6 +97,15 @@ Agar ketajaman logika dan keahlian rekayasa Anda tetap terasah saat berkolaboras
     <li><strong>Mental Model</strong>: Representasi pemahaman konseptual di benak seorang engineer mengenai cara kerja internal suatu sistem.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Cognitive Science Research: The Generation Effect in Learning](https://www.psychologytoday.com/us/basics/memory)
+* [ACM Queue: Mental Models in Software Engineering](https://queue.acm.org/)
+* [Richard Feynman: The Feynman Technique for Mental Mastery](https://fs.blog/feynman-technique/)
+* [Martin Fowler: Patterns of Distributed Systems Architecture](https://martinfowler.com/articles/patterns-of-distributed-systems/)
 
 ---
 

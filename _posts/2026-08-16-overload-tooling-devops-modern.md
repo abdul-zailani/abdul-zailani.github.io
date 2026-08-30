@@ -36,10 +36,13 @@ Banyak organisasi mengira bahwa mengadopsi setiap perkakas (*tooling*) terbaru a
 
 ```mermaid
 graph LR
-    A[Banjir Perkakas Baru] --> B[Beban Kognitif Melonjak]
-    B --> C[Fragmentasi Standar Keamanan]
-    C --> D[Konteks Switching Konstan]
-    D --> E[Penurunan Kecepatan Rilis DORA]
+    A[💥 Banjir Perkakas Baru] --> B[🤯 Beban Kognitif Melonjak]
+    B --> C[⚠️ Fragmentasi Standar Keamanan]
+    C --> D[🔄 Konteks Switching Konstan]
+    D --> E[📉 Penurunan Kecepatan Rilis DORA]
+
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+    class A,B,C,D,E error;
 ```
 
 1. **Beban Kognitif Berlebih (*Cognitive Overload*)**: Pengembang menghabiskan hingga 30% waktu kerja hanya untuk memahami sintaks konfigurasi infrastruktur dan aturan lingkungan *deployment*.
@@ -56,10 +59,16 @@ Tim *Platform Engineering* bertugas memperlakukan infrastruktur sebagai produk i
 
 ```mermaid
 graph TD
-    A[Software Developers] -->|Self-Service Portal / Clean API| B(Internal Developer Platform - IDP)
-    B -->|Golden Path Abstraction| C{Platform Engineering Engine}
-    C -->|Otomatisasi Orkestrasi| D[Kubernetes / Terraform / ArgoCD / Vault]
-    D -->|Multi-Environment Deployment| E[Secure Multi-Cloud Production]
+    A[👨‍💻 Software Developers] -->|Self-Service Portal / Clean API| B(🚀 Internal Developer Platform - IDP)
+    B -->|Golden Path Abstraction| C{⚙️ Platform Engineering Engine}
+    C -->|Otomatisasi Orkestrasi| D[📦 Kubernetes / Terraform / ArgoCD / Vault]
+    D -->|Multi-Environment Deployment| E[🛡️ Secure Multi-Cloud Production]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+
+    class A,B,C primary;
+    class D,E success;
 ```
 
 ### Konsep "Golden Paths" (Jalur Emas)
@@ -81,14 +90,9 @@ Untuk memangkas tumpukan perkakas dan mengatasi kelelahan kognitif (*cognitive o
 
 > "Perkakas hanyalah sarana pembantu, bukan tujuan. Menguasai ratusan logo teknologi tidak berarti apa-apa jika tim gagal berkolaborasi dan merilis nilai bisnis secara konsisten."
 
----
+### Diskusikan Kondisi Tim Anda
 
-## Referensi & Bacaan Lanjutan
-
-* [Team Topologies: Organizing Business and Technology Teams for Fast Flow](https://teamtopologies.com/)
-* [CNCF Platform Engineering Whitepaper](https://tag-app-delivery.cncf.io/whitepapers/platform-eng/)
-* [DORA Research: State of DevOps and Developer Productivity](https://dora.dev/)
-* [Gartner: Platform Engineering as a Top Strategic Technology Trend](https://www.gartner.com/en/articles/what-is-platform-engineering)
+Bagaimana kondisi tumpukan perkakas di organisasi Anda saat ini? Apakah Anda merasa kewalahan dengan jumlah konfigurasi YAML yang harus diurus setiap hari, atau sudah berhasil menyederhanakannya melalui rekayasa platform? Mari bagikan pengalaman Anda di kolom komentar!
 
 ---
 
@@ -99,6 +103,15 @@ Untuk memangkas tumpukan perkakas dan mengatasi kelelahan kognitif (*cognitive o
     <li><strong>Golden Path</strong>: Jalur terstandarisasi dan teruji yang disediakan tim platform untuk memudahkan pengembang membangun serta merilis aplikasi secara aman.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Team Topologies: Organizing Business and Technology Teams for Fast Flow](https://teamtopologies.com/)
+* [CNCF Platform Engineering Whitepaper](https://tag-app-delivery.cncf.io/whitepapers/platform-eng/)
+* [DORA Research: State of DevOps and Developer Productivity](https://dora.dev/)
+* [Gartner: Platform Engineering as a Top Strategic Technology Trend](https://www.gartner.com/en/articles/what-is-platform-engineering)
 
 ---
 
