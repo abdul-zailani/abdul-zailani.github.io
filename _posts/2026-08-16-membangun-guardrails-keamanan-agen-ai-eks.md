@@ -16,6 +16,7 @@ description: >-
   membatasi hak akses sistem otonom secara terprogram.
 reading_time: 4 min read
 image: /assets/images/og/membangun-guardrails-keamanan-agen-ai-eks.webp
+mermaid: true
 ---
 
 ### Menghadapi Risiko Akses Otonom Agen AI
@@ -36,13 +37,23 @@ Berikut arsitektur pengamanan tiga lapis yang teruji:
 
 ```mermaid
 graph TD
-    A[Agentic AI Action Request] --> B{Layer 1: Kubernetes RBAC}
+    A[🤖 Agentic AI Action Request] --> B{Layer 1: Kubernetes RBAC}
     B -->|Lolos Hak Akses| C{Layer 2: Hardcoded Proxy Validator}
-    B -->|Ditolak| X[Drop & Log Violation]
+    B -->|Ditolak| X[❌ Drop & Log Violation]
     C -->|Parameter Aman| D{Layer 3: Circuit Breaker Loop Check}
     C -->|Parameter Ekstrem| X
-    D -->|Sehat < 3 Retry| E[Eksekusi ke K8s API Server]
-    D -->|Failure Loop Terdeteksi| F[Trip Breaker & Emergency SRE Pager]
+    D -->|Sehat < 3 Retry| E[🚀 Eksekusi ke K8s API Server]
+    D -->|Failure Loop Terdeteksi| F[🚨 Trip Breaker & Emergency SRE Pager]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+
+    class A primary;
+    class B,C,D warning;
+    class E success;
+    class X,F error;
 ```
 
 ---

@@ -91,10 +91,20 @@ Solusinya adalah mengukur **burn rate** (laju kecepatan konsumsi kuota). *Burn r
 
 ```mermaid
 graph TD
-    A[Traffic Masuk] --> B{Laju Konsumsi Error Budget}
-    B -->|Burn Rate > 14.4 dalam 1 Jam| C[Fast Window: PagerDuty On-Call]
-    B -->|Burn Rate > 6 dalam 6 Jam| D[Medium Window: Jira Ticket Prioritas Tinggi]
-    B -->|Burn Rate > 3 dalam 24 Jam| E[Slow Window: Notifikasi Slack Tim]
+    A[📊 Traffic & SLI Request Masuk] --> B{⚖️ Laju Konsumsi Error Budget}
+    B -->|Burn Rate > 14.4 dalam 1 Jam| C[🚨 Fast Window: PagerDuty On-Call Kritis]
+    B -->|Burn Rate > 6.0 dalam 6 Jam| D[⚠️ Medium Window: Jira Ticket Prioritas Tinggi]
+    B -->|Burn Rate > 3.0 dalam 24 Jam| E[ℹ️ Slow Window: Notifikasi Slack Tim]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef info fill:#F1F5F9,stroke:#64748B,stroke-width:2px,color:#334155;
+
+    class A,B primary;
+    class C error;
+    class D warning;
+    class E info;
 ```
 
 ### Matriks Aksi Penanganan Insiden

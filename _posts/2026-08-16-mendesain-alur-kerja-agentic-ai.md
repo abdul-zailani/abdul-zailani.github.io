@@ -16,6 +16,7 @@ description: >-
   tanpa kehilangan kontrol operasional infrastruktur Anda.
 reading_time: 4 min read
 image: /assets/images/og/mendesain-alur-kerja-agentic-ai.webp
+mermaid: true
 ---
 
 ### Dilema Delegasi Kontrol pada Agen AI
@@ -47,14 +48,24 @@ Untuk menyeimbangkan kecepatan dan stabilitas, bagi seluruh tindakan operasional
 
 ```mermaid
 graph TD
-    A[Monitoring Alert Masuk] --> B(Agentic AI Analisis Insiden)
-    B --> C{Tentukan Tingkat Risiko}
-    C -->|Tingkat 1: Risiko Rendah| D[Eksekusi Otonom 100%<br>Cek log, kueri metrik, restart pod non-kritis]
-    C -->|Tingkat 2: Risiko Menengah| E[Human-in-the-Loop 1-Click<br>Draf perubahan dikirim ke Slack SRE]
-    C -->|Tingkat 3: Risiko Tinggi| F[Eskalasi Manual 100%<br>Failover DB, modifikasi IAM, migrasi data]
-    E -->|Disetujui Engineer| G[AI Eksekusi & Audit Log]
+    A[🔔 Monitoring Alert Masuk] --> B(🤖 Agentic AI Analisis Insiden)
+    B --> C{⚖️ Tentukan Tingkat Risiko}
+    C -->|Tingkat 1: Rendah| D[🟢 Eksekusi Otonom 100%<br>Cek log, kueri metrik, restart pod non-kritis]
+    C -->|Tingkat 2: Menengah| E[🟡 Human-in-the-Loop 1-Click<br>Draf perubahan dikirim ke Slack SRE]
+    C -->|Tingkat 3: Tinggi| F[🔴 Eskalasi Manual 100%<br>Failover DB, modifikasi IAM, migrasi data]
+    E -->|Disetujui SRE| G[🚀 Eksekusi & Audit Log]
     D --> G
-    F --> H[Investigasi Manual Tim SRE]
+    F --> H[👨‍💻 Investigasi Manual Tim SRE]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+
+    class A,B primary;
+    class C,E warning;
+    class D,G success;
+    class F,H error;
 ```
 
 ---

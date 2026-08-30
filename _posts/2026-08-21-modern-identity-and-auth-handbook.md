@@ -22,6 +22,7 @@ description: >-
   Cognito, BFF proxy, dan SRE runbook mitigasi kegagalan sistemik.
 reading_time: 10 min read
 image: /assets/images/infra-preview.webp
+mermaid: true
 ---
 
 Autentikasi dan Single Sign-On (SSO) merupakan komponen infrastruktur krusial yang berdampak langsung pada ketersediaan sistem (availability) dan postur keamanan organisasi. Kegagalan pada sistem autentikasi bertindak sebagai titik kegagalan tunggal (single point of failure) yang dapat melumpuhkan seluruh layanan mikro, sekaligus menjadi target utama serangan kebocoran kredensial dan eksploitasi token.
@@ -69,7 +70,38 @@ Membangun infrastruktur autentikasi internal dari nol memicu beberapa titik kega
 
 ## Chapter 3: Desain Arsitektur: Headless Identity via BFF Proxy
 
-Untuk menjaga performa dan keamanan token, gunakan pola arsitektur **Backend-for-Frontend (BFF)**.
+Untuk menjaga performa dan keamanan token, gunakan pola arsitektur **Backend-for-Frontend (BFF)**:
+
+```mermaid
+graph LR
+    subgraph ClientZone["🌐 Untrusted Client Zone"]
+        A[🖥️ Single Page App / Mobile]
+    end
+
+    subgraph EdgeZone["🛡️ Secure Edge / BFF Layer"]
+        B[⚙️ BFF Proxy Gateway<br>Go / Node.js]
+    end
+
+    subgraph CoreZone["🔐 Identity & Services"]
+        C[🛡️ Managed IdP<br>AWS Cognito / Keycloak]
+        D[📦 Internal Microservices<br>Private Network]
+    end
+
+    A -->|1. POST /login Credentials| B
+    B -->|2. OAuth 2.0 Token Exchange| C
+    C -->|3. Issue JWT Access & Refresh Token| B
+    B -->|4. Set-Cookie: HttpOnly SameSite=Strict| A
+    A -->|5. API Request with Session Cookie| B
+    B -->|6. Forward Verified JWT Bearer| D
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+
+    class A warning;
+    class B primary;
+    class C,D success;
+```
 
 <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; font-family: monospace;">
   <!-- Frontend Layer -->

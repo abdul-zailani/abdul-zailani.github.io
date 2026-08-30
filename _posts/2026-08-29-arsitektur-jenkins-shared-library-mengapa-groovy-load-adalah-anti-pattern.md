@@ -80,13 +80,21 @@ pipeline {
 ```mermaid
 graph TD
     A[Trigger Webhook / Git Push] --> B[Alokasi Jenkins Agent Node]
-    B --> C[Stage: Checkout CI/CD Repo Manual]
-    C --> D[Panggilan Step Groovy 'load']
-    D --> E[CPS Compiler Kompilasi Script Anonim di Master]
+    B --> C[⚠️ Stage: Checkout CI/CD Repo Manual]
+    C --> D[⚠️ Panggilan Step Groovy 'load']
+    D --> E[💥 CPS Compiler Kompilasi Script Dinamis di Master]
     E --> F[Stage: Checkout Source Code Service]
     F --> G[Build, Test, Push ECR, Deploy K8s]
-    G --> H[Panggilan 'load' Kedua untuk Notifikasi Discord/Slack]
-    H --> I[Post Cleanup: Risiko File Permission Lock]
+    G --> H[⚠️ Panggilan 'load' Kedua untuk Notifikasi Discord]
+    H --> I[❌ Post Cleanup: Risiko File Permission Lock]
+
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+
+    class A,B,F,G primary;
+    class C,D,H warning;
+    class E,I error;
 ```
 
 Meskipun terlihat berhasil pada skala kecil, pendekatan ini melahirkan empat cacat struktural yang merusak keandalan sistem orkestrasi:
@@ -167,22 +175,28 @@ Transformasi menuju arsitektur modern berlandaskan pada tiga komponen utama: str
 
 ```mermaid
 graph LR
-    subgraph Master["Jenkins Controller (JCasC)"]
+    subgraph Master["🏛️ Jenkins Controller (JCasC)"]
         JCasC[jenkins.yaml] -->|Registrasi Otomatis| LibCache[Global Library Cache]
     end
 
-    subgraph SharedLib["jenkins-shared-library Repository"]
+    subgraph SharedLib["📦 jenkins-shared-library Repository"]
         Vars["vars/backendPipeline.groovy"]
         Src["src/com/company/ci/"]
         Res["resources/templates/"]
     end
 
-    subgraph ServiceRepos["200+ Service Repositories"]
+    subgraph ServiceRepos["🚀 200+ Service Repositories"]
         Jenkinsfile["Jenkinsfile (10 Baris Deklaratif)"]
     end
 
     LibCache -.->|Compile-Time Load| Vars
     Jenkinsfile -->|Eksekusi Instan| Vars
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+
+    class JCasC,LibCache primary;
+    class Vars,Src,Res,Jenkinsfile success;
 ```
 
 ### 1. Membangun Struktur Direktori Pustaka Terstandarisasi

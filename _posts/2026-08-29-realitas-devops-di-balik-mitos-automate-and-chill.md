@@ -61,12 +61,20 @@ Otomasi tanpa disiplin observabilitas ibarat memasang pedal gas mobil balap tanp
 
 ```mermaid
 graph TD
-    A[Otomasi Pipeline & Infrastruktur] --> B[Peningkatan Frekuensi Rilis]
-    B --> C[Pertumbuhan Kompleksitas Arsitektur]
-    C --> D{Muncul Titik Kegagalan Baru}
-    D -->|Konfigurasi Drift / Resource Leak| E[CrashLoopBackOff & CPU Throttling]
-    D -->|I/O Bottleneck di Control Plane| F[etcdserver: request timed out]
-    D -->|Threshold Alarm Statis| G[Alert Fatigue Jam 03:00 Subuh]
+    A[⚡ Otomasi Pipeline & Infrastruktur] --> B[📈 Peningkatan Frekuensi Rilis]
+    B --> C[⚙️ Pertumbuhan Kompleksitas Arsitektur]
+    C --> D{⚠️ Muncul Titik Kegagalan Baru}
+    D -->|Konfigurasi Drift / Resource Leak| E[💥 CrashLoopBackOff & CPU Throttling]
+    D -->|I/O Bottleneck di Control Plane| F[💥 etcdserver: request timed out]
+    D -->|Threshold Alarm Statis| G[🚨 Alert Fatigue Jam 03:00 Subuh]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+
+    class A,B,C primary;
+    class D warning;
+    class E,F,G error;
 ```
 
 Ketika alur rilis berlangsung instan, puluhan pembaruan kode meluncur setiap pekan. Setiap baris baru menyimpan peluang *memory leak* (kebocoran alokasi memori), *race condition* (kondisi perebutan sumber daya), hingga kesalahan parameter *runtime*. Beban kerja insinyur tidak lenyap, melainkan bertransformasi menjadi tugas investigasi anomali sistem terdistribusi.

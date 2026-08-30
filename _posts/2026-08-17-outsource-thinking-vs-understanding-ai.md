@@ -15,6 +15,7 @@ description: >-
   insinyur perangkat lunak dan bagaimana membangun pemahaman mendalam.
 reading_time: 3 min read
 image: /assets/images/thinking-vs-understanding.webp
+mermaid: true
 ---
 
 ### Ilusi Produktivitas Instan
@@ -32,10 +33,22 @@ Namun, tanpa disadari, terjadi erosi mental yang berbahaya: **kita mulai menyera
 Ketika kita selalu meminta jawaban instan dari AI tanpa menelusuri logika di baliknya, kita terjerumus ke dalam dua jebakan besar:
 
 ```mermaid
-graph LR
-    A[Ketergantungan Salin-Tempel AI] --> B[Ilusi Kemampuan Semu]
-    B --> C[Ketidakmampuan Debug Masalah Kompleks]
-    C --> D[Erosi Pemikiran Kritis & Daya Tahan Arsitektural]
+graph TD
+    subgraph Trap["❌ Jebakan: Outsource Understanding"]
+        A[Salin-Tempel AI Tanpa Verifikasi] --> B[Ilusi Kemampuan Semu]
+        B --> C[Gagal Menangani Insiden Nyata]
+    end
+
+    subgraph Master["✅ Penguasaan: AI-Augmented Engineer"]
+        D[Concept-First Prompting] --> E[Rekonstruksi Kode Mandiri]
+        E --> F[Model Mental Arsitektur Matang]
+    end
+
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+
+    class A,B,C error;
+    class D,E,F success;
 ```
 
 ### 1. Ilusi Pengetahuan (*Illusion of Competence*)
