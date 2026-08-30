@@ -41,10 +41,24 @@
     --on-primary: #ffffff;
     --secondary: #2563eb;
     --accent: #2563eb;
+
+    /* Link Design Tokens - Light Mode (WCAG AA 5.8:1) */
+    --link-color: #2563eb;
+    --link-hover: #0284c7;
+    --link-underline: rgba(37, 99, 235, 0.35);
+    --link-underline-hover: #0284c7;
     
     /* Typography */
     --font-main: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'Geist Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  }
+
+  .dark {
+    /* Link Design Tokens - Dark Mode (WCAG AAA 8.2:1) */
+    --link-color: #60a5fa;
+    --link-hover: #38bdf8;
+    --link-underline: rgba(96, 165, 250, 0.35);
+    --link-underline-hover: #38bdf8;
   }
 
   body {
@@ -69,10 +83,19 @@
   h3 { font-size: 1.35rem; margin-top: 1.5em; }
 
   /* Links - Base Interaction */
-  a, a:visited {
-    color: inherit;
+  a {
+    color: var(--link-color);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                text-decoration-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
+
+    &:hover {
+      color: var(--link-hover);
+    }
   }
 
   /* Code - Engineering Focus */
@@ -183,47 +206,69 @@
   color: var(--on-surface-variant);
 }
 
-.post-link {
-  color: var(--on-surface) !important;
-  text-decoration: none;
+.post-link, .post-title a {
+  &, &:visited {
+    color: var(--on-surface) !important;
+    text-decoration: none;
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    color: var(--link-color) !important;
+    text-decoration: none;
+  }
 }
 
-.post-link:hover {
-  color: var(--on-surface-variant) !important;
-  text-decoration: underline;
+.dark .post-link, .dark .post-title a {
+  &:hover {
+    color: var(--link-color) !important;
+  }
 }
 
-/* Article Content Links - Enforced High Contrast (WCAG AA 5.5:1) without !important */
+/* Article Content Links & References - Enforced High Contrast (WCAG AA 5.8:1 Light, 8.2:1 Dark) */
 article.post .post-content a,
 article.post .entry-content a,
 .post-content a,
 article.post a {
-  color: #1d4ed8;
-  font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.15s ease;
+  &, &:visited {
+    color: var(--link-color);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3.5px;
+    text-decoration-color: var(--link-underline);
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                text-decoration-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
   &:hover {
-    color: #1e40af;
+    color: var(--link-hover) !important;
+    text-decoration-color: var(--link-underline-hover) !important;
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px #1d4ed8;
+    box-shadow: 0 0 0 2px var(--link-hover);
     border-radius: 2px;
+    outline: none;
   }
 }
 
 .dark article.post .post-content a,
-.dark .post-content a {
-  color: #60a5fa;
+.dark article.post .entry-content a,
+.dark .post-content a,
+.dark article.post a {
+  &, &:visited {
+    color: var(--link-color);
+    text-decoration-color: var(--link-underline);
+  }
 
   &:hover {
-    color: #93c5fd;
+    color: var(--link-hover) !important;
+    text-decoration-color: var(--link-underline-hover) !important;
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px #60a5fa;
+    box-shadow: 0 0 0 2px var(--link-hover);
+    outline: none;
   }
 }
 
@@ -464,23 +509,20 @@ html {
     margin-bottom: 0.5rem;
 
     a {
-      color: #475569;
-      text-decoration: none;
-      display: block;
-      padding: 0.25rem 0;
-      transition: color 0.15s ease, font-weight 0.15s ease;
-
-      &:hover {
-        color: #2563eb;
+      &, &:visited {
+        color: #475569;
+        text-decoration: none;
+        display: block;
+        padding: 0.25rem 0;
+        transition: color 0.15s ease, font-weight 0.15s ease;
       }
 
-      &.active {
-        color: #2563eb;
-        font-weight: 600;
+      &:hover, &.active {
+        color: var(--link-color) !important;
       }
 
       &:focus-visible {
-        outline: 2px solid #2563eb;
+        outline: 2px solid var(--link-color);
         outline-offset: 2px;
         border-radius: 4px;
       }
@@ -499,12 +541,11 @@ html {
     color: #94a3b8;
   }
   .toc-item a {
-    color: #cbd5e1;
-    &:hover {
-      color: #60a5fa;
+    &, &:visited {
+      color: #cbd5e1;
     }
-    &.active {
-      color: #60a5fa;
+    &:hover, &.active {
+      color: var(--link-color) !important;
     }
   }
 }
@@ -555,8 +596,18 @@ html {
   color: var(--on-surface);
 }
 
-.contact-list a {
-  color: var(--on-surface-variant);
+.contact-list a, .footer-social a, .site-footer a {
+  &, &:visited {
+    color: var(--on-surface-variant);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+
+  &:hover {
+    color: var(--link-color) !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--link-color);
+  }
 }
 
 /* User Custom Aesthetic Recommendations */
@@ -574,23 +625,33 @@ html {
   margin-top: 32px;
 }
 
-.nav-links a {
+.nav-links a, .post-nav a, .pagination a {
   display: inline-block;
   padding: 10px 20px;
-  background: var(--surface-container-low);
+  background-color: var(--surface-container-low);
   color: var(--on-surface) !important;
   text-decoration: none;
   border: 1px solid var(--outline);
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: var(--surface-container-high);
+    color: var(--link-color) !important;
+    border-color: var(--link-color);
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
+    text-decoration: none;
+  }
 }
 
-.nav-links a:hover {
-  background: var(--surface-container-high);
-  color: var(--on-surface) !important;
-  text-decoration: none;
+.dark .nav-links a:hover,
+.dark .post-nav a:hover,
+.dark .pagination a:hover {
+  border-color: var(--link-color);
+  box-shadow: 0 4px 10px rgba(96, 165, 250, 0.18);
 }
 
 /* Visual Frame Divider Before Comments */
