@@ -107,9 +107,12 @@ Sebelum mengalokasikan anggaran besar untuk adopsi kecerdasan buatan, terapkan e
 
 ---
 
-### Diskusikan Pengalaman Anda
+## Referensi & Bacaan Lanjutan
 
-Apakah tim Anda sudah memiliki alur kerja yang rapi sebelum mengadopsi AI, atau kehadiran perkakas baru ini justru menambah tumpukan birokrasi di kantor? Mari bagikan sudut pandang Anda di kolom komentar!
+* [Harvard Business Review: AI Doesn't Fix Broken Processes](https://hbr.org/)
+* [MIT Sloan: When AI Meets Process Redesign](https://sloanreview.mit.edu/)
+* [Eliyahu Goldratt: The Goal & Theory of Constraints](https://www.tocinstitute.org/)
+* [Gene Kim: The Phoenix Project & DevOps Principles](https://itrevolution.com/book/the-phoenix-project/)
 
 ---
 

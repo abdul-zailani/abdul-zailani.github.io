@@ -100,9 +100,12 @@ Untuk mengamankan agen otonom di atas klaster Kubernetes produksi, terapkan empa
 
 ---
 
-### Diskusikan Pengamanan Sistem Anda
+## Referensi & Bacaan Lanjutan
 
-Bagaimana tim Anda mengamankan sistem otomatisasi dan agen AI saat ini? Apakah sudah menerapkan pembatasan hak akses di level API, atau masih mengandalkan instruksi teks (*system prompt*) semata? Mari berbagi wawasan di kolom komentar!
+* [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
+* [AWS EKS Security Best Practices Guide](https://aws.github.io/aws-eks-best-practices/security/docs/)
+* [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+* [Martin Fowler: Circuit Breaker Pattern in Cloud Systems](https://martinfowler.com/bliki/CircuitBreaker.html)
 
 ---
 
