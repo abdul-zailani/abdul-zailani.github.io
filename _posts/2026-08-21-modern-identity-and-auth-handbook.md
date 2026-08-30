@@ -195,11 +195,7 @@ Untuk mengamankan dan memodernisasi infrastruktur autentikasi tanpa membebani ke
 
 > "Infrastruktur identitas adalah benteng terdepan keamanan dan ketersediaan sistem. Mengembangkan auth kustom demi menghemat biaya lisensi adalah ilusi yang dibayar mahal dengan downtime dan liabilitas keamanan."
 
----
 
-### Diskusikan Arsitektur Identitas Anda
-
-Bagaimana tim Anda mengelola token sesi dan autentikasi pengguna saat ini? Apakah sudah beralih ke pola BFF dan Managed IdP, atau masih mengelola basis data autentikasi monolit internal? Mari berbagi pengalaman di kolom komentar!
 
 ---
 

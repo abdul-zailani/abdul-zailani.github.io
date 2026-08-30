@@ -72,11 +72,7 @@ Untuk mengubah AI menjadi *superpower* karir rekayasa perangkat lunak Anda, laku
 
 > "AI tidak akan menggantikan insinyur perangkat lunak; AI hanya akan menggantikan mereka yang berhenti berpikir dan sekadar menjadi pengetik sintaks."
 
----
 
-### Diskusikan Langkah Karir Anda
-
-Sebagai *engineer*, strategi apa yang paling efektif bagi Anda dalam memanfaatkan AI saat ini? Apakah Anda menggunakannya sebagai rekan *debugging*, atau fokus merancang arsitektur sistem? Mari diskusikan di kolom komentar!
 
 ---
 
