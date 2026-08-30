@@ -109,8 +109,6 @@ Untuk mengamankan agen otonom di atas klaster Kubernetes produksi, terapkan empa
 
 > "Di lingkungan produksi, probabilitas model AI wajib tunduk pada kepastian deterministik. Pagar pengaman bukan penghambat inovasi, melainkan fondasi kepercayaan bagi sistem otonom."
 
----
-
 ### Diskusikan Pengamanan Sistem Anda
 
 Bagaimana tim Anda mengamankan sistem otomatisasi dan agen AI saat ini? Apakah sudah menerapkan pembatasan hak akses di level API, atau masih mengandalkan instruksi teks (*system prompt*) semata? Mari berbagi wawasan di kolom komentar!
@@ -124,6 +122,15 @@ Bagaimana tim Anda mengamankan sistem otomatisasi dan agen AI saat ini? Apakah s
     <li><strong>Circuit Breaker</strong>: Mekanisme proteksi perangkat lunak yang otomatis menghentikan operasi berulang saat mendeteksi ambang batas kegagalan sistem.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Kubernetes RBAC Good Practices](https://kubernetes.io/docs/concepts/security/rbac-good-practices/)
+* [AWS EKS Security Best Practices Guide](https://aws.github.io/aws-eks-best-practices/security/docs/)
+* [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+* [Martin Fowler: Circuit Breaker Pattern in Cloud Systems](https://martinfowler.com/bliki/CircuitBreaker.html)
 
 ---
 

@@ -125,8 +125,6 @@ Sebelum mengalokasikan anggaran besar untuk adopsi kecerdasan buatan, terapkan e
 
 > "Teknologi adalah penguat kecepatan, bukan pembenah arah. Mengotomasi alur kerja yang berantakan hanya akan melipatgandakan kekacauan dengan kecepatan ganda."
 
----
-
 ### Diskusikan Pengalaman Anda
 
 Apakah tim Anda sudah memiliki alur kerja yang rapi sebelum mengadopsi AI, atau kehadiran perkakas baru ini justru menambah tumpukan birokrasi di kantor? Mari bagikan sudut pandang Anda di kolom komentar!
@@ -140,6 +138,15 @@ Apakah tim Anda sudah memiliki alur kerja yang rapi sebelum mengadopsi AI, atau 
     <li><strong>Authority Delegation</strong>: Pelimpahan hak pengambilan keputusan kepada tim pelaksana agar tindakan operasional dapat dieksekusi secara instan.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Harvard Business Review: AI Doesn't Fix Broken Processes](https://hbr.org/)
+* [MIT Sloan: When AI Meets Process Redesign](https://sloanreview.mit.edu/)
+* [Eliyahu Goldratt: The Goal & Theory of Constraints](https://www.tocinstitute.org/)
+* [Gene Kim: The Phoenix Project & DevOps Principles](https://itrevolution.com/book/the-phoenix-project/)
 
 ---
 

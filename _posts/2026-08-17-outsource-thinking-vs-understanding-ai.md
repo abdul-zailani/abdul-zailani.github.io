@@ -84,8 +84,6 @@ Agar ketajaman logika dan keahlian rekayasa Anda tetap terasah saat berkolaboras
 
 > "Anda boleh mendelegasikan eksekusi teknis kepada mesin, tetapi jangan pernah menyerahkan pemahaman Anda. Saat sistem produksi tumbang, yang menyelesaikan krisis adalah model mental di kepala Anda, bukan AI."
 
----
-
 ### Diskusikan Pendekatan Belajar Anda
 
 Bagaimana Anda memanfaatkan AI dalam alur kerja harian? Apakah lebih sering mendelegasikan tugas mekanis (*outsource thinking*) atau pernah terjebak menyerahkan pemahaman konsep (*outsource understanding*) ke mesin? Mari bagikan refleksi Anda di kolom komentar!
@@ -99,6 +97,15 @@ Bagaimana Anda memanfaatkan AI dalam alur kerja harian? Apakah lebih sering mend
     <li><strong>Mental Model</strong>: Representasi pemahaman konseptual di benak seorang engineer mengenai cara kerja internal suatu sistem.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Cognitive Science Research: The Generation Effect in Learning](https://www.psychologytoday.com/us/basics/memory)
+* [ACM Queue: Mental Models in Software Engineering](https://queue.acm.org/)
+* [Richard Feynman: The Feynman Technique for Mental Mastery](https://fs.blog/feynman-technique/)
+* [Martin Fowler: Patterns of Distributed Systems Architecture](https://martinfowler.com/articles/patterns-of-distributed-systems/)
 
 ---
 

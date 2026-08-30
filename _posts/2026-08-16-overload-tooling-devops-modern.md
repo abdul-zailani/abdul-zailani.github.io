@@ -90,8 +90,6 @@ Untuk memangkas tumpukan perkakas dan mengatasi kelelahan kognitif (*cognitive o
 
 > "Perkakas hanyalah sarana pembantu, bukan tujuan. Menguasai ratusan logo teknologi tidak berarti apa-apa jika tim gagal berkolaborasi dan merilis nilai bisnis secara konsisten."
 
----
-
 ### Diskusikan Kondisi Tim Anda
 
 Bagaimana kondisi tumpukan perkakas di organisasi Anda saat ini? Apakah Anda merasa kewalahan dengan jumlah konfigurasi YAML yang harus diurus setiap hari, atau sudah berhasil menyederhanakannya melalui rekayasa platform? Mari bagikan pengalaman Anda di kolom komentar!
@@ -105,6 +103,15 @@ Bagaimana kondisi tumpukan perkakas di organisasi Anda saat ini? Apakah Anda mer
     <li><strong>Golden Path</strong>: Jalur terstandarisasi dan teruji yang disediakan tim platform untuk memudahkan pengembang membangun serta merilis aplikasi secara aman.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Team Topologies: Organizing Business and Technology Teams for Fast Flow](https://teamtopologies.com/)
+* [CNCF Platform Engineering Whitepaper](https://tag-app-delivery.cncf.io/whitepapers/platform-eng/)
+* [DORA Research: State of DevOps and Developer Productivity](https://dora.dev/)
+* [Gartner: Platform Engineering as a Top Strategic Technology Trend](https://www.gartner.com/en/articles/what-is-platform-engineering)
 
 ---
 

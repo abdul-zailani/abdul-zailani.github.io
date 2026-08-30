@@ -213,7 +213,6 @@ Dengan aturan tertulis ini, perdebatan abadi antara tim pengembang yang ingin me
 ## Langkah Taktis yang Bisa Diterapkan
 
 Untuk mengimplementasikan tata kelola *error budget* yang terukur di lingkungan produksi Anda, jalankan empat langkah berikut:
-
 1. **Hitung SLO Berbasis Jendela Waktu Bergulir (*30-Day Rolling Window*)**: Hindari perhitungan berbasis bulan kalender dan gunakan rentang 720 jam dinamis agar evaluasi keandalan sistem tetap adil dan bebas dari bias tanggal kalender.
 2. **Optimasi Beban Database TSDB via Prometheus Recording Rules**: Gunakan *recording rules* untuk menghitung rasio error dan laju *burn rate* setiap 30 detik secara terjadwal agar dasbor dan query alarm tetap responsif.
 3. **Konfigurasi Multi-Window Multi-Burn-Rate Alerting**: Pisahkan saluran notifikasi darurat (*PagerDuty on-call* untuk *burn rate* kritis > 14.4) dari tiket investigasi berkala (*Jira automated tickets* untuk degradasi lambat).
@@ -228,6 +227,7 @@ Untuk mengimplementasikan tata kelola *error budget* yang terukur di lingkungan 
 Bagaimana tim Anda menyeimbangkan antara kecepatan rilis fitur dan kestabilan sistem di produksi? Apakah sudah menerapkan sistem *error budget* atau masih berdebat manual setiap kali terjadi *downtime*? Bagikan cerita Anda di kolom komentar!
 
 ---
+
 
 <div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
   <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>

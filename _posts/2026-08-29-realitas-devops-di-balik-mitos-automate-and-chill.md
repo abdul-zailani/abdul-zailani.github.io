@@ -192,7 +192,6 @@ Melalui pemeriksaan otomatis (*shift-left testing*) dan rilis bertahap (*canary 
 ## Langkah Taktis yang Bisa Diterapkan
 
 Untuk mengubah kekacauan operasional menjadi keandalan sistem yang tenang dan berkelanjutan, terapkan empat langkah berikut:
-
 1. **Pasang Pemeriksaan Manifes di Awal (*Shift-Left Validation*)**: Integrasikan `yamllint`, `kube-linter`, dan kebijakan OPA Conftest ke dalam pipeline CI untuk mendeteksi kesalahan konfigurasi sebelum manifes diterapkan ke kluster.
 2. **Terapkan Pengiriman Progresif (*Progressive Delivery*)**: Gunakan rilis bertahap (*canary deployment*) dengan pemantauan metrik otomatis dan pemicu pemulihan instan (*automated rollback*) jika terdeteksi anomali pada fase awal.
 3. **Rasionalisasi Alarm Berbasis SLO**: Gantikan alarm ambang batas statis yang memicu *alert fatigue* dengan alarm *multi-window burn rate* agar tim *on-call* hanya dibangunkan saat terjadi ancaman nyata terhadap *error budget*.
@@ -207,6 +206,7 @@ Untuk mengubah kekacauan operasional menjadi keandalan sistem yang tenang dan be
 Pernahkah Anda mengalami badai alarm atau insiden CrashLoopBackOff di jam-jam genting setelah merasa telah "mengotomasi segalanya"? Bagaimana tim Anda mengatasi kesenjangan antara mitos otomatisasi dan realitas lapangan? Tuliskan cerita Anda di kolom komentar!
 
 ---
+
 
 <div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
   <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>

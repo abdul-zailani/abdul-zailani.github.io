@@ -102,8 +102,6 @@ Untuk mendelegasikan wewenang operasional kepada sistem agen pintar secara aman,
 
 > "Mendelegasikan tugas ke mesin bukan berarti melepaskan akuntabilitas manusia. Otomasi terbaik adalah kemitraan di mana mesin menyediakan kecepatan dan manusia memegang kendali penilaian akhir."
 
----
-
 ### Diskusikan Kesiapan Sistem Anda
 
 Bagaimana dengan sistem di organisasi Anda saat ini? Apakah Anda sudah siap mendelegasikan tindakan mitigasi otomatis ke AI, atau masih berada di tahap eksplorasi wacana? Mari kita diskusikan di kolom komentar!
@@ -117,6 +115,15 @@ Bagaimana dengan sistem di organisasi Anda saat ini? Apakah Anda sudah siap mend
     <li><strong>Autonomous Agent</strong>: Perangkat lunak berbasis AI yang mampu merencanakan langkah mandiri dan mengeksekusi aksi secara otomatis untuk mencapai tujuan tertentu.</li>
   </ul>
 </div>
+
+---
+
+## Referensi & Bacaan Lanjutan
+
+* [Anthropic Research: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+* [Google DeepMind: Agentic Workflow Architecture & Evaluation](https://deepmind.google/research/)
+* [OpenAI: Autonomous Agents and Function Calling Guardrails](https://platform.openai.com/docs/guides/function-calling)
+* [LangChain / LangGraph: Multi-Agent Orchestration Patterns](https://www.langchain.com/)
 
 ---
 

@@ -219,7 +219,6 @@ Gunakan panduan berikut untuk menentukan opsi deployment autentikasi yang sesuai
 ## Langkah Taktis yang Bisa Diterapkan
 
 Untuk mengamankan dan memodernisasi infrastruktur autentikasi tanpa membebani keandalan operasional, lakukan empat langkah taktis berikut:
-
 1. **Terapkan Pola Backend-for-Frontend (BFF Proxy)**: Jauhkan token JWT mentah dari JavaScript peramban (*browser local storage*) dan enkripsi sesi autentikasi ke dalam *Secure, HttpOnly, SameSite=Strict* cookies pada gateway.
 2. **Gunakan Penyedia Identitas Terkelola (*Managed / Standard IdP*)**: Hindari membangun mekanisme enkripsi dan manajemen pengguna sendiri dari nol (*in-house auth*) demi mencegah risiko kelemahan kriptografi, celah OWASP, dan lonjakan CPU akibat kalkulasi *hashing*.
 3. **Eksekusi Migrasi Bertahap Tepat Waktu (*Just-In-Time Migration*)**: Terapkan arsitektur *Strangler Fig* dengan validasi ganda untuk memindahkan data pengguna secara transparan saat login tanpa memicu *downtime* sistem.
@@ -234,6 +233,7 @@ Untuk mengamankan dan memodernisasi infrastruktur autentikasi tanpa membebani ke
 Bagaimana tim Anda mengelola token sesi dan autentikasi pengguna saat ini? Apakah sudah beralih ke pola BFF dan Managed IdP, atau masih mengelola basis data autentikasi monolit internal? Mari berbagi pengalaman di kolom komentar!
 
 ---
+
 
 <div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
   <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
