@@ -61,12 +61,20 @@ Otomasi tanpa disiplin observabilitas ibarat memasang pedal gas mobil balap tanp
 
 ```mermaid
 graph TD
-    A[Otomasi Pipeline & Infrastruktur] --> B[Peningkatan Frekuensi Rilis]
-    B --> C[Pertumbuhan Kompleksitas Arsitektur]
-    C --> D{Muncul Titik Kegagalan Baru}
-    D -->|Konfigurasi Drift / Resource Leak| E[CrashLoopBackOff & CPU Throttling]
-    D -->|I/O Bottleneck di Control Plane| F[etcdserver: request timed out]
-    D -->|Threshold Alarm Statis| G[Alert Fatigue Jam 03:00 Subuh]
+    A[⚡ Otomasi Pipeline & Infrastruktur] --> B[📈 Peningkatan Frekuensi Rilis]
+    B --> C[⚙️ Pertumbuhan Kompleksitas Arsitektur]
+    C --> D{⚠️ Muncul Titik Kegagalan Baru}
+    D -->|Konfigurasi Drift / Resource Leak| E[💥 CrashLoopBackOff & CPU Throttling]
+    D -->|I/O Bottleneck di Control Plane| F[💥 etcdserver: request timed out]
+    D -->|Threshold Alarm Statis| G[🚨 Alert Fatigue Jam 03:00 Subuh]
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    classDef error fill:#FFE4E6,stroke:#E11D48,stroke-width:2px,color:#881337;
+
+    class A,B,C primary;
+    class D warning;
+    class E,F,G error;
 ```
 
 Ketika alur rilis berlangsung instan, puluhan pembaruan kode meluncur setiap pekan. Setiap baris baru menyimpan peluang *memory leak* (kebocoran alokasi memori), *race condition* (kondisi perebutan sumber daya), hingga kesalahan parameter *runtime*. Beban kerja insinyur tidak lenyap, melainkan bertransformasi menjadi tugas investigasi anomali sistem terdistribusi.
@@ -184,7 +192,6 @@ Melalui pemeriksaan otomatis (*shift-left testing*) dan rilis bertahap (*canary 
 ## Langkah Taktis yang Bisa Diterapkan
 
 Untuk mengubah kekacauan operasional menjadi keandalan sistem yang tenang dan berkelanjutan, terapkan empat langkah berikut:
-
 1. **Pasang Pemeriksaan Manifes di Awal (*Shift-Left Validation*)**: Integrasikan `yamllint`, `kube-linter`, dan kebijakan OPA Conftest ke dalam pipeline CI untuk mendeteksi kesalahan konfigurasi sebelum manifes diterapkan ke kluster.
 2. **Terapkan Pengiriman Progresif (*Progressive Delivery*)**: Gunakan rilis bertahap (*canary deployment*) dengan pemantauan metrik otomatis dan pemicu pemulihan instan (*automated rollback*) jika terdeteksi anomali pada fase awal.
 3. **Rasionalisasi Alarm Berbasis SLO**: Gantikan alarm ambang batas statis yang memicu *alert fatigue* dengan alarm *multi-window burn rate* agar tim *on-call* hanya dibangunkan saat terjadi ancaman nyata terhadap *error budget*.
@@ -192,9 +199,14 @@ Untuk mengubah kekacauan operasional menjadi keandalan sistem yang tenang dan be
 
 > "Otomasi tanpa disiplin observabilitas hanyalah akselerator bencana. Ketenangan operasional sejati tidak lahir dari sikap abai, melainkan dari arsitektur tangguh dengan jaring pengaman berlapis."
 
+---
 
+### Diskusikan Realitas Operasional Anda
+
+Pernahkah Anda mengalami badai alarm atau insiden CrashLoopBackOff di jam-jam genting setelah merasa telah "mengotomasi segalanya"? Bagaimana tim Anda mengatasi kesenjangan antara mitos otomatisasi dan realitas lapangan? Tuliskan cerita Anda di kolom komentar!
 
 ---
+
 
 <div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
   <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>

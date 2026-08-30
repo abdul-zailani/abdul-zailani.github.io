@@ -22,6 +22,7 @@ description: >-
   Cognito, BFF proxy, dan SRE runbook mitigasi kegagalan sistemik.
 reading_time: 10 min read
 image: /assets/images/infra-preview.webp
+mermaid: true
 ---
 
 Autentikasi dan Single Sign-On (SSO) merupakan komponen infrastruktur krusial yang berdampak langsung pada ketersediaan sistem (availability) dan postur keamanan organisasi. Kegagalan pada sistem autentikasi bertindak sebagai titik kegagalan tunggal (single point of failure) yang dapat melumpuhkan seluruh layanan mikro, sekaligus menjadi target utama serangan kebocoran kredensial dan eksploitasi token.
@@ -69,7 +70,38 @@ Membangun infrastruktur autentikasi internal dari nol memicu beberapa titik kega
 
 ## Chapter 3: Desain Arsitektur: Headless Identity via BFF Proxy
 
-Untuk menjaga performa dan keamanan token, gunakan pola arsitektur **Backend-for-Frontend (BFF)**.
+Untuk menjaga performa dan keamanan token, gunakan pola arsitektur **Backend-for-Frontend (BFF)**:
+
+```mermaid
+graph LR
+    subgraph ClientZone["🌐 Untrusted Client Zone"]
+        A[🖥️ Single Page App / Mobile]
+    end
+
+    subgraph EdgeZone["🛡️ Secure Edge / BFF Layer"]
+        B[⚙️ BFF Proxy Gateway<br>Go / Node.js]
+    end
+
+    subgraph CoreZone["🔐 Identity & Services"]
+        C[🛡️ Managed IdP<br>AWS Cognito / Keycloak]
+        D[📦 Internal Microservices<br>Private Network]
+    end
+
+    A -->|1. POST /login Credentials| B
+    B -->|2. OAuth 2.0 Token Exchange| C
+    C -->|3. Issue JWT Access & Refresh Token| B
+    B -->|4. Set-Cookie: HttpOnly SameSite=Strict| A
+    A -->|5. API Request with Session Cookie| B
+    B -->|6. Forward Verified JWT Bearer| D
+
+    classDef primary fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0369A1;
+    classDef success fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#14532D;
+    classDef warning fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+
+    class A warning;
+    class B primary;
+    class C,D success;
+```
 
 <div style="background: var(--surface-container-low, #f4f3f2); border: 1px solid var(--outline, #e5e5e5); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; font-family: monospace;">
   <!-- Frontend Layer -->
@@ -187,7 +219,6 @@ Gunakan panduan berikut untuk menentukan opsi deployment autentikasi yang sesuai
 ## Langkah Taktis yang Bisa Diterapkan
 
 Untuk mengamankan dan memodernisasi infrastruktur autentikasi tanpa membebani keandalan operasional, lakukan empat langkah taktis berikut:
-
 1. **Terapkan Pola Backend-for-Frontend (BFF Proxy)**: Jauhkan token JWT mentah dari JavaScript peramban (*browser local storage*) dan enkripsi sesi autentikasi ke dalam *Secure, HttpOnly, SameSite=Strict* cookies pada gateway.
 2. **Gunakan Penyedia Identitas Terkelola (*Managed / Standard IdP*)**: Hindari membangun mekanisme enkripsi dan manajemen pengguna sendiri dari nol (*in-house auth*) demi mencegah risiko kelemahan kriptografi, celah OWASP, dan lonjakan CPU akibat kalkulasi *hashing*.
 3. **Eksekusi Migrasi Bertahap Tepat Waktu (*Just-In-Time Migration*)**: Terapkan arsitektur *Strangler Fig* dengan validasi ganda untuk memindahkan data pengguna secara transparan saat login tanpa memicu *downtime* sistem.
@@ -195,9 +226,14 @@ Untuk mengamankan dan memodernisasi infrastruktur autentikasi tanpa membebani ke
 
 > "Infrastruktur identitas adalah benteng terdepan keamanan dan ketersediaan sistem. Mengembangkan auth kustom demi menghemat biaya lisensi adalah ilusi yang dibayar mahal dengan downtime dan liabilitas keamanan."
 
+---
 
+### Diskusikan Arsitektur Identitas Anda
+
+Bagaimana tim Anda mengelola token sesi dan autentikasi pengguna saat ini? Apakah sudah beralih ke pola BFF dan Managed IdP, atau masih mengelola basis data autentikasi monolit internal? Mari berbagi pengalaman di kolom komentar!
 
 ---
+
 
 <div class="english-corner p-4 my-6 rounded-lg bg-surface-secondary border border-border-subtle">
   <div class="font-bold text-text-primary mb-2">💡 Pojok Bahasa Inggris</div>
