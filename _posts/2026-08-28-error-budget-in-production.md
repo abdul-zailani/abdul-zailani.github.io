@@ -211,11 +211,7 @@ Untuk mengimplementasikan tata kelola *error budget* yang terukur di lingkungan 
 
 > "Mengejar uptime 100% adalah ilusi yang mematikan inovasi. Error budget bukan sekadar angka toleransi kegagalan, melainkan mata uang yang disepakati untuk membeli kecepatan rilis tanpa mengorbankan stabilitas."
 
----
 
-### Diskusikan Penerapan di Tim Anda
-
-Bagaimana tim Anda menyeimbangkan antara kecepatan rilis fitur dan kestabilan sistem di produksi? Apakah sudah menerapkan sistem *error budget* atau masih berdebat manual setiap kali terjadi *downtime*? Bagikan cerita Anda di kolom komentar!
 
 ---
 

@@ -192,11 +192,7 @@ Untuk mengubah kekacauan operasional menjadi keandalan sistem yang tenang dan be
 
 > "Otomasi tanpa disiplin observabilitas hanyalah akselerator bencana. Ketenangan operasional sejati tidak lahir dari sikap abai, melainkan dari arsitektur tangguh dengan jaring pengaman berlapis."
 
----
 
-### Diskusikan Realitas Operasional Anda
-
-Pernahkah Anda mengalami badai alarm atau insiden CrashLoopBackOff di jam-jam genting setelah merasa telah "mengotomasi segalanya"? Bagaimana tim Anda mengatasi kesenjangan antara mitos otomatisasi dan realitas lapangan? Tuliskan cerita Anda di kolom komentar!
 
 ---
 

@@ -185,11 +185,12 @@ Tiga tindakan yang bisa Anda jalankan hari ini untuk mengamankan kluster:
 
 ---
 
-## Mari Berdiskusi dan Bertindak
+## Referensi & Bacaan Lanjutan
 
-*   📤 **Bagikan Wawasan**: Sebarkan artikel ini kepada rekan tim pengembang agar tidak ada lagi kata sandi yang tersasar di ConfigMap.
-*   💡 **Jelajahi Portofolio & Arsitektur**: Simak catatan teknis rekayasa keandalan sistem lainnya di [Terminal CV]({{ '/terminal/' | relative_url }}) atau baca ulasan [Implementasi Error Budget di Produksi]({{ '/2026/08/28/error-budget-in-production/' | relative_url }}).
-*   💬 **Diskusi Terarah**: Bagaimana strategi tim Anda dalam mengelola rotasi rahasia di Kubernetes tanpa menimbulkan *downtime* aplikasi? Tuliskan pengalaman Anda di kolom komentar!
+* [Kubernetes Documentation: Secrets Management Best Practices](https://kubernetes.io/docs/concepts/configuration/secret/)
+* [External Secrets Operator (ESO) Official Documentation](https://external-secrets.io/latest/)
+* [OWASP Kubernetes Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [AWS Whitepaper: Security Best Practices for Amazon EKS](https://docs.aws.amazon.com/whitepapers/latest/practical-aws-security-best-practices/amazon-elastic-kubernetes-service-eks.html)
 
 ---
 

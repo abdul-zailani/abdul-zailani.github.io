@@ -364,9 +364,12 @@ Untuk mentransformasikan arsitektur CI/CD dari skrip `load()` yang rapuh menuju 
 
 ---
 
-### Diskusikan Arsitektur Pipeline Anda
+## Referensi & Bacaan Lanjutan
 
-Apakah arsitektur CI/CD di tim Anda masih menggunakan pendekatan pemuatan skrip dinamis (*dynamic script loading*), atau sudah bermigrasi penuh ke Native Shared Library? Mari bagikan pengalaman Anda di kolom komentar!
+* [Jenkins Official Documentation: Extending with Shared Libraries](https://www.jenkins.io/doc/book/pipeline/shared-libraries/)
+* [Jenkins Configuration as Code (JCasC) Documentation](https://plugins.jenkins.io/configuration-as-code/)
+* [CloudBees: Best Practices for Jenkins Pipeline Shared Libraries](https://docs.cloudbees.com/docs/cloudbees-ci/latest/pipelines/shared-libraries)
+* [JenkinsPipelineUnit: Framework for Testing Pipeline Scripts](https://github.com/jenkinsci/JenkinsPipelineUnit)
 
 ---
 
