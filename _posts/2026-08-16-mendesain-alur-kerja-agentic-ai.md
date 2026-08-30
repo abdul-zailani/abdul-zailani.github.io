@@ -93,9 +93,12 @@ Untuk mendelegasikan wewenang operasional kepada sistem agen pintar secara aman,
 
 ---
 
-### Diskusikan Kesiapan Sistem Anda
+## Referensi & Bacaan Lanjutan
 
-Bagaimana dengan sistem di organisasi Anda saat ini? Apakah Anda sudah siap mendelegasikan tindakan mitigasi otomatis ke AI, atau masih berada di tahap eksplorasi wacana? Mari kita diskusikan di kolom komentar!
+* [Anthropic Research: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+* [Google DeepMind: Agentic Workflow Architecture & Evaluation](https://deepmind.google/research/)
+* [OpenAI: Autonomous Agents and Function Calling Guardrails](https://platform.openai.com/docs/guides/function-calling)
+* [LangChain / LangGraph: Multi-Agent Orchestration Patterns](https://www.langchain.com/)
 
 ---
 

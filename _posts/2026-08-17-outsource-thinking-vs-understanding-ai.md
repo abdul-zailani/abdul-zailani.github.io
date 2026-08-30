@@ -73,9 +73,12 @@ Agar ketajaman logika dan keahlian rekayasa Anda tetap terasah saat berkolaboras
 
 ---
 
-### Diskusikan Pendekatan Belajar Anda
+## Referensi & Bacaan Lanjutan
 
-Bagaimana Anda memanfaatkan AI dalam alur kerja harian? Apakah lebih sering mendelegasikan tugas mekanis (*outsource thinking*) atau pernah terjebak menyerahkan pemahaman konsep (*outsource understanding*) ke mesin? Mari bagikan refleksi Anda di kolom komentar!
+* [Cognitive Science Research: The Generation Effect in Learning](https://www.psychologytoday.com/us/basics/memory)
+* [ACM Queue: Mental Models in Software Engineering](https://queue.acm.org/)
+* [Richard Feynman: The Feynman Technique for Mental Mastery](https://fs.blog/feynman-technique/)
+* [Martin Fowler: Patterns of Distributed Systems Architecture](https://martinfowler.com/articles/patterns-of-distributed-systems/)
 
 ---
 
