@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# Treat minified build artifacts as binary to prevent 3-way text merge conflicts
+*.min.css binary
+*.min.js binary
