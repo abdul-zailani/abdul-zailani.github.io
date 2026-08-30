@@ -218,7 +218,7 @@ Pernahkah Anda mengalami badai alarm atau insiden CrashLoopBackOff di jam-jam ge
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Google SRE Book: Eliminating Toil](https://sre.google/sre-book/eliminating-toil/)
 * [Kubernetes Documentation: Troubleshoot Applications](https://kubernetes.io/docs/tasks/debug/debug-application/)

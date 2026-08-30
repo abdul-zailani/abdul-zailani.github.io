@@ -100,7 +100,7 @@ Bagaimana Anda memanfaatkan AI dalam alur kerja harian? Apakah lebih sering mend
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Cognitive Science Research: The Generation Effect in Learning](https://www.psychologytoday.com/us/basics/memory)
 * [ACM Queue: Mental Models in Software Engineering](https://queue.acm.org/)

@@ -239,7 +239,7 @@ Bagaimana tim Anda menyeimbangkan antara kecepatan rilis fitur dan kestabilan si
 
 ---
 
-## Referensi & Bacaan Lanjutan
+## Referensi
 
 * [Google SRE Book: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/)
 * [Google SRE Workbook: Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
