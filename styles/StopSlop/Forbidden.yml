@@ -1,0 +1,17 @@
+extends: existence
+message: "Hindari frasa klise AI '%s'. Ganti dengan kalimat faktual atau pengalaman operasional konkret."
+level: error
+ignorecase: true
+tokens:
+  - di era digital
+  - di era cloud-native
+  - lanskap teknologi
+  - solusi inovatif
+  - solusi revolusioner
+  - game-changer
+  - tak dapat dipungkiri
+  - dunia devops yang penuh tantangan
+  - mari kita bedah
+  - yuk simak
+  - let that sink in
+  - full stop
